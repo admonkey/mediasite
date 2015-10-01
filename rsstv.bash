@@ -16,7 +16,11 @@ DEBUGS=true
 # validate directories
 if [ -d "$workingDirectory" ]; then cd $workingDirectory
 else echo "error: working directory '"$workingDirectory"' doesn't exist"; exit 1; fi
-if [ ! -d "$downloadDirectory" ]; then downloadDirectory=$workingDirectory; fi
+if [ ! -d "$downloadDirectory" ]; then
+	echo "downloads directory '"$downloadDirectory"' not found."
+	echo "using '"$workingDirectory"' for downloads."
+	downloadDirectory=$workingDirectory
+fi
 
 # main log file
 if [ $DEBUGS = true ]
