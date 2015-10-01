@@ -1,10 +1,15 @@
 #!/bin/bash
 
+# change these variables to match your environment
+rssURL="https://example.com/path-to-feed/rss?"
 workingDirectory=$HOME"/rsstv/"
+favorites=$workingDirectory"tvShows.lst"
 downloadDirectory=$workingDirectory"downloads/"
-rssURL=""
-emailFrom=""
-emailTo=""
+# "Name" cannot have spaces in it.
+emailFrom="Name<username-from@example.com>"
+emailTo="username-to@example.com"
+
+# optionally store these variables in a separate file
 source creds.bash
 DEBUGS=true
 
@@ -25,8 +30,7 @@ function chronicle {
 chronicle "-- rsstv script executing..."
 
 # get favorite list
-favorites=$workingDirectory"tvShows.lst"
-if [ ! -f $favorites ]; then msg="no list of favorites"; chronicle "$msg"; echo $msg; exit 0; fi
+if [ ! -f $favorites ]; then msg="no list of favorites"; chronicle "$msg"; echo $msg; exit 1; fi
 shows=( $( cat $favorites ) )
 
 # get snatched.log
@@ -87,7 +91,7 @@ for ((i=0; i < $itemsCount; i++)); do
 				chronicle "snatched $item"
 
                                 # email
-                                if [ $DEBUGS = false ]; then echo $item | mail -s "new episode" -a$emailFrom $emailTo; fi
+                                if [ $DEBUGS = false ]; then echo $item | mail -s "new episode" -aFrom:$emailFrom $emailTo; fi
 			fi
 		fi
 	done

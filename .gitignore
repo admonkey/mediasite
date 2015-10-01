@@ -1,4 +1,5 @@
-DEBUGS*
+*.log
+*.xml
+*.lst
 creds.bash
 downloads/
-tvShows.lst
