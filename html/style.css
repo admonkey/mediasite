@@ -1,0 +1,11 @@
+body {
+	background-color: black;
+	/*background: url(bg.jpg) no-repeat center center fixed;*/
+	background-size: cover;
+	color: limegreen;
+	font-family: monospace;
+}
+h1 {
+	text-align: center;
+	margin: 25px;
+}
