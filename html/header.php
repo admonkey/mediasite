@@ -36,14 +36,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><?php echo $siteTitle; ?></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <a class="navbar-brand" href="index.php"><?php echo $siteTitle; ?></a>
+        </div><!-- end navbar-header -->
+	<div id="navbar" class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
 			<li><a href="#">Link 1</a></li>
 			<li><a href="#">Link 2</a></li>
-		  </ul>
-		</div><!--/.nav-collapse -->
+		</ul>
+	</div><!--/.nav-collapse -->
       </div>
     </nav>
 
