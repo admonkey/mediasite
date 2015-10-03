@@ -1,0 +1,8 @@
+/* BOOTSTRAP FIX: PADDING FOR STATIC-FIXED TOP NAV */
+body {
+	padding-top: 65px;
+}
+/* Enhance Logo */
+.navbar-brand {
+	text-shadow: gray 0.1em 0.1em 0.2em
+}

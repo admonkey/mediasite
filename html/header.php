@@ -24,16 +24,7 @@
 	<!-- CSS -->
 	<!-- MINIMAL <link rel="stylesheet" href="css/minimal.css"> -->
 	<!-- BOOTSTRAP --><link rel="stylesheet" href="css/bootstrap.3.3.4.min.css">
-	<!-- CUSTOM -->
-	<style>
-		/* PADDING FOR STATIC-FIXED TOP NAV */
-		body {
-			padding-top: 65px;
-		}
-		.navbar-brand {
-			text-shadow: gray 0.1em 0.1em 0.2em
-		}
-	</style>
+	<!-- CUSTOM --><link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
