@@ -88,6 +88,7 @@ for ((i=0; i < $itemsCount; i++)); do
 			if [ $found == "0" ]; then
 				dl=$(xmllint --xpath 'rss/channel/item['$i+1']/link/text()' $newrss)
 				cd $downloadDirectory && { curl -s -O $dl ; cd $workingDirectory; }
+				if [ $DEBUGS = true ]; then echo "snatching $item"; fi
 
 				# snatched.log
 				echo $item > $temp; head -50 $snatchlog >> $temp; mv $temp $snatchlog
