@@ -12,19 +12,25 @@
 		    	echo $siteTitle;
 	?></title>
 
-	<!-- JAVASCRIPT -->
-	<!-- JQUERY --><script src="js/jquery.1.11.2.min.js"></script>
-	<!-- BOOTSTRAP --><script src="js/bootstrap.3.3.4.min.js"></script>
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+	<!-- JQUERY --><script src="jquery/jquery.1.11.2.min.js"></script>
 
-	<!-- CSS -->
+	<!-- BOOTSTRAP -->
+		<script src="bootstrap/bootstrap.3.3.4.min.js"></script>
+		<link rel="stylesheet" href="bootstrap/bootstrap.3.3.4.min.css"></link>
+		<link rel="stylesheet" href="bootstrap/bootstrap.custom.css"></link>
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	<!-- CHARTIST 
+		<script src="chartist/chartist.0.9.4.min.js"></script>
+		<link rel="stylesheet" href="chartist/chartist.min.css"></link>
+		<link rel="stylesheet" href="chartist/chartist.custom.css"></link>
+	-->
+
 	<!-- MINIMAL <link rel="stylesheet" href="css/minimal.css"> -->
-	<!-- BOOTSTRAP --><link rel="stylesheet" href="css/bootstrap.3.3.4.min.css">
-	<!-- CUSTOM --><link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">

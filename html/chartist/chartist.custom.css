@@ -1,0 +1,36 @@
+/* This selector overrides the points style on line charts. 
+Points on line charts are actually just very short strokes. 
+This allows you to customize even the point size in CSS */
+.ct-series-a .ct-point {
+  /* Colour of your points */
+  stroke: red;
+  /* Size of your points */
+  stroke-width: 6px;
+  /* Make your points appear as squares 
+  stroke-linecap: square;*/
+}
+
+/* Chartist tooltip */
+.chartist-tooltip {
+	position:absolute;
+	display:inline-block;
+	min-width:5em;
+	padding:.5em;
+	background:#F4C63D;
+	color:#453D3F;
+	font-weight:700;
+	text-align:center;
+	pointer-events:none;
+	z-index:1
+}
+.chartist-tooltip:after {
+	content:"";
+	position:absolute;
+	top:100%;
+	left:50%;
+	width:0;
+	height:0;
+	margin-left:-15px;
+	border:15px solid transparent;
+	border-top-color:#F4C63D
+}
