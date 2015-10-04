@@ -54,7 +54,7 @@ shopt -s nocasematch
 # iterate through news items
 let itemsCount=$(xmllint --xpath 'count(rss/channel/item/link)' $newrss)
 for ((i=0; i < $itemsCount; i++)); do
-    item=$(xmllint --xpath 'rss/channel/item["$i+1"]/title/text()' $newrss)
+    item=$(xmllint --xpath 'rss/channel/item['$i+1']/title/text()' $newrss)
 
 	# check to see if news item matches any favorites
 	for show in ${shows[*]}; do
@@ -86,7 +86,7 @@ for ((i=0; i < $itemsCount; i++)); do
 
 			# download new item
 			if [ $found == "0" ]; then
-				dl=$(xmllint --xpath 'rss/channel/item["$i+1"]/link/text()' $newrss)
+				dl=$(xmllint --xpath 'rss/channel/item['$i+1']/link/text()' $newrss)
 				cd $downloadDirectory && { curl -s -O $dl ; cd $workingDirectory; }
 
 				# snatched.log
