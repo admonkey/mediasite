@@ -2,6 +2,8 @@
 
 # change these variables to match your environment
 rssURL="https://example.com/path-to-feed/rss?"
+feedList="feeds.lst"
+feeds=$rssURL
 workingDirectory=$HOME"/rsstv/"
 favorites=$workingDirectory"tvShows.lst"
 downloadDirectory=$workingDirectory"downloads/"
@@ -36,6 +38,14 @@ chronicle "-- rsstv script executing..."
 # get favorite list
 if [ ! -f $favorites ]; then msg="no list of favorites"; chronicle "$msg"; echo $msg; exit 1; fi
 shows=( $( cat $favorites ) )
+
+# get list of feeds
+if [ -f $feedList ]; then
+	feeds=( $( cat $feedList ) )
+fi
+
+for feed in ${feeds[*]}; do
+	rssURL=$feed
 
 # get snatched.log
 if [ $DEBUGS = true ]
@@ -100,6 +110,8 @@ for ((i=0; i < $itemsCount; i++)); do
 			fi
 		fi
 	done
+done
+
 done
 
 chronicle "-- rsstv script executed."
