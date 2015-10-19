@@ -51,3 +51,9 @@ echo "<VirtualHost *:80>
 sudo mv VirtualHostConfigurationFile $vhostConf
 
 sudo a2ensite $siteName && sudo service apache2 restart
+
+git checkout -b $siteName
+git rm README.md
+git rm Create-Apache-Virtual-Host.bash
+git add .
+git commit -m "create $siteName"
