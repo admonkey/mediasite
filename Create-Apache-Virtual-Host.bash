@@ -7,16 +7,14 @@ if [[ -z "$siteName" ]]; then
 	exit 1
 fi
 
-vhostDirectory="/var/www/"$siteName
+# rename cloned directory for virtual host
+currentGitDir=$(pwd)
+vhostDirectory=$( cd .. && pwd )
+vhostDirectory=$vhostDirectory/$siteName
+mv -v $currentGitDir $vhostDirectory
+
 sslDirectory="/etc/apache2/ssl/"$siteName
 vhostConf="/etc/apache2/sites-available/"$siteName".conf"
-
-if [ -d $vhostDirectory ]; then
-	echo "Directory '"$vhostDirectory"' already exists."
-	echo "Operation would overwrite. Please rename existing folder."
-	echo "Aborting."
-	exit 1
-fi
 
 if [ -f $vhostConf ]; then
 	echo "Configuration file '"$vhostConf"' already exists."
@@ -31,9 +29,6 @@ if [ -d $sslDirectory ]; then
 	echo "Aborting."
 	exit 1
 fi
-
-echo "Creating virtual host directory '"$vhostDirectory"'"
-mkdir $vhostDirectory
 
 echo "Creating web site PHP variables 'siteCreds.php'"
 echo "<?php
