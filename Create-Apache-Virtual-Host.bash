@@ -13,7 +13,7 @@ vhostDirectory=$( cd .. && pwd )
 vhostDirectory=$vhostDirectory/$siteName
 mv -v $currentGitDir $vhostDirectory
 
-sslDirectory="/etc/apache2/ssl/"$siteName
+sslDirectory=$vhostDirectory
 vhostConf="/etc/apache2/sites-available/"$siteName".conf"
 
 if [ -f $vhostConf ]; then
@@ -23,20 +23,10 @@ if [ -f $vhostConf ]; then
 	exit 1
 fi
 
-if [ -d $sslDirectory ]; then
-	echo "Directory '"$sslDirectory"' already exists."
-	echo "Operation would overwrite. Please rename existing folder."
-	echo "Aborting."
-	exit 1
-fi
-
 echo "Creating web site PHP variables 'siteCreds.php'"
 echo "<?php
 	\$siteTitle = '$siteName';
 ?>" > $vhostDirectory/siteCreds.php
-
-echo "Creating ssl directory '"$sslDirectory"'"
-mkdir $sslDirectory
 
 echo "Creating self-signed SSL certificate..."
 openssl req -x509 -nodes -sha256 -days 365 -newkey rsa:2048 -keyout $sslDirectory/$siteName.key -out $sslDirectory/$siteName.crt
@@ -56,6 +46,8 @@ echo "<VirtualHost *:80>
         SSLCertificateFile $sslDirectory/$siteName.crt
         SSLCertificateKeyFile $sslDirectory/$siteName.key
 </VirtualHost>
-</IfModule>" > $vhostConf
+</IfModule>" > VirtualHostConfigurationFile
 
-a2ensite $siteName && service apache2 restart
+sudo mv VirtualHostConfigurationFile $vhostConf
+
+sudo a2ensite $siteName && sudo service apache2 restart
