@@ -52,13 +52,14 @@ sudo mv VirtualHostConfigurationFile $vhostConf
 
 sudo a2ensite $siteName && sudo service apache2 restart
 
+git checkout -b $siteName
+git rm README.md
+git rm Create-Apache-Virtual-Host.bash
+git add .
+git commit -m "create $siteName"
+
 read -e -p "Enter the url for new private git remote: " gitRemote
 if ! [[ -z "$gitRemote" ]]; then
-	git checkout -b $siteName
-	git rm README.md
-	git rm Create-Apache-Virtual-Host.bash
-	git add .
-	git commit -m "create $siteName"
 	git remote add private $gitRemote
 	git push private $siteName
 fi
