@@ -51,6 +51,10 @@
 			<label for="form1-autocomplete">Autocomplete:</label>
 			<input id="form1-autocomplete" name="form1-autocomplete" type="text" class="form-control" value="<?php echo $_GET['form1-autocomplete']; ?>"></input>
 		</div>
+		<div class="form-group">
+			<label for="form1-date">Datepicker:</label>
+			<input id="form1-date" name="form1-date" type="date" value="<?php echo $_GET["form1-date"]; ?>" class="form-control"/>
+		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>
