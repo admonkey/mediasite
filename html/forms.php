@@ -7,14 +7,14 @@
 
 <script>
   $(function() {
-    var autodata = [
+    var autocomplete_data = [
 	
 	<?php
 		/*
 		// populate autocomplete list from MySQL result set
-		$query_autodata = "SELECT `id`, `column` FROM `db`.`schema`.`table` ORDER BY `column`;";
-		$result_autodata = mysql_query($query_autodata) or die( 'Invalid query: ' . mysql_error() );
-		while ( $row = mysql_fetch_assoc($result_autodata) ) {
+		$query_autocomplete = " SELECT `id`, `column` FROM `db`.`schema`.`table` ORDER BY `column`; ";
+		$result_autocomplete = mysql_query($query_autocomplete) or die( 'Invalid query: ' . mysql_error() );
+		while ( $row = mysql_fetch_assoc($result_autocomplete) ) {
 			if($next)
 				echo ",
 			";
@@ -33,7 +33,7 @@
 		{label:"Fifth Label",value:"Fifth Value",id:"5"}
     ];
     $( "#form1-autocomplete" ).autocomplete({
-      source: autodata,
+      source: autocomplete_data,
 	  select: function(e,u){
 		  $("#form1-autocomplete-id").val(u.item.id);
 		  $("#form1-autocomplete").val(u.item.value);
@@ -70,9 +70,9 @@
 					/*
 					// populate select list from MySQL result set
 					// if using value different than label, such as an ID, then can't repopulate active option with submitted label
-					$query_selectlistdata = " SELECT DISTINCT `column` FROM `db`.`schema`.`table` ORDER BY `column`; ";
-					$result_selectlistdata = mysql_query($query_selectlistdata) or die( 'Invalid query: ' . mysql_error() );
-					while ( $row = mysql_fetch_assoc($result_selectlistdata) ) {
+					$query_selectlist = " SELECT DISTINCT `column` FROM `db`.`schema`.`table` ORDER BY `column`; ";
+					$result_selectlist = mysql_query($query_selectlist) or die( 'Invalid query: ' . mysql_error() );
+					while ( $row = mysql_fetch_assoc($result_selectlist) ) {
 						echo '<option value="' . $row["column"] . '">' . $row["column"] . '</option>';
 					}
 					*/
