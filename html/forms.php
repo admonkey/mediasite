@@ -8,6 +8,24 @@
 <script>
   $(function() {
     var autodata = [
+	
+	<?php
+		/*
+		// populate autocomplete list from MySQL result set
+		$query_autodata = "SELECT `id`, `column` FROM `db`.`schema`.`table` ORDER BY `column`;";
+		$result_autodata = mysql_query($query_autodata) or die( 'Invalid query: ' . mysql_error() );
+		while ( $row = mysql_fetch_assoc($result_autodata) ) {
+			if($next)
+				echo ",
+			";
+			echo '{label:"' . $row["column"]
+				. '",value:"' . $row["column"]
+				. '",id:"' . $row["id"] . '"}';
+			$next = true;
+		}
+		*/
+	?>
+	
 		{label:"First Label",value:"First Value",id:"1"},
 		{label:"Second Label",value:"Second Value",id:"2"},
 		{label:"Third Label",value:"Third Value",id:"3"},
