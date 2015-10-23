@@ -55,6 +55,35 @@
 			<label for="form1-date">Datepicker:</label>
 			<input id="form1-date" name="form1-date" type="date" value="<?php echo $_GET["form1-date"]; ?>" class="form-control"/>
 		</div>
+		<div class="form-group">
+			<label for="form1-select">Selectlist:</label>
+			<select id="form1-select" name="form1-select" class="form-control">
+				<?php
+					// repopulate active option with last submitted, or default blank
+					if(!empty($_GET["form1-select"]))
+						echo "<option value='" . $_GET["form1-select"] . "' selected>" . $_GET["form1-select"] . "</option><option></option>";
+					else
+						echo "<option selected></option>";
+				?>
+				
+				<?php
+					/*
+					// populate select list from MySQL result set
+					// if using value different than label, such as an ID, then can't repopulate active option with submitted label
+					$query_selectlistdata = " SELECT DISTINCT `column` FROM `db`.`schema`.`table` ORDER BY `column`; ";
+					$result_selectlistdata = mysql_query($query_selectlistdata) or die( 'Invalid query: ' . mysql_error() );
+					while ( $row = mysql_fetch_assoc($result_selectlistdata) ) {
+						echo '<option value="' . $row["column"] . '">' . $row["column"] . '</option>';
+					}
+					*/
+				?>
+				<option value="FirstValue">First Option</option>
+				<option value="SecondValue">Second Option</option>
+				<option value="ThirdValue">Third Option</option>
+				<option value="FourthValue">Fourth Option</option>
+				<option value="FifthValue">Fifth Option</option>
+			</select>
+		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>
