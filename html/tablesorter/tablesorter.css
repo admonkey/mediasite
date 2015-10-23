@@ -1,0 +1,24 @@
+/* REQUIRES JQUERY TABLESORTER http://tablesorter.com/docs/ */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	padding: 4px;
+	padding-left: 20px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 10px;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	padding: 4px;
+	vertical-align: top;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+.table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th{
+	background-color:lightblue
+}

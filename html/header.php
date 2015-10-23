@@ -29,7 +29,11 @@
 		<link rel="stylesheet" href="jquery-ui/jquery-ui.1.11.4.min.css">
 		<!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
 		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css"> -->
-	
+
+	<!-- TABLESORTER -->
+		<script src="tablesorter/tablesorter.2.0.5b.min.js"></script>
+		<link rel="stylesheet" href="tablesorter/tablesorter.css">
+
 	<!-- CHARTIST 
 		<script src="chartist/chartist.0.9.4.min.js"></script>
 		<link rel="stylesheet" href="chartist/chartist.min.css"></link>
@@ -53,6 +57,7 @@
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
 			<li><a href="forms.php">Forms</a></li>
+			<li><a href="tables.php">Tables</a></li>
 		</ul>
 	</div><!--/.nav-collapse -->
       </div>
