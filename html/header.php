@@ -24,6 +24,12 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+	<!-- JQUERY-UI -->
+		<script src="jquery-ui/jquery-ui.1.11.4.min.js"></script>
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.1.11.4.min.css">
+		<!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css"> -->
+	
 	<!-- CHARTIST 
 		<script src="chartist/chartist.0.9.4.min.js"></script>
 		<link rel="stylesheet" href="chartist/chartist.min.css"></link>
@@ -46,8 +52,7 @@
         </div><!-- end navbar-header -->
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
-			<li><a href="#">Link 1</a></li>
-			<li><a href="#">Link 2</a></li>
+			<li><a href="forms.php">Forms</a></li>
 		</ul>
 	</div><!--/.nav-collapse -->
       </div>
