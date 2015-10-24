@@ -23,7 +23,7 @@ if [ -f $vhostConf ]; then
 	exit 1
 fi
 
-echo "Creating web site PHP variables 'siteCreds.php'"
+echo "Creating web site PHP variables 'credentials.php'"
 echo "<?php
 	\$siteTitle = '$siteName';
 ?>" >> $vhostDirectory/html/credentials.php
