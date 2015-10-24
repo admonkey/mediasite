@@ -26,7 +26,7 @@ fi
 echo "Creating web site PHP variables 'siteCreds.php'"
 echo "<?php
 	\$siteTitle = '$siteName';
-?>" >> $vhostDirectory/credentials.php
+?>" >> $vhostDirectory/html/credentials.php
 
 echo "Creating self-signed SSL certificate..."
 openssl req -x509 -nodes -sha256 -days 365 -newkey rsa:2048 -keyout $sslDirectory/$siteName.key -out $sslDirectory/$siteName.crt -subj "/CN=$siteName/emailAddress=webmaster@$siteName"
