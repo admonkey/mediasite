@@ -55,7 +55,7 @@ sudo a2ensite $siteName && sudo service apache2 restart
 
 git checkout -b $siteName
 git rm README.md
-git rm Create-Apache-Virtual-Host.bash
+git rm $0
 git add .
 git commit -m "create $siteName"
 
