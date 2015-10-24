@@ -35,17 +35,31 @@ if ! [[ -z "$1" ]]; then
 
 		h)
 		  # CREATE APACHE 2.4 VIRTUAL HOST
-		  createVhost=true
+		  if [[ $( apache2 -version | grep 2.4 ) ]]; then
+			createVhost=true
+		  else
+			echo "Apache 2.4 not found. Cannot create virtual host file."
+			createVhost=false
+		  fi
 		  ;;
 
 		s)
 		  # CREATE SSL CERTIFICATE
-		  createSSL=true
+		  if $(command -v openssl >/dev/null 2>&1); then
+			createSSL=true
+		  else
+		  	echo "openssl not found. Cannot create SSL certificate."
+			createSSL=false
 		  ;;
 
 		g)
 		  # CREATE NEW GIT BRANCH
-		  createGIT=true
+		  if $(command -v git >/dev/null 2>&1); then
+			createGIT=true
+		  else
+		  	echo "git not found. Cannot create new branch."
+			createGIT=false
+		  fi
 		  ;;
 
 		*)
@@ -73,27 +87,25 @@ else
   fi
 
   # CREATE SSL CERTIFICATE
-  echo "Would you like to create a self-signed SSL certificate?"
-  read -p "(y/n): "
+  if $(command -v openssl >/dev/null 2>&1); then
+	  echo "Would you like to create a self-signed SSL certificate?"
+	  read -p "(y/n): "
 
-  if [[ ${REPLY:0:1} = "y" ]]; then
-        createSSL=true
+	  if [[ ${REPLY:0:1} = "y" ]]; then
+		createSSL=true
+	  fi
   fi
 
   # CREATE NEW GIT BRANCH
-  echo "Would you like to create a new git branch?"
-  read -p "(y/n): "
+  if $(command -v git >/dev/null 2>&1); then
+	  echo "Would you like to create a new git branch?"
+	  read -p "(y/n): "
 
-  if [[ ${REPLY:0:1} = "y" ]]; then
-        createGIT=true
+	  if [[ ${REPLY:0:1} = "y" ]]; then
+		createGIT=true
+	  fi
   fi
 
-fi
-
-# VALIDATE APACHE 2.4
-if $createVhost && ! [[ $( apache2 -version | grep 2.4 ) ]]; then
-	echo "Apache 2.4 not found. Cannot create virtual host file."
-	createVhost=false
 fi
 
 # GET SITE NAME
@@ -152,6 +164,7 @@ if $createSSL ; then
 			SSLCertificateKeyFile $sslDirectory/$siteName.key
 		</VirtualHost>
 		</IfModule>" >> VirtualHostConfigurationFile
+		# ENABLE APACHE SSL MODULE
 		sudo a2enmod ssl
 	fi
 fi
