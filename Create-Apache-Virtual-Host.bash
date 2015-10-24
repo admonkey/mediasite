@@ -50,6 +50,7 @@ echo "<VirtualHost *:80>
 
 sudo mv VirtualHostConfigurationFile $vhostConf
 
+sudo a2enmod ssl
 sudo a2ensite $siteName && sudo service apache2 restart
 
 git checkout -b $siteName
