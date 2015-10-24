@@ -50,6 +50,7 @@ if ! [[ -z "$1" ]]; then
 		  else
 		  	echo "openssl not found. Cannot create SSL certificate."
 			createSSL=false
+		  fi
 		  ;;
 
 		g)
