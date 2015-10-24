@@ -62,11 +62,13 @@ if ! [[ -z "$1" ]]; then
 # GET OPTIONS FROM PROMPT
 else
 
-  echo "Would you like to create a new Apache virtual host?"
-  read -p "(y/n): "
+  if [[ $( apache2 -version | grep 2.4 ) ]]; then
+	  echo "Would you like to create a new Apache virtual host?"
+	  read -p "(y/n): "
 
-  if [[ ${REPLY:0:1} = "y" ]]; then
-        createVhost=true
+	  if [[ ${REPLY:0:1} = "y" ]]; then
+		createVhost=true
+	  fi
   fi
 
   echo "Would you like to create a self-signed SSL certificate?"
@@ -83,6 +85,12 @@ else
         createGIT=true
   fi
 
+fi
+
+# VALIDATE APACHE 2.4
+if $createVhost && ! [[ $( apache2 -version | grep 2.4 ) ]]; then
+	echo "Apache 2.4 not found. Cannot create virtual host file."
+	createVhost=false
 fi
 
 # GET SITE NAME
