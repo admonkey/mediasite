@@ -62,6 +62,7 @@ if ! [[ -z "$1" ]]; then
 # GET OPTIONS FROM PROMPT
 else
 
+  # CREATE APACHE 2.4 VIRTUAL HOST
   if [[ $( apache2 -version | grep 2.4 ) ]]; then
 	  echo "Would you like to create a new Apache virtual host?"
 	  read -p "(y/n): "
@@ -71,6 +72,7 @@ else
 	  fi
   fi
 
+  # CREATE SSL CERTIFICATE
   echo "Would you like to create a self-signed SSL certificate?"
   read -p "(y/n): "
 
@@ -78,6 +80,7 @@ else
         createSSL=true
   fi
 
+  # CREATE NEW GIT BRANCH
   echo "Would you like to create a new git branch?"
   read -p "(y/n): "
 
