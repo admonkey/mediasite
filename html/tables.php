@@ -3,8 +3,6 @@
 	require_once('header.php');
 ?>
 
-<h1><?php echo $pageTitle;?></h1>
-
 <script>
 $(document).ready(function() 
     { 
@@ -13,8 +11,8 @@ $(document).ready(function()
 ); 
 </script>
 
-<div class="table-responsive">
-  
+<div class="table-responsive well">
+  <h1>Sortable Table:</h1>
   <table class="table table-hover table-striped table-bordered table-condensed tablesorter">
 	 
 	 <thead>

@@ -3,8 +3,6 @@
 	require_once('header.php');
 ?>
 
-<h1><?php echo $pageTitle;?></h1>
-
 <script>
   $(function() {
     var autocomplete_data = [
@@ -44,7 +42,7 @@
 </script>
 
 <div class="well" id="form1-div">
-	<h3>Form1:</h3>
+	<h1>Form:</h1>
 	<form id="form1" role="form">
 		<input id="form1-autocomplete-id" name="form1-autocomplete-id" type="hidden" value="<?php echo $_GET['form1-autocomplete-id']; ?>"></input>
 		<div class="form-group">
