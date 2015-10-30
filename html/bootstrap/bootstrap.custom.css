@@ -1,8 +1,19 @@
-/* BOOTSTRAP FIX: PADDING FOR STATIC-FIXED TOP NAV */
+html {
+	height: 100%;
+}
 body {
+	background-color: black;
+	background: url(../img/bg.jpg) no-repeat center center fixed;
+	background-size: cover;
+	/* BOOTSTRAP FIX: PADDING FOR STATIC-FIXED TOP NAV */
 	padding-top: 65px;
 }
 /* Enhance Logo */
 .navbar-brand {
 	text-shadow: gray 0.1em 0.1em 0.2em
+}
+/* black to match cover background */
+.navbar-inverse {
+    background-color: black;
+    border-color: #080808;
 }

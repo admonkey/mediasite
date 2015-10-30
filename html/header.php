@@ -40,7 +40,6 @@
 		<link rel="stylesheet" href="chartist/chartist.custom.css"></link>
 	-->
 
-	<!-- MINIMAL <link rel="stylesheet" href="css/minimal.css"> -->
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
