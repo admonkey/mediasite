@@ -150,7 +150,10 @@ fi
 # CREATE SSL CERTIFICATE
 if $createSSL ; then
         echo "Creating self-signed SSL certificate..."
-        sslDirectory=$vhostDirectory
+        sslDirectory=$vhostDirectory/ssl
+        if ! [ -d $sslDirectory ]; then
+	  mkdir $sslDirectory
+	fi
 	openssl req -x509 -nodes -sha256 -days 365 -newkey rsa:2048 -keyout $sslDirectory/$siteName.key -out $sslDirectory/$siteName.crt -subj "/CN=$siteName/emailAddress=webmaster@$siteName"
 
 	# APPEND VIRTUAL HOST CONFIGURATION FILE
