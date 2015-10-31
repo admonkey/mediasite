@@ -154,6 +154,7 @@ if $createSSL ; then
         if ! [ -d $sslDirectory ]; then
 	  mkdir $sslDirectory
 	fi
+	echo "deny from all" > $sslDirectory/.htaccess
 	openssl req -x509 -nodes -sha256 -days 365 -newkey rsa:2048 -keyout $sslDirectory/$siteName.key -out $sslDirectory/$siteName.crt -subj "/CN=$siteName/emailAddress=webmaster@$siteName"
 
 	# APPEND VIRTUAL HOST CONFIGURATION FILE
@@ -178,6 +179,7 @@ if $createVhost ; then
 	sudo mv VirtualHostConfigurationFile $vhostConf
 	sudo a2ensite $siteName && sudo service apache2 restart
 fi
+echo "deny from all" > .git/.htaccess
 
 # CREATE NEW GIT BRANCH
 if $createGIT ; then
@@ -186,6 +188,7 @@ if $createGIT ; then
         if ! [ -d README ]; then
 	  mkdir README
         fi
+        echo "deny from all" > README/.htaccess
 	git mv README.md README/README.md
 	git mv uninstall.bash README/uninstall.bash
 	git mv $0 README/$0
