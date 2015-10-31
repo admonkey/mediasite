@@ -183,8 +183,11 @@ fi
 if $createGIT ; then
         echo "Creating new git branch..."
         git checkout -b $siteName
-	git rm README.md
-	git rm $0
+        if ! [ -d README ]; then
+	  mkdir README
+        fi
+	git mv README.md README/README.md
+	git mv $0 README/$0
 	git add .
 	git commit -m "create $siteName"
 
