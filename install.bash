@@ -189,8 +189,9 @@ if $createGIT ; then
 	git commit -m "create $siteName"
 
 	# CREATE PRIVATE REMOTE
-	read -e -p "Enter the URL for new private git remote.
-	To skip, leave blank and press ENTER : " gitRemote
+	echo
+	echo "Enter the URL for new private git remote."
+	read -e -p "  To skip, leave blank and press ENTER : " gitRemote
 	if ! [[ -z "$gitRemote" ]]; then
 		git remote add private $gitRemote
 		git push private $siteName
