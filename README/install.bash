@@ -127,7 +127,7 @@ mv -v $currentGitDir $vhostDirectory
 echo "Creating web site PHP variables 'credentials.php'"
 echo "<?php
 	\$siteTitle = '$siteName';
-?>" >> $vhostDirectory/html/credentials.php
+?>" >> $vhostDirectory/credentials.php
 
 # CREATE VIRTUAL HOST
 if $createVhost ; then
@@ -143,7 +143,7 @@ if $createVhost ; then
 	echo "<VirtualHost *:80>
 		ServerAdmin webmaster@$siteName
 		ServerName $siteName
-		DocumentRoot $vhostDirectory/html
+		DocumentRoot $vhostDirectory
 	</VirtualHost>" > VirtualHostConfigurationFile
 fi
 
@@ -163,7 +163,7 @@ if $createSSL ; then
 		<VirtualHost *:443>
 			ServerAdmin webmaster@$siteName
 			ServerName $siteName
-			DocumentRoot $vhostDirectory/html
+			DocumentRoot $vhostDirectory
 			SSLEngine on
 			SSLCertificateFile $sslDirectory/$siteName.crt
 			SSLCertificateKeyFile $sslDirectory/$siteName.key
@@ -185,13 +185,7 @@ echo "deny from all" > .git/.htaccess
 if $createGIT ; then
         echo "Creating new git branch..."
         git checkout -b $siteName
-        if ! [ -d README ]; then
-	  mkdir README
-        fi
         echo "deny from all" > README/.htaccess
-	git mv README.md README/README.md
-	git mv uninstall.bash README/uninstall.bash
-	git mv $0 README/$0
 	git add .
 	git commit -m "create $siteName"
 
