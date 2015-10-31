@@ -187,6 +187,7 @@ if $createGIT ; then
 	  mkdir README
         fi
 	git mv README.md README/README.md
+	git mv uninstall.bash README/uninstall.bash
 	git mv $0 README/$0
 	git add .
 	git commit -m "create $siteName"
