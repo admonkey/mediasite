@@ -175,8 +175,8 @@ if $createSSL ; then
 	    vfile="$vfile DocumentRoot $vhostDirectory\n\t\t"
 	    vfile="$vfile SSLEngine on\n\t\t"
 	    vfile="$vfile SSLCertificateFile $sslDirectory/$siteName.crt\n\t\t"
-	    vfile="$vfile SSLCertificateKeyFile $sslDirectory/$siteName.key\n\t\t"
-	    vfile="$vfile </VirtualHost>\n\t"
+	    vfile="$vfile SSLCertificateKeyFile $sslDirectory/$siteName.key\n\t"
+	    vfile="$vfile </VirtualHost>\n"
 	    vfile="$vfile </IfModule>\n"
 	    echo -e $vfile >> VirtualHostConfigurationFile
 	    # ENABLE APACHE SSL MODULE
