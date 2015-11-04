@@ -15,6 +15,9 @@ git checkout master
 git branch -D $siteName
 
 # rename cloned directory for virtual host
+# move to working directory
+cd $( dirname "${BASH_SOURCE[0]}" )
+cd ..
 currentGitDir=$(pwd)
 vhostDirectory=$( cd .. && pwd )
 vhostDirectory=$vhostDirectory/WebSite
