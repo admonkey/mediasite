@@ -118,6 +118,9 @@ if [[ -z "$siteName" ]]; then
 fi
 
 # RENAME CLONED DIRECTORY
+# move to working directory
+cd $( dirname "${BASH_SOURCE[0]}" )
+cd ..
 currentGitDir=$(pwd)
 vhostDirectory=$( cd .. && pwd )
 vhostDirectory=$vhostDirectory/$siteName
