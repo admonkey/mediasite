@@ -17,3 +17,6 @@ body {
     background-color: black;
     border-color: #080808;
 }
+.active {
+    text-decoration: underline;
+}

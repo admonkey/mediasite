@@ -58,6 +58,12 @@
 			<li><a href="forms.php">Forms</a></li>
 			<li><a href="tables.php">Tables</a></li>
 		</ul>
+		<script>
+		  $('.navbar-nav').find('a').each(function(){
+		    if ($(this).attr("href") == "<?php echo basename($_SERVER['SCRIPT_NAME']);?>")
+		      $(this).parent().addClass("active");
+		  });
+		</script>
 	</div><!--/.nav-collapse -->
       </div>
     </nav>
