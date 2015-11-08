@@ -70,3 +70,4 @@
 
     <div class="container">
       <div class="starter-template">
+<!-- BEGIN BODY CONTENT -->
