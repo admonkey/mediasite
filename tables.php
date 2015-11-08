@@ -6,14 +6,14 @@
 <script>
 $(document).ready(function() 
     { 
-        $(".tablesorter").tablesorter(); 
+	$("table").addClass("table table-hover table-striped table-bordered table-condensed tablesorter").tablesorter();
     } 
 ); 
 </script>
 
 <div class="table-responsive well">
   <h1>Sortable Table:</h1>
-  <table class="table table-hover table-striped table-bordered table-condensed tablesorter">
+  <table border=1>
 	 
 	 <thead>
 		<tr>
