@@ -195,7 +195,6 @@ echo "deny from all" > .git/.htaccess
 if $createGIT ; then
         echo "Creating new git branch..."
         git checkout -b $siteName
-        echo "deny from all" > README/.htaccess
 	git add .
 	git commit -m "create $siteName"
 
