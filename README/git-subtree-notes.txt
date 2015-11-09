@@ -1,0 +1,22 @@
+# add new remote pointing to plugin repo
+git remote add plugin https://path.to/remotes/plugin.git
+
+# create subtree specifying the new folder prefix
+git subtree add --prefix=plugins/demo plugin master
+
+# pull normal commits made in plugin
+git subtree pull --prefix=plugins/demo plugin master
+
+# commits made in superproject to be backported
+git commit -am "new changes to be backported"
+
+# checkout new branch for merging
+git checkout -b backport plugin/master
+
+# cherry-pick backports
+git cherry-pick -x --strategy=subtree master
+
+# push changes back to plugin source
+git push plugin backport:master
+
+# see also: https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec
