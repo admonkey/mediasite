@@ -56,7 +56,7 @@ snatched=( $( cat $snatchlog ) )
 
 # get new rss
 if [ $DEBUGS = true ]; then newrss=$workingDirectory"DEBUGS--new.xml"; else newrss=$workingDirectory"new.xml"; fi
-curl -s -o $newrss $rssURL
+curl -s --max-time 30 -o $newrss $rssURL
 
 # case insensitive comparison
 shopt -s nocasematch
@@ -97,7 +97,7 @@ for ((i=0; i < $itemsCount; i++)); do
 			# download new item
 			if [ $found == "0" ]; then
 				dl=$(xmllint --xpath 'rss/channel/item['$i+1']/link/text()' $newrss)
-				cd $downloadDirectory && { curl -s -O $dl ; cd $workingDirectory; }
+				cd $downloadDirectory && { curl -s --max-time 30 -O $dl ; cd $workingDirectory; }
 				if [ $DEBUGS = true ]; then echo "snatching $item"; fi
 
 				# snatched.log
