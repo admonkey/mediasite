@@ -224,7 +224,9 @@ for feed in ${feeds[*]}; do
 	  chronicle "snatched $item"
 
 	  # email
-	  if ! $DEBUGS; then echo $item | mail -s "new episode" -aFrom:$emailFrom $emailTo; fi
+	  if ( command -v mail > /dev/null 2>&1); then
+	    if ! $DEBUGS; then echo $item | mail -s "new episode" -aFrom:$emailFrom $emailTo; fi
+	  fi
 	fi
       fi
     done
