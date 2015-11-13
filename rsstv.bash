@@ -1,16 +1,55 @@
 #!/bin/bash
 DEBUGS=true
 
-# change these variables to match your environment
-rssURL="https://example.com/path-to-feed/rss?"
-feedList="feeds.lst"
-feeds=$rssURL
-workingDirectory=$HOME"/rsstv/"
-favorites=$workingDirectory"tvShows.lst"
+# RSS feeds
+feeds=( 
+  "https://example.com/path-to-feed/rss?" \
+  "https://example.com/path-to-another-feed/rss?" \
+)
+
+# set working directory to current one by default
+workingDirectory=$( cd $(dirname "${BASH_SOURCE[0]}") | pwd )"/"
 downloadDirectory=$workingDirectory"downloads/"
-# # "Name" cannot have spaces in it.
+
+# email notification
 emailFrom="Name<username-from@example.com>"
 emailTo="username-to@example.com"
+
+# list of tv shows to watch
+shows=( \
+  "Last.Week.Tonight.With.John.Oliver" \
+  "Game.of.Thrones" \
+  "House.Of.Cards.2013" \
+  "Fargo" \
+  "Louie" \
+  "Blackish" \
+  "Portlandia" \
+  "Workaholics" \
+  "Key.and.Peele" \
+  "Modern.Family" \
+  "The.Big.Bang.Theory" \
+  "Its.Always.Sunny.in.Philadelphia" \
+  "The.Simpsons" \
+  "Better.Call.Saul" \
+  "Breaking.Bad" \
+  "Family.Guy" \
+  "American.Dad" \
+  "Veep" \
+  "Silicon.Valley" \
+  "The.Daily.Show" \
+  "Archer.2009" \
+  "The.Venture.Bros" \
+  "Community" \
+  "The.Last.Man.On.Earth" \
+  "Rick.and.Morty" \
+  "South.Park" \
+  "Trailer.Park.Boys" \
+  "Man.Seeking.Woman" \
+  "The.Brink" \
+  "The.Jim.Gaffigan.Show" \
+  "Stephen.Colbert" \
+  "Gravity.Falls" \
+)
 
 # optionally store these variables in a separate file
 source creds.bash
@@ -18,18 +57,15 @@ source creds.bash
 
 # validate directories
 # # working directory
-  if [ -d "$workingDirectory" ]; then
-    cd $workingDirectory
-  else
-    echo "ERROR: working directory '"$workingDirectory"' doesn't exist. Exiting."
-    exit 1
+  if [ ! -d "$workingDirectory" ]; then
+    mkdir "$workingDirectory" || ( echo "ERROR: can't create $workingDirectory. Exiting."; exit 1 )
   fi
+  
+  cd $workingDirectory
 
   # download directory
   if [ ! -d "$downloadDirectory" ]; then
-    echo "downloads directory '"$downloadDirectory"' not found."
-    echo "using '"$workingDirectory"' for downloads."
-    downloadDirectory=$workingDirectory
+    mkdir "$downloadDirectory" || ( echo "ERROR: can't create $downloadDirectory. Exiting."; exit 1 )
   fi
 
 # main log file
@@ -54,29 +90,8 @@ source creds.bash
 # begin
 chronicle "-- rsstv script executing..."
 
-# get favorite list
-# # validate list exists
-  if [ ! -f $favorites ]; then
-    msg="ERROR: no list of favorites. Exiting."
-    chronicle "$msg"; echo $msg
-    exit 1
-  fi
-
-  # read into array
-  shows=( $( cat $favorites ) )
-
-  
-# get list of feeds
-if [ -f $feedList ]; then
-  feeds=( $( cat $feedList ) )
-else
-  feeds=$rssURL
-fi
-
 # iterate through feed list
 for feed in ${feeds[*]}; do
-  # get next feed URL
-  rssURL=$feed
 
   # # get snatched.log
     # FIX need to get log names before loop
@@ -106,7 +121,7 @@ for feed in ${feeds[*]}; do
     fi
     
     # download xml
-    curl -s --max-time 30 -o $newrss $rssURL
+    curl -s --max-time 30 -o $newrss $feed
 
 
   # case insensitive comparison
