@@ -61,6 +61,12 @@ if ( ! command -v xmllint > /dev/null 2>&1); then
   exit 1
 fi
 
+# require curl
+if ( ! command -v curl > /dev/null 2>&1); then
+  echo "ERROR: curl required. install and try again. exiting."
+  exit 1
+fi
+
 # validate directories
 # # working directory
   if [ ! -d "$workingDirectory" ]; then
