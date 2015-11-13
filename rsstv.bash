@@ -55,6 +55,12 @@ shows=( \
 source creds.bash
 
 
+# require xmllint
+if ( ! command -v xmllint > /dev/null 2>&1); then
+  echo "ERROR: xmllint required. install and try again. exiting."
+  exit 1
+fi
+
 # validate directories
 # # working directory
   if [ ! -d "$workingDirectory" ]; then
