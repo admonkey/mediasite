@@ -52,8 +52,9 @@ shows=( \
 )
 
 # optionally store these variables in a separate file
-source creds.bash
-
+if [ -f $workingDirectory"creds.bash" ]; then
+  source $workingDirectory"creds.bash"
+fi
 
 # require xmllint
 if ( ! command -v xmllint > /dev/null 2>&1); then
