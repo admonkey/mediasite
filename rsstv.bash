@@ -70,8 +70,7 @@ chronicle "-- rsstv script executing..."
 if [ -f $feedList ]; then
   feeds=( $( cat $feedList ) )
 else
-  # FIX read first URL into array
-  echo "need to use single feed for list[0]"
+  feeds=$rssURL
 fi
 
 # iterate through feed list
