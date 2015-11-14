@@ -24,17 +24,23 @@
 		*/
 	?>
 	
+	
+		// hard coded autocomplete list
 		{label:"First Label",value:"First Value",id:"1"},
 		{label:"Second Label",value:"Second Value",id:"2"},
 		{label:"Third Label",value:"Third Value",id:"3"},
 		{label:"Fourth Label",value:"Fourth Value",id:"4"},
 		{label:"Fifth Label",value:"Fifth Value",id:"5"}
+		
+		
     ];
     $( "#form1-autocomplete" ).autocomplete({
       source: autocomplete_data,
 	  select: function(e,u){
 		  $("#form1-autocomplete-id").val(u.item.id);
 		  $("#form1-autocomplete").val(u.item.value);
+		  
+		  // automatically submit the form when item clicked
 		  //$("#form1").submit();
 	  }
     });
@@ -44,15 +50,23 @@
 <div class="well" id="form1-div">
 	<h1>Form:</h1>
 	<form id="form1" role="form">
+		
+		<!-- auto complete text -->
 		<input id="form1-autocomplete-id" name="form1-autocomplete-id" type="hidden" value="<?php echo $_GET['form1-autocomplete-id']; ?>"></input>
 		<div class="form-group">
 			<label for="form1-autocomplete">Autocomplete:</label>
 			<input id="form1-autocomplete" name="form1-autocomplete" type="text" class="form-control" value="<?php echo $_GET['form1-autocomplete']; ?>"></input>
 		</div>
+		
+		
+		<!-- date picker -->
 		<div class="form-group">
 			<label for="form1-date">Datepicker:</label>
 			<input id="form1-date" name="form1-date" type="date" value="<?php echo $_GET["form1-date"]; ?>" class="form-control"/>
 		</div>
+		
+		
+		<!-- dropdown select list -->
 		<div class="form-group">
 			<label for="form1-select">Selectlist:</label>
 			<select id="form1-select" name="form1-select" class="form-control">
@@ -75,6 +89,8 @@
 					}
 					*/
 				?>
+				
+				<!-- hard coded select list -->
 				<option value="FirstValue">First Option</option>
 				<option value="SecondValue">Second Option</option>
 				<option value="ThirdValue">Third Option</option>
@@ -82,6 +98,8 @@
 				<option value="FifthValue">Fifth Option</option>
 			</select>
 		</div>
+		
+		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>
