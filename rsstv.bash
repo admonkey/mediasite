@@ -104,9 +104,6 @@ snatchlog=$workingDirectory"snatched.log"
 # # get snatch list into array
   snatched=( $( cat $snatchlog ) )
 
-# begin
-chronicle "-- rsstv script executing..."
-
 # iterate through feed list
 for feed in ${feeds[*]}; do
 
