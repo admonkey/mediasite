@@ -8,7 +8,7 @@ feeds=(
 )
 
 # set working directory to current one by default
-workingDirectory=$( cd $(dirname "${BASH_SOURCE[0]}") | pwd )"/"
+workingDirectory=$( cd $(dirname "${BASH_SOURCE[0]}") && pwd )"/"
 downloadDirectory=$workingDirectory"downloads/"
 
 # email notification
