@@ -63,18 +63,14 @@ include_once($relative_realpath . 'credentials.php');
             <span class="icon-bar"></span>
           </button>
 		  
-		  <ul class="nav navbar-nav">
-			<li><a href="#" id="sidenav-toggle">Sidenav</a></li>
-		  </ul>
-		    <!-- Sidenav Toggle Script -->
-			<script>
-			$("#sidenav-toggle").click(function(e) {
-				e.preventDefault();
-				$("#wrapper").toggleClass("toggled");
-			});
-			</script>
-		  
-          <a class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $siteTitle; ?></a>
+	  <!-- Sidenav Toggle -->
+          <a  id="sidenav-toggle" class="navbar-brand" href="#"><?php echo $siteTitle; ?></a>
+	  <script>
+	  $("#sidenav-toggle").click(function(e) {
+		  e.preventDefault();
+		  $("#wrapper").toggleClass("toggled");
+	  });
+	  </script>
         </div><!-- end navbar-header -->
 		
 		<div id="navbar" class="collapse navbar-collapse">
