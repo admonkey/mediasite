@@ -131,7 +131,7 @@ include_once($relative_realpath . 'credentials.php');
 		
 
 	
-		<div class="container-fluid">
+		<div class="container container-fluid">
 		  <div class="starter-template">
 		  
 <!-- BEGIN BODY CONTENT -->
