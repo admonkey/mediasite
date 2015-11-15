@@ -51,28 +51,31 @@ include_once($relative_realpath . 'credentials.php');
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-	
+
       <div class="container">
-	  
+
         <div class="navbar-header">
-		
+
+          <!-- Top Nav Toggle -->
           <button id='n' type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-		  
-	  <!-- Sidenav Toggle -->
-          <a  id="sidenav-toggle" class="navbar-brand" href="#"><?php echo $siteTitle; ?></a>
+
+	  <!-- Side Nav Toggle -->
+          <a  id="sidenav-toggle" class="navbar-brand" href=""><?php echo $siteTitle; ?></a>
 	  <script>
 	  $("#sidenav-toggle").click(function(e) {
 		  e.preventDefault();
 		  $("#wrapper").toggleClass("toggled");
 	  });
 	  </script>
+
         </div><!-- end navbar-header -->
-		
+
+
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="<?php echo $relative_webpath;?>forms.php">Forms</a></li>
