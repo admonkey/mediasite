@@ -1,7 +1,7 @@
 <table border=1>
 
   <thead>
-    <tr><td>Timestamp</td><td>Log Entry</td></tr>
+    <tr><th>Timestamp</th><th>Log Entry</th></tr>
   </thead>
 
   <tbody>
