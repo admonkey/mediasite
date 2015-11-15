@@ -83,22 +83,26 @@ fi
 
 # main log file
 # # file name
-  if $DEBUGS; then
-    chronicle=$workingDirectory"DEBUGS--chronicle.log"
-  else
-    chronicle=$workingDirectory"chronicle.log"
-  fi
-
-  # temp file
-  temp=$workingDirectory"temp.log"
+  chronicle=$workingDirectory"chronicle.log"
 
   # log writer 
   function chronicle {
-    echo $(date)" "$1 > $temp
-    head -200 $chronicle >> $temp
-    mv $temp $chronicle
+    echo $(date)" "$1 > temp
+    head -200 $chronicle >> temp
+    mv temp $chronicle
   }
 
+# get snatched.log
+snatchlog=$workingDirectory"snatched.log"
+
+# # create it if it doesn't exist
+  if [ ! -f $snatchlog ]; then
+    chronicle "creating new "$snatchlog
+    echo "snatch" > $snatchlog
+  fi
+
+# # get snatch list into array
+  snatched=( $( cat $snatchlog ) )
 
 # begin
 chronicle "-- rsstv script executing..."
@@ -106,32 +110,9 @@ chronicle "-- rsstv script executing..."
 # iterate through feed list
 for feed in ${feeds[*]}; do
 
-  # # get snatched.log
-    # FIX need to get log names before loop
-    # file name
-    if $DEBUGS; then
-      snatchlog=$workingDirectory"DEBUGS--snatched.log"
-    else
-      snatchlog=$workingDirectory"snatched.log"
-    fi
-
-    # create it if it doesn't exist
-    if [ ! -f $snatchlog ]; then
-      chronicle "creating new "$snatchlog
-      echo "snatch" > $snatchlog
-    fi
-    
-    # get list into array
-    snatched=( $( cat $snatchlog ) )
-
-
   # get new rss
   # # file name
-    if $DEBUGS; then
-      newrss=$workingDirectory"DEBUGS--new.xml"
-    else
-      newrss=$workingDirectory"new.xml"
-    fi
+    newrss=$workingDirectory"new.xml"
     
     # download xml
     curl -s --max-time 30 -o $newrss $feed
@@ -219,7 +200,7 @@ for feed in ${feeds[*]}; do
 	  if $DEBUGS; then echo -e '\t'"snatching $item"; fi
 
 	  # snatched.log
-	  echo $item > $temp; head -50 $snatchlog >> $temp; mv $temp $snatchlog
+	  echo $item > temp; head -50 $snatchlog >> temp; mv temp $snatchlog
 
 	  chronicle "snatched $item"
 
