@@ -90,6 +90,9 @@ fi
     echo $(date)" "$1 > temp
     head -200 $chronicle >> temp
     mv temp $chronicle
+    echo "<tr><td>$(date)</td><td>$1</td></tr>" > temp
+    head -200 $chronicle.html >> temp
+    mv temp $chronicle.html
   }
 
 # get snatched.log
