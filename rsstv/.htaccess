@@ -1,0 +1,5 @@
+<FilesMatch rsstv.bash|creds.bash>
+  order allow,deny
+  deny from all
+  require all denied
+</FilesMatch>
