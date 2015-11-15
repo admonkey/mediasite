@@ -1,6 +1,5 @@
 <?php
-	$site_title = "Web Site";
-	$section_title = "$site_title";
+	$section_title = "Sub Section";
 	
 	/*
 	// declare database variables

@@ -10,7 +10,7 @@ body {
 }
 /* Enhance Logo */
 .navbar-brand {
-	text-shadow: gray 0.1em 0.1em 0.2em
+	text-shadow: gray 0.1em 0.1em 0.2em;
 }
 /* black to match cover background */
 .navbar-inverse {
@@ -19,4 +19,9 @@ body {
 }
 .active {
     text-decoration: underline;
+}
+
+#sidenav-toggle{
+  float: left;
+  padding: 10px;
 }

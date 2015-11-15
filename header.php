@@ -4,6 +4,7 @@ $relative_realpath = dirname(__FILE__) . "/";
 $relative_webpath = str_replace($_SERVER[DOCUMENT_ROOT], '', $relative_realpath);
 
 include_once($relative_realpath . 'credentials.php');
+include_once('credentials.php');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -16,7 +17,7 @@ include_once($relative_realpath . 'credentials.php');
 	<title><?php
     		if( !empty($pageTitle) )
 	    		echo $pageTitle . " | ";
-		    	echo $siteTitle;
+		    	echo $site_title;
 	?></title>
 
 	<!-- JQUERY --><script src="<?php echo $relative_webpath;?>jquery/jquery.1.11.2.min.js"></script>
@@ -65,7 +66,8 @@ include_once($relative_realpath . 'credentials.php');
           </button>
 
 	  <!-- Side Nav Toggle -->
-          <a  id="sidenav-toggle" class="navbar-brand" href=""><?php echo $siteTitle; ?> Menu</a>
+          <a  id="sidenav-toggle" href=""><img src="<?php echo $relative_webpath;?>img/favicon.ico"></img></a>
+          <a class="navbar-brand" href="./"><?php echo $section_title; ?></a>
 	  <script>
 	  $("#sidenav-toggle").click(function(e) {
 		  e.preventDefault();
@@ -94,7 +96,7 @@ include_once($relative_realpath . 'credentials.php');
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav navigation-menu">
                 <li class="sidebar-brand">
-                    <a href="<?php echo $relative_webpath;?>">Home</a>
+                    <a href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
                 </li>
                 <?php include($relative_realpath . 'navigation-menu.php'); ?>
             </ul>
