@@ -215,5 +215,7 @@ for feed in ${feeds[*]}; do
 
 done
 
+rm $newrss
+
 chronicle "-- rsstv script executed."
 
