@@ -1,13 +1,12 @@
 <!-- BEGIN FOOTER INCLUDE -->
 
-		  </div><!-- END starter-template -->
-		</div><!-- END container -->
+		</div><!-- /#page-content-container -->
 
-	    </div>
-        <!-- /#page-content-wrapper -->
+	    </div><!-- /#page-content-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
-	
+
+    </div><!-- /#wrapper -->
+
+
   </body>
 </html>

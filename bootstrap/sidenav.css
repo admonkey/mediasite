@@ -39,12 +39,12 @@
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 15px;
 }
 
 #wrapper.toggled #page-content-wrapper {
-    position: absolute;
+    position: relative;
     margin-right: -250px;
 }
 
@@ -96,6 +96,7 @@
     background: none;
 }
 
+/*
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
@@ -123,3 +124,4 @@
         margin-right: 0;
     }
 }
+*/

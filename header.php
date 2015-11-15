@@ -94,7 +94,7 @@ include_once($relative_realpath . 'credentials.php');
     </nav>
 
 	
-	<div id="wrapper" class="toggled">
+	<div id="wrapper">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -126,15 +126,13 @@ include_once($relative_realpath . 'credentials.php');
                     <a href="#">Contact</a>
                 </li>
             </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+        </div><!-- /#sidebar-wrapper -->
+
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-		
 
-	
-		<div class="container container-fluid">
-		  <div class="starter-template">
+
+		<div id="page-content-container" class="container">
 		  
 <!-- BEGIN BODY CONTENT -->
