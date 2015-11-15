@@ -25,3 +25,13 @@ body {
   float: left;
   padding: 10px;
 }
+
+nav.navbar{
+  border-color: white;
+}
+
+.navbar-nav li:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
