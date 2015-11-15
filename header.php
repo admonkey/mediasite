@@ -65,7 +65,7 @@ include_once($relative_realpath . 'credentials.php');
           </button>
 
 	  <!-- Side Nav Toggle -->
-          <a  id="sidenav-toggle" class="navbar-brand" href=""><?php echo $siteTitle; ?></a>
+          <a  id="sidenav-toggle" class="navbar-brand" href=""><?php echo $siteTitle; ?> Menu</a>
 	  <script>
 	  $("#sidenav-toggle").click(function(e) {
 		  e.preventDefault();
@@ -77,16 +77,10 @@ include_once($relative_realpath . 'credentials.php');
 
 
 		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="<?php echo $relative_webpath;?>forms.php">Forms</a></li>
-				<li><a href="<?php echo $relative_webpath;?>tables.php">Tables</a></li>
+			<ul class="nav navbar-nav navigation-menu">
+				<?php include('navigation-menu.php'); ?>
 			</ul>
-			<script>
-			  $('.navbar-nav').find('a').each(function(){
-				if ($(this).attr("href") == "<?php echo $_SERVER['SCRIPT_NAME'];?>")
-				  $(this).parent().addClass("active");
-			  });
-			</script>
+			
 		</div><!--/.nav-collapse -->
 	
       </div><!--/.container -->
@@ -98,34 +92,18 @@ include_once($relative_realpath . 'credentials.php');
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav navigation-menu">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
+                    <a href="<?php echo $relative_webpath;?>">Home</a>
                 </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                <?php include($relative_realpath . 'navigation-menu.php'); ?>
             </ul>
+            <script>
+	      $('.navigation-menu').find('a').each(function(){
+		    if ($(this).attr("href") == "<?php echo $_SERVER['SCRIPT_NAME'];?>")
+		      $(this).parent().addClass("active");
+	      });
+	    </script>
         </div><!-- /#sidebar-wrapper -->
 
 
