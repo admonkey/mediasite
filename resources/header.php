@@ -81,7 +81,12 @@ include_once('credentials.php');
 
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navigation-menu">
-				<?php include('navigation-menu.php'); ?>
+				<?php
+				  if (file_exists('navigation-menu.php'))
+				    include('navigation-menu.php');
+				  else
+				    include($relative_realpath . '/navigation-menu.php');
+				?>
 			</ul>
 			
 		</div><!--/.nav-collapse -->
