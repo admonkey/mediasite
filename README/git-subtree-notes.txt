@@ -4,8 +4,12 @@ git remote add plugin https://path.to/remotes/plugin.git
 # create subtree specifying the new folder prefix
 git subtree add --prefix=plugins/demo plugin master
 
+##################
+
 # pull normal commits made in plugin
 git subtree pull --prefix=plugins/demo plugin master
+
+##################
 
 # commits made in superproject to be backported
 git commit -am "new changes to be backported"
@@ -20,3 +24,11 @@ git cherry-pick -x --strategy=subtree master
 git push plugin backport:master
 
 # see also: https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec
+
+##################
+
+# stop tracking changes for a file in repo
+git update-index --skip-worktree [path/to/file]
+
+# start tracking changes for a file in repo again
+git update-index --no-skip-worktree [path/to/file]
