@@ -1,6 +1,6 @@
 <?php
 	$pageTitle = "Forms";
-	require_once('header.php');
+	require_once('resources/header.php');
 ?>
 
 <script>
@@ -104,4 +104,4 @@
 	</form>
 </div>
 
-<?php require_once('footer.php');?>
+<?php require_once('resources/footer.php');?>

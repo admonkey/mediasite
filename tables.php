@@ -1,6 +1,6 @@
 <?php
 	$pageTitle = "Tables";
-	require_once('header.php');
+	require_once('resources/header.php');
 ?>
 
 <script>
@@ -45,4 +45,4 @@ $(document).ready(function()
   
 </div>
 
-<?php require_once('footer.php');?>
+<?php require_once('resources/footer.php');?>
