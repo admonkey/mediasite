@@ -68,7 +68,8 @@ include_once('credentials.php');
 
 	  <!-- Side Nav Toggle -->
           <a id="sidenav-toggle" href=""><img src="<?php echo $relative_webpath;?>resources/img/favicon.ico"></img></a>
-          <a class="navbar-brand" href="./"><?php echo $section_title; ?></a>
+          <a class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
+          <a id="section-title-brand" class="navbar-brand" href="./"><?php echo $section_title; ?></a>
 	  <script>
 	  $("#sidenav-toggle").click(function(e) {
 		  e.preventDefault();

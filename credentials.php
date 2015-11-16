@@ -1,7 +1,6 @@
 <?php
 	$site_title = "Web Site";
-	$section_title = "$site_title";
-	
+
 	/*
 	// declare database variables
 	$db_server = "sql.example.com";
