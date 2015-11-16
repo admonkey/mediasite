@@ -102,9 +102,11 @@ include_once('credentials.php');
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav navigation-menu">
-                <li class="sidebar-brand">
-                    <a href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
-                </li>
+                <!-- removed redundant sidebar brand
+		  <li class="sidebar-brand">
+		      <a href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
+		  </li>
+                -->
                 <?php include($relative_realpath . 'navigation-menu.php'); ?>
             </ul>
             <script>
