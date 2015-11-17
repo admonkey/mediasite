@@ -128,9 +128,7 @@ mv -v $currentGitDir $vhostDirectory
 
 # TRUMP DEFAULT WITH SITENAME IN CREDENTIALS FILE
 echo "Creating web site PHP variables 'credentials.php'"
-echo "<?php
-	\$site_title = '$siteName';
-?>" >> $vhostDirectory/credentials.php
+echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/credentials.php
 
 # CREATE VIRTUAL HOST
 if $createVhost ; then
