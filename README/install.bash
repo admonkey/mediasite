@@ -129,10 +129,18 @@ currentGitDir=$(pwd)
 # parent folder to project
 vhostDirectory=$( cd .. && pwd )
 # option to abort
+set_php_site_title=true
 echo -e "RENAMING $currentGitDir/ to $vhostDirectory/$siteName"
 read -p "Press 'n' to abort, or just press ENTER to continue: "
 if [[ ${REPLY:0:1} = "n" ]]; then
   vhostDirectory=$currentGitDir
+  echo "Would you like to set the PHP \$site_title = $siteName?"
+  read -p "(y/n): "
+
+  if [[ ${REPLY:0:1} = "n" ]]; then
+	set_php_site_title=false
+  fi
+
 else
   vhostDirectory=$vhostDirectory/$siteName
   mv -v $currentGitDir $vhostDirectory
@@ -141,8 +149,11 @@ fi
 
 
 # TRUMP DEFAULT WITH SITENAME IN CREDENTIALS FILE
-echo "Creating web site PHP variables 'credentials.php'"
-echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/credentials.php
+if $set_php_site_title ; then
+  echo "Creating web site PHP variables 'credentials.php'"
+  echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/credentials.php
+fi
+
 
 # CREATE VIRTUAL HOST
 if $createVhost ; then
