@@ -195,8 +195,7 @@ echo "deny from all" > .git/.htaccess
 if $createGIT ; then
         echo "Creating new git branch..."
         git checkout -b $siteName
-	git add .
-	git commit -m "create $siteName"
+	git commit -am "create $siteName"
 
 	# CREATE PRIVATE REMOTE
 	echo
