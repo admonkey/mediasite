@@ -20,5 +20,12 @@ cd $( dirname "${BASH_SOURCE[0]}" )
 cd ..
 currentGitDir=$(pwd)
 vhostDirectory=$( cd .. && pwd )
-vhostDirectory=$vhostDirectory/WebSite
-mv -v $currentGitDir $vhostDirectory
+# option to abort
+echo -e "RENAMING $currentGitDir/ to $vhostDirectory/WebSite"
+read -p "Press 'n' to abort, or just press ENTER to continue: "
+if [[ ${REPLY:0:1} = "n" ]]; then
+  exit 0
+else
+  vhostDirectory=$vhostDirectory/WebSite
+  mv -v $currentGitDir $vhostDirectory
+fi
