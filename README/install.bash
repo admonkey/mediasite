@@ -109,6 +109,7 @@ else
 
 fi
 
+
 # GET SITE NAME
 read -e -p "Enter the fully qualified domain name of the site 
 (for example: www.example.com): " siteName
@@ -117,14 +118,27 @@ if [[ -z "$siteName" ]]; then
 	echo "Exiting"; exit 1
 fi
 
+
 # RENAME CLONED DIRECTORY
 # move to working directory
 cd $( dirname "${BASH_SOURCE[0]}" )
+# back out of README
 cd ..
+# project root
 currentGitDir=$(pwd)
+# parent folder to project
 vhostDirectory=$( cd .. && pwd )
-vhostDirectory=$vhostDirectory/$siteName
-mv -v $currentGitDir $vhostDirectory
+# option to abort
+echo -e "RENAMING $currentGitDir/ to $vhostDirectory/$siteName"
+read -p "Press 'n' to abort, or just press ENTER to continue: "
+if [[ ${REPLY:0:1} = "n" ]]; then
+  vhostDirectory=$currentGitDir
+else
+  vhostDirectory=$vhostDirectory/$siteName
+  mv -v $currentGitDir $vhostDirectory
+fi
+
+
 
 # TRUMP DEFAULT WITH SITENAME IN CREDENTIALS FILE
 echo "Creating web site PHP variables 'credentials.php'"
