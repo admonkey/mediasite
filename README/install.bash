@@ -157,26 +157,38 @@ fi
 
 # CREATE VIRTUAL HOST
 if $createVhost ; then
-        echo "Creating Apache 2.4 virtual host..."
-        vhostConf="/etc/apache2/sites-available/"$siteName".conf"
-        if [ -f $vhostConf ]; then
-		echo "Configuration file '"$vhostConf"' already exists."
-		echo "Operation would overwrite. Please rename existing configuration file."
-		echo "Aborting."
-		exit 1
-	fi
-	echo "Creating virtual host configuration file..."
-	vfile="<Directory $vhostDirectory/>\n\t"
-        vfile="$vfile Options Indexes FollowSymLinks\n\t"
-        vfile="$vfile AllowOverride All\n\t"
-        vfile="$vfile Require all granted\n"
-	vfile="$vfile</Directory>\n"
-	vfile="$vfile<VirtualHost *:80>\n\t"
-	vfile="$vfile ServerAdmin webmaster@$siteName\n\t"
-	vfile="$vfile ServerName $siteName\n\t"
-	vfile="$vfile DocumentRoot $vhostDirectory\n"
-	vfile="$vfile</VirtualHost>\n"
-	echo -e $vfile > VirtualHostConfigurationFile
+
+  # create localhost
+  if [ -f /etc/hosts ]; then
+    echo -e "CREATING NEW localhost entry for 127.0.1.1 $siteName in /etc/hosts"
+    read -p "Press 'n' to abort, or just press ENTER to continue: "
+
+    if ! [[ ${REPLY:0:1} = "n" ]]; then
+      echo "127.0.1.1 $siteName" | sudo tee -a /etc/hosts > /dev/null
+    fi
+  fi
+
+  # create virtual host
+  echo "Creating Apache 2.4 virtual host..."
+  vhostConf="/etc/apache2/sites-available/"$siteName".conf"
+  if [ -f $vhostConf ]; then
+	  echo "Configuration file '"$vhostConf"' already exists."
+	  echo "Operation would overwrite. Please rename existing configuration file."
+	  echo "Aborting."
+	  exit 1
+  fi
+  echo "Creating virtual host configuration file..."
+  vfile="<Directory $vhostDirectory/>\n\t"
+  vfile="$vfile Options Indexes FollowSymLinks\n\t"
+  vfile="$vfile AllowOverride All\n\t"
+  vfile="$vfile Require all granted\n"
+  vfile="$vfile</Directory>\n"
+  vfile="$vfile<VirtualHost *:80>\n\t"
+  vfile="$vfile ServerAdmin webmaster@$siteName\n\t"
+  vfile="$vfile ServerName $siteName\n\t"
+  vfile="$vfile DocumentRoot $vhostDirectory\n"
+  vfile="$vfile</VirtualHost>\n"
+  echo -e $vfile > VirtualHostConfigurationFile
 fi
 
 # CREATE SSL CERTIFICATE
