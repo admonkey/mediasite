@@ -11,6 +11,12 @@ sudo a2dissite $siteName && sudo service apache2 restart
 
 sudo rm "/etc/apache2/sites-available/"$siteName".conf"
 
+# remove localhost from /etc/hosts
+echo "Removing 127.0.1.1 $siteName in /etc/hosts..."
+sudo cp /etc/hosts /etc/hosts-backup
+grep -v -e "127.0.1.1 $siteName" /etc/hosts > temp
+sudo mv temp /etc/hosts
+
 # move to working directory
 cd $( dirname "${BASH_SOURCE[0]}" )
 cd ..
