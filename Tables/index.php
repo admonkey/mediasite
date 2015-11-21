@@ -3,14 +3,6 @@
 	require_once('../resources/header.php');
 ?>
 
-<script>
-$(document).ready(function() 
-    { 
-	$("table").addClass("table table-hover table-striped table-bordered table-condensed tablesorter").tablesorter();
-    } 
-); 
-</script>
-
 <div class="table-responsive well">
   <h1>Sortable Table:</h1>
   <table border=1>
@@ -44,5 +36,11 @@ $(document).ready(function()
   </table>
   
 </div>
+
+<script>
+$(document).ready(function() {
+	$("table").addClass("table table-hover table-striped table-bordered table-condensed tablesorter").tablesorter();
+}); 
+</script>
 
 <?php require_once('../resources/footer.php');?>
