@@ -1,0 +1,8 @@
+<Files "credentials.php">
+	# Apache 2.4
+	require all denied
+
+	# Apache 2.2
+	Order Deny,Allow
+        Deny from all
+</Files>
