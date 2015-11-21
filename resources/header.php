@@ -52,6 +52,7 @@ include_once('credentials.php');
 
 </head>
 <body>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
 
       <div class="container">
@@ -67,30 +68,39 @@ include_once('credentials.php');
           </button>
 
 	  <!-- Side Nav Toggle -->
-          <a id="sidenav-toggle" href="javascript:void(0);" onclick="$('#wrapper').toggleClass('toggled')"><img src="<?php echo $relative_webpath;?>resources/img/favicon.ico"></img></a>
-          <a class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
-          <a id="section-title-brand" class="navbar-brand" href="./"><?php echo $section_title; ?></a>
+          <a id="sidenav-toggle" href="javascript:void(0);" onclick="$('#wrapper').toggleClass('toggled')">
+	    <img src="<?php echo $relative_webpath;?>resources/img/favicon.ico"></img>
+          </a>
 
-        </div><!-- end navbar-header -->
+          <a id="site_title_brand" class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
 
+          <a id="section_title_brand" class="navbar-brand" href="./"><?php echo $section_title; ?></a>
 
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navigation-menu">
-				<?php
-				  if (file_exists('navigation-menu.php'))
-				    include('navigation-menu.php');
-				  else
-				    include($relative_realpath . '/navigation-menu.php');
-				?>
-			</ul>
-			
-		</div><!--/.nav-collapse -->
-	
+        </div><!-- /.navbar-header -->
+
+	<div id="navbar" class="collapse navbar-collapse">
+
+	    <ul class="nav navbar-nav navigation-menu">
+
+		<?php
+
+		  // use local navigation menu if exists, else use global.
+		  if (file_exists('navigation-menu.php'))
+		    include('navigation-menu.php');
+		  else
+		    include($relative_realpath . '/navigation-menu.php');
+
+		?>
+
+	    </ul>
+
+	</div><!--/#navbar.nav-collapse -->
+
       </div><!--/.container -->
-	  
+
     </nav>
 
-	
+
 	<div id="wrapper">
 
         <!-- Sidebar -->
