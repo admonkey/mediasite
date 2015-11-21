@@ -1,19 +1,31 @@
 <?php
-	$section_title = "Tables";
-	
-	/*
-	// declare database variables
-	$db_server = "sql.example.com";
-	$db_user = "username";
-	$db_pass = "p@55W0rd";
-	$db_database = "database";
-	
-	// connection to MySQL database
-	$db_handle = mysql_connect($db_server, $db_user, $db_pass)
-	  or die("Unable to connect to MySQL");
+$section_title = "Tables";
 
-	// select a database to work with
-	$selected = mysql_select_db($db_database,$db_handle)
-	  or die("Could not select database");
-	*/
+// database connection
+if ( ! $database_selected ){
+	
+	// database credentials
+
+		// remote
+		$database_server = "sql.example.com";
+		// local
+		$database_server = "localhost";
+
+		$database_username = "username";
+		$database_password = "p@55W0rd";
+		$database_name = "example_database";
+
+	// MySQL
+
+		// connection
+		$database_connection = mysql_connect($database_server, $database_username, $database_password)
+		  or die("Unable to connect to MySQL");
+
+		// use database
+		$database_selected = mysql_select_db($database_name,$database_connection)
+		  or die("Could not select database");
+		
+		$mysql_connection = true;
+}
+
 ?>

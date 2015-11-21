@@ -1,6 +1,8 @@
 <?php
-	$pageTitle = "Tables";
-	require_once('../resources/header.php');
+
+$pageTitle = "Tables";
+require_once('../resources/header.php');
+
 ?>
 
 <div class="table-responsive well">
