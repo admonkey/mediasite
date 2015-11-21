@@ -74,7 +74,7 @@ include_once('credentials.php');
 
           <a id="site_title_brand" class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
 
-          <a id="section_title_brand" class="navbar-brand" href="./"><?php echo $section_title; ?></a>
+          <?php if(isset($section_title)) echo "<a id='section_title_brand' class='navbar-brand' href='./'>$section_title</a>"; ?>
 
         </div><!-- /.navbar-header -->
 
