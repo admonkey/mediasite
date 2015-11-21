@@ -19,14 +19,14 @@ sudo mv temp /etc/hosts
 
 # move to working directory
 cd $( dirname "${BASH_SOURCE[0]}" )
-cd ..
+cd ../..
 currentGitDir=$(pwd)
 
 # remove ssl files
-rm -iv $currentGitDir/ssl/$siteName.crt
-rm -iv $currentGitDir/ssl/$siteName.key
+rm -iv $currentGitDir/-resources/SSL/$siteName.crt
+rm -iv $currentGitDir/-resources/SSL/$siteName.key
 
-git checkout master
+git checkout template
 git branch -D $siteName
 
 # rename cloned directory for virtual host
