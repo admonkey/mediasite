@@ -72,9 +72,13 @@ include_once('credentials.php');
 	    <img src="<?php echo $relative_webpath;?>resources/img/favicon.ico"></img>
           </a>
 
-          <a id="site_title_brand" class="navbar-brand" href="<?php echo $relative_webpath;?>"><?php echo $site_title; ?></a>
+          <?php // #site_title_brand
+	    echo "<a id='site_title_brand' class='navbar-brand' href='$relative_webpath'>$site_title</a>"; 
+          ?>
 
-          <?php if(isset($section_title)) echo "<a id='section_title_brand' class='navbar-brand' href='./'>$section_title</a>"; ?>
+          <?php // #section_title_brand
+	    if(isset($section_title)) echo "<a id='section_title_brand' class='navbar-brand' href='./'>$section_title</a>";
+          ?>
 
         </div><!-- /.navbar-header -->
 
