@@ -1,4 +1,5 @@
 <?php
+
 if( $mysql_connection ){
 	
 	$sql="
@@ -33,19 +34,9 @@ if( $mysql_connection ){
 } else {
 	
 	// help connecting to database
-	echo "
-	<div id='mysql_help_div' class='well'>
-
-		<p id='mysql_help_p'>
-		
-			Make sure that you have enabled a MySQL connection in the <code>credentials.php</code> file,
-			located in either the root or section folder.
-		
-		</p><!-- /#mysql_help_p -->
-
-	</div><!-- /#mysql_help_div.well -->
-	";
+	echo "ERROR: not connected to MySQL";
+	include($relative_realpath . '/SQL/database.help.html');
 	
 }
-?>
 
+?>
