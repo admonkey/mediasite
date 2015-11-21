@@ -24,8 +24,8 @@ if( $mysql_connection ){
 			<tbody>
 	";
 	// // data
-	while ($row = mysql_fetch_row($result))
-		echo '<tr><td>'.implode($row,'</td><td>')."</td></tr>\n";
+	while ($row = mysql_fetch_assoc($result))
+		echo "<tr><td><a href='&object_id=$row[object_id]'></a>".implode($row,'</td><td>')."</td></tr>\n";
 	echo "
 			</tbody>
 		</table>
@@ -35,7 +35,7 @@ if( $mysql_connection ){
 	
 	// help connecting to database
 	echo "ERROR: not connected to MySQL";
-	include($path_real_relative_root . '-resources/SQL/database.help.html');
+	include($path_real_relative_root . '/-resources/SQL/database.help.html');
 	
 }
 
