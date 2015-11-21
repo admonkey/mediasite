@@ -1,15 +1,17 @@
+################## <h3>Create Sub Tree</h3>
+
 # add new remote pointing to plugin repo
 git remote add plugin https://path.to/remotes/plugin.git
 
 # create subtree specifying the new folder prefix
 git subtree add --prefix=plugins/demo plugin master
 
-##################
+################## <h3>Pull Sub Tree Updates</h3>
 
 # pull normal commits made in plugin
 git subtree pull --prefix=plugins/demo plugin master
 
-##################
+################## <h3>Backport Sub Tree Updates</h3>
 
 # commits made in superproject to be backported
 git commit -am "new changes to be backported"
@@ -25,7 +27,7 @@ git push plugin backport:master
 
 # see also: https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec
 
-##################
+################## <h3>Stop Tracking Changes On a File</h3>
 
 # stop tracking changes for a file in repo
 git update-index --skip-worktree [path/to/file]

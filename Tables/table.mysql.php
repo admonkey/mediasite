@@ -35,7 +35,7 @@ if( $mysql_connection ){
 	
 	// help connecting to database
 	echo "ERROR: not connected to MySQL";
-	include($relative_realpath . '/SQL/database.help.html');
+	include($path_real_relative_root . '-resources/SQL/database.help.html');
 	
 }
 

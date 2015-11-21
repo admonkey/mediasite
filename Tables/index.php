@@ -1,7 +1,8 @@
 <?php
 
-$pageTitle = "Tables";
-require_once('../resources/header.php');
+$page_title = "Tables";
+$include_tablesorter = true;
+require_once('../-resources/header.php');
 
 ?>
 
@@ -32,4 +33,4 @@ $(document).ready(function() {
 }); 
 </script>
 
-<?php require_once('../resources/footer.php');?>
+<?php require_once('../-resources/footer.php');?>
