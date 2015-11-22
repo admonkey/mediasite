@@ -1,9 +1,18 @@
 <?php
-
 // get relative path definitions
-$path_real_relative_root = dirname(__FILE__);
+$path_real_relative_root = (__DIR__);
+// move up from included header
 $path_real_relative_root = str_replace('/-resources', '', $path_real_relative_root);
-$path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
+// get differences in case of Alias
+$first_array = explode('/', $_SERVER['SCRIPT_NAME']);
+$second_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
+$array_differences = array_diff($first_array, $second_array);
+// if alias
+if( count($array_differences) > 0 )
+  $path_web_relative_root = "/" . implode('/',$array_differences);
+// else if nodes down from server root
+else
+  $path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
 
 // include global credentials
 include_once($path_real_relative_root . '/-resources/credentials.php');
