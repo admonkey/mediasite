@@ -1,13 +1,25 @@
 <?php
+
+// FIX: bug when part of relative path duplicated in alias
+$debug = false;
+
 // get relative path definitions
 $path_real_relative_root = (__DIR__);
+if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
+
 // move up from included header
 $path_real_relative_root = str_replace('/-resources', '', $path_real_relative_root);
+if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
+
 // get differences in case of Alias
+if ($debug) echo '$_SERVER[SCRIPT_NAME] = ' . $_SERVER['SCRIPT_NAME'] . '<br/>';
 $first_array = explode('/', $_SERVER['SCRIPT_NAME']);
+if ($debug) echo '$_SERVER[SCRIPT_FILENAME] = ' . $_SERVER['SCRIPT_FILENAME'] . '<br/>';
 $second_array = explode('/', $_SERVER['SCRIPT_FILENAME']);
 $array_differences = array_diff($first_array, $second_array);
+
 // if alias
+if ($debug) echo "count differences = " . count($array_differences) . '<br/>';
 if( count($array_differences) > 0 )
   $path_web_relative_root = "/" . implode('/',$array_differences);
 // else if nodes down from server root
