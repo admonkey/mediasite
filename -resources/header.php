@@ -29,13 +29,15 @@ include_once('-resources/credentials.php');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title><?php
-    if( !empty($page_title) )
-      echo $page_title . " | ";
-    if( !empty($section_title) )
-      echo $section_title . " | ";
-    echo $site_title;
-  ?></title>
+  <title>
+    <?php
+      if( !empty($page_title) )
+        echo $page_title . " | ";
+      if( !empty($section_title) )
+        echo $section_title . " | ";
+      echo $site_title;
+    ?>
+  </title>
   
   <?php echo "
   
