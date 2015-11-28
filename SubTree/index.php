@@ -1,7 +1,7 @@
 <?php
 
 //$page_title = "Home Page";
-require_once('../-resources/header.php');
+require_once('../_resources/header.php');
 
 echo "<h1>$section_title Tips</h1>";
 
@@ -85,4 +85,4 @@ echo "<h1>$section_title Tips</h1>";
 
 </div><!-- /.well-->
 
-<?php require_once('../-resources/footer.php');?>
+<?php require_once('../_resources/footer.php');?>

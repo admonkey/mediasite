@@ -3,7 +3,7 @@ $require_ssl = true;
 $ldap_server = "ldap.example.com";
 // $page_title = "Home Page";
 // $section_title = "Root Section";
-require_once('../-resources/header.php');
+require_once('../_resources/header.php');
 
 echo "
 
@@ -24,6 +24,6 @@ echo "
 ";
 
 // footer
-require_once('../-resources/footer.php');
+require_once('../_resources/footer.php');
 
 ?>

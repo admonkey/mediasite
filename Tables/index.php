@@ -3,7 +3,7 @@
 //$page_title = "Home Page";
 $include_tablesorter = true;
 $include_mysql = true;
-require_once('../-resources/header.php');
+require_once('../_resources/header.php');
 
 ?>
 
@@ -54,4 +54,4 @@ require_once('../-resources/header.php');
   }
 </style>
 
-<?php require_once('../-resources/footer.php');?>
+<?php require_once('../_resources/footer.php');?>

@@ -7,7 +7,7 @@ $ldap_dc_tld = "com";
 $page_title = "PHP LDAP Authentication";
 $require_ssl = true;
 
-require_once('../-resources/header.php');
+require_once('../_resources/header.php');
 
 echo "
 
@@ -106,6 +106,6 @@ if(isset($_POST['ldap_login_username']) && isset($_POST['ldap_login_password']))
 echo "</div><!-- /#login.well -->";
 
 // footer
-require_once('../-resources/footer.php');
+require_once('../_resources/footer.php');
 
 ?>

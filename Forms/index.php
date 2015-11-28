@@ -1,7 +1,7 @@
 <?php
 	//$page_title = "Forms Home Page";
 	$include_jquery_ui = true;
-	require_once('../-resources/header.php');
+	require_once('../_resources/header.php');
 ?>
 
 <script>
@@ -105,4 +105,4 @@
 	</form>
 </div>
 
-<?php require_once('../-resources/footer.php');?>
+<?php require_once('../_resources/footer.php');?>

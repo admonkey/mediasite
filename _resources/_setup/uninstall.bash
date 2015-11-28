@@ -23,8 +23,8 @@ cd ../..
 currentGitDir=$(pwd)
 
 # remove ssl files
-rm -iv $currentGitDir/-resources/SSL/$siteName.crt
-rm -iv $currentGitDir/-resources/SSL/$siteName.key
+rm -iv $currentGitDir/_resources/SSL/$siteName.crt
+rm -iv $currentGitDir/_resources/SSL/$siteName.key
 
 git checkout template
 git branch -D $siteName

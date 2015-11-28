@@ -8,7 +8,7 @@ $path_real_relative_root = (__DIR__);
 if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
 
 // move up from included header
-$path_real_relative_root = str_replace('/-resources', '', $path_real_relative_root);
+$path_real_relative_root = str_replace('/_resources', '', $path_real_relative_root);
 if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
 
 // get differences in case of Alias
@@ -27,9 +27,9 @@ else
   $path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
 
 // include global credentials
-include_once($path_real_relative_root . '/-resources/credentials.php');
+include_once($path_real_relative_root . '/_resources/credentials.php');
 // trump with local
-include_once('-resources/credentials.php');
+include_once('_resources/credentials.php');
 
 // MySQL
 if ($include_mysql) {
@@ -66,16 +66,16 @@ if ($include_mysql) {
   <?php echo "
   
     <!-- favicon -->
-    <link rel='icon' href='$path_web_relative_root/-resources/images/favicon.ico'></link>
+    <link rel='icon' href='$path_web_relative_root/_resources/images/favicon.ico'></link>
   
     <!-- JQUERY -->
-    <script src='$path_web_relative_root/-resources/jquery/jquery.1.11.2.min.js'></script>
+    <script src='$path_web_relative_root/_resources/jquery/jquery.1.11.2.min.js'></script>
 
     <!-- BOOTSTRAP -->
-    <script src='$path_web_relative_root/-resources/bootstrap/bootstrap.3.3.4.min.js'></script>
-    <link rel='stylesheet' href='$path_web_relative_root/-resources/bootstrap/bootstrap.3.3.4.min.css'></link>
-    <link rel='stylesheet' href='$path_web_relative_root/-resources/bootstrap/bootstrap.custom.css'></link>
-    <link rel='stylesheet' href='$path_web_relative_root/-resources/bootstrap/sidenav.css'></link>
+    <script src='$path_web_relative_root/_resources/bootstrap/bootstrap.3.3.4.min.js'></script>
+    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/bootstrap.3.3.4.min.css'></link>
+    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/bootstrap.custom.css'></link>
+    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/sidenav.css'></link>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
@@ -88,8 +88,8 @@ if ($include_mysql) {
     if ( $include_jquery_ui ) {
       echo "
 	<!-- JQUERY-UI -->
-	<script src='$path_web_relative_root/-resources/jquery-ui/jquery-ui.1.11.4.min.js'></script>
-	<link rel='stylesheet' href='$path_web_relative_root/-resources/jquery-ui/jquery-ui.1.11.4.min.css'>
+	<script src='$path_web_relative_root/_resources/jquery-ui/jquery-ui.1.11.4.min.js'></script>
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/jquery-ui/jquery-ui.1.11.4.min.css'>
 	<!-- official content delivery network -->
 	<!-- <script src='//code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script> -->
 	<!-- <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css'> -->
@@ -101,8 +101,8 @@ if ($include_mysql) {
     if ( $include_tablesorter ) {
       echo "
 	<!-- TABLESORTER -->
-	<script src='$path_web_relative_root/-resources/tablesorter/tablesorter.2.0.5b.min.js'></script>
-	<link rel='stylesheet' href='$path_web_relative_root/-resources/tablesorter/tablesorter.css'>
+	<script src='$path_web_relative_root/_resources/tablesorter/tablesorter.2.0.5b.min.js'></script>
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/tablesorter/tablesorter.css'>
       ";
     }
   ?>
@@ -111,9 +111,9 @@ if ($include_mysql) {
     if ( $include_chartist ) {
       echo "
 	<!-- CHARTIST -->
-	<script src='$path_web_relative_root/-resources/chartist/chartist.0.9.4.min.js'></script>
-	<link rel='stylesheet' href='$path_web_relative_root/-resources/chartist/chartist.min.css'></link>
-	<link rel='stylesheet' href='$path_web_relative_root/-resources/chartist/chartist.custom.css'></link>
+	<script src='$path_web_relative_root/_resources/chartist/chartist.0.9.4.min.js'></script>
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/chartist/chartist.min.css'></link>
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/chartist/chartist.custom.css'></link>
       ";
     }
   ?>
@@ -137,7 +137,7 @@ if ($include_mysql) {
 
 	  <!-- Side Nav Toggle -->
           <a id="sidenav-toggle" href="javascript:void(0);" onclick="$('#wrapper').toggleClass('toggled')">
-	    <img src="<?php echo $path_web_relative_root;?>/-resources/images/favicon.ico"></img>
+	    <img src="<?php echo $path_web_relative_root;?>/_resources/images/favicon.ico"></img>
           </a>
 
           <?php // #site_title_brand
@@ -157,12 +157,12 @@ if ($include_mysql) {
 		<?php
 
 		  // use local navigation menu if exists
-		  if (file_exists('-resources/navigation-menu.php'))
-		    include('-resources/navigation-menu.php');
+		  if (file_exists('_resources/navigation-menu.php'))
+		    include('_resources/navigation-menu.php');
 		  /*
 		  // , else use global.
 		  else
-		    include($path_real_relative_root . '/-resources/navigation-menu.php');
+		    include($path_real_relative_root . '/_resources/navigation-menu.php');
 		  */
 
 		?>
@@ -186,7 +186,7 @@ if ($include_mysql) {
 		      <a href="<?php echo $path_web_relative_root;?>/"><?php echo $site_title; ?></a>
 		  </li>
                 -->
-                <?php include($path_real_relative_root . '/-resources/navigation-menu.php'); ?>
+                <?php include($path_real_relative_root . '/_resources/navigation-menu.php'); ?>
             </ul>
             <script>
 	      $('.navigation-menu').find('a').each(function(){

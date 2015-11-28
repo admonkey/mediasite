@@ -24,5 +24,5 @@ Might work elsewhere, but designed and tested on:
 - MySQL  Ver 14.14 Distrib 5.5.46, for debian-linux-gnu (x86_64) using readline 6.3
 
 ## Getting Started
-run `./-resources/-setup/install.bash`  
+run `./_resources/_setup/install.bash`  
 follow prompts

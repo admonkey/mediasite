@@ -122,7 +122,7 @@ fi
 # RENAME CLONED DIRECTORY
 # move to working directory
 cd $( dirname "${BASH_SOURCE[0]}" )
-# back out of -resources/-setup
+# back out of _resources/_setup
 cd ../..
 # project root
 currentGitDir=$(pwd)
@@ -150,8 +150,8 @@ fi
 
 # TRUMP DEFAULT WITH SITENAME IN CREDENTIALS FILE
 if $set_php_site_title ; then
-  echo "Creating web site PHP variables '-resources/credentials.php'"
-  echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/-resources/credentials.php
+  echo "Creating web site PHP variables '_resources/credentials.php'"
+  echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/_resources/credentials.php
 fi
 
 
@@ -194,7 +194,7 @@ fi
 # CREATE SSL CERTIFICATE
 if $createSSL ; then
         echo "Creating self-signed SSL certificate..."
-        sslDirectory=$vhostDirectory/-resources/SSL
+        sslDirectory=$vhostDirectory/_resources/SSL
         if ! [ -d $sslDirectory ]; then
 	  mkdir $sslDirectory
 	fi
