@@ -1,0 +1,24 @@
+# require SSL so that password isn't transmitted in plain text
+SSLOptions +StrictRequire
+SSLRequireSSL
+ErrorDocument 403 https://example.com/LDAP/apache-secured/
+
+AuthBasicProvider ldap
+AuthLDAPURL "ldap://domaincontroller.example.com/CN=Users,DC=example,DC=com?sAMAccountName"
+
+# need a user account with minimal permissions to search the tree
+AuthLDAPBindDN "CN=LDAPagent,CN=Users,DC=example,DC=com"
+AuthLDAPBindPassword "c0mpl3x p@55w0rd"
+
+# needed to search nested groups
+AuthLDAPMaxSubGroupDepth 1 
+AuthLDAPSubgroupAttribute member 
+AuthLDAPSubGroupClass group 
+AuthLDAPGroupAttribute member
+
+AuthType Basic
+AuthName "USE YOUR WINDOWS ACCOUNT"
+
+require valid-user
+#require ldap-user webmaster
+#require ldap-group CN=webmasters,CN=Groups,DC=example,DC=com
