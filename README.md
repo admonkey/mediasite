@@ -11,6 +11,7 @@ This is built to take the tedium out of creating the following:
   - bootstrap
   - tablesorter
   - chartist
+  - active directory login session via php LDAP
 - checkout new git branch and commit to private remote
 
 ## Requirements
