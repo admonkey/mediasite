@@ -1,4 +1,6 @@
 <?php
+
+include_once('../_resources/credentials.php');
 $require_ssl = true;
 $ldap_server = "ldap.example.com";
 // $page_title = "Home Page";

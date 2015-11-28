@@ -1,4 +1,5 @@
 <?php
+	include_once('../_resources/credentials.php');
 	//$page_title = "Forms Home Page";
 	$include_jquery_ui = true;
 	require_once('../_resources/header.php');

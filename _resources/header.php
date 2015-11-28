@@ -35,10 +35,9 @@ if( count($array_differences) > 0 )
 else
   $path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
 
-// include global credentials
-include_once($path_real_relative_root . '/_resources/credentials.php');
-// trump with local
-include_once('_resources/credentials.php');
+// variable definitions
+include_once((__DIR__) . '/credentials.php');
+
 
 // MySQL
 if ($include_mysql) {
