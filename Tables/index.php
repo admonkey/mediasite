@@ -2,6 +2,7 @@
 
 //$page_title = "Home Page";
 $include_tablesorter = true;
+$include_mysql = true;
 require_once('../-resources/header.php');
 
 ?>

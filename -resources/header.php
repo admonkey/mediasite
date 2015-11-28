@@ -31,6 +31,18 @@ include_once($path_real_relative_root . '/-resources/credentials.php');
 // trump with local
 include_once('-resources/credentials.php');
 
+// MySQL
+if ($include_mysql) {
+  // connection
+  $mysql_connected = mysql_connect($database_server, $database_username, $database_password);
+
+  // use database
+  $mysql_selected = mysql_select_db($database_name,$mysql_connected);
+  
+  if ($mysql_connected && $mysql_selected)
+    $mysql_connection = true;
+}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
