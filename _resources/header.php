@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+if (isset($_GET["logout"]))
+  session_destroy();
+session_start();
+
 // FIX: bug when part of relative path duplicated in alias
 $debug = false;
 
@@ -168,6 +173,19 @@ if ($include_mysql) {
 		?>
 
 	    </ul>
+	    
+	    <div class="pull-right">
+		<ul class="nav navbar-nav">
+		  <?php
+		    if (isset($_SESSION['username'])) { ?>
+		      <li id="logout"><a href="?logout">logout <?php echo $_SESSION['username']; ?></a></li>
+		    <?php } else { ?>
+		      <li id="login"><a href="<?php echo "$path_web_relative_root/LDAP/login.php"; ?>">login</a></li>
+		    <?php }
+		  ?>
+	      
+		</ul>
+	   </div>
 
 	</div><!--/#navbar.nav-collapse -->
 

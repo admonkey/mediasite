@@ -1,6 +1,10 @@
 <?php
 
-$section_title = "LDAP"; 
+$section_title = "LDAP";
+
+$ldap_server = "ldap.example.com";
+$ldap_dc_domain = "example";
+$ldap_dc_tld = "com";
 
 // overwrite values in credentials_local.php
 // useful for automatic merging patch updates
