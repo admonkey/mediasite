@@ -90,6 +90,7 @@ if(isset($_POST['ldap_login_username']) && isset($_POST['ldap_login_password']))
 
 }else{
 ?>
+	<h3>Print All LDAP Attributes for Username</h3>
     <form id="ldap_login_form" role="form" method="POST">
       <div class="form-group">
         <label for="ldap_login_username">Username:</label>
