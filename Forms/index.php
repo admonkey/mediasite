@@ -48,9 +48,9 @@
     });
   });
 </script>
-
-<div id="form1-div">
-	<h1>Form:</h1>
+<h1>Forms</h1>
+<div id="form1-div" class='well'>
+	
 	<form id="form1" role="form">
 		
 		<!-- auto complete text -->

@@ -222,6 +222,6 @@ if ($include_mysql) {
         <div id="page-content-wrapper">
 
 
-		<div id="page-content-container" class='container<?php if(!isset($no_well_container)) echo " well"; ?>'>
+		<div id="page-content-container" class='container<?php if(!isset($no_well_container)) echo " well' style='background-color:white;"; ?>'>
 		  
 <!-- BEGIN BODY CONTENT -->
