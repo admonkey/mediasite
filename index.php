@@ -1,5 +1,6 @@
 <?php
 
+include_once('_resources/credentials.php');
 $no_well_container = true;
 // $page_title = "Home Page";
 // $section_title = "Root Section";
