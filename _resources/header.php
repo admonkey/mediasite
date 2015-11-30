@@ -222,6 +222,6 @@ if ($include_mysql) {
         <div id="page-content-wrapper">
 
 
-		<div id="page-content-container" class="container">
+		<div id="page-content-container" class="container well">
 		  
 <!-- BEGIN BODY CONTENT -->

@@ -49,7 +49,7 @@
   });
 </script>
 
-<div class="well" id="form1-div">
+<div id="form1-div">
 	<h1>Form:</h1>
 	<form id="form1" role="form">
 		

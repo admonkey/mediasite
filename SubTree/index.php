@@ -8,8 +8,6 @@ echo "<h1>$section_title Tips</h1>";
 
 ?>
 
-<div class="well">
-
 <div id="create_subtree" class="well">
 
 	<h3>Create Sub Tree</h3>
@@ -83,7 +81,5 @@ echo "<h1>$section_title Tips</h1>";
 </div><!-- /#skipfile_subtree -->
 
 <a href="https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec" class="btn btn-default" target="_blank">Read More About Subtrees @porteneuve</a>
-
-</div><!-- /.well-->
 
 <?php require_once('../_resources/footer.php');?>

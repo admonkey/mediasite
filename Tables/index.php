@@ -8,7 +8,7 @@ require_once('../_resources/header.php');
 
 ?>
 
-<div class="table-responsive well">
+<div class="table-responsive">
 
   <h1>Sortable Table</h1>
 
