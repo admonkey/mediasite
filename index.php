@@ -1,5 +1,6 @@
 <?php
 
+$no_well_container = true;
 // $page_title = "Home Page";
 // $section_title = "Root Section";
 require_once('_resources/header.php');
