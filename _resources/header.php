@@ -34,6 +34,8 @@ if( count($array_differences) > 0 )
 // else if nodes down from server root
 else
   $path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
+if ($debug) echo '$_SERVER[DOCUMENT_ROOT] = ' . $_SERVER['DOCUMENT_ROOT'] . '<br/>';
+if ($debug) echo '$path_web_relative_root = ' . $path_web_relative_root . '<br/>';
 
 // variable definitions
 include_once((__DIR__) . '/credentials.php');
