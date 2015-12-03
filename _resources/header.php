@@ -61,7 +61,10 @@ if ( isset($include_mysql) && $include_mysql ) {
     $mysql_connection = true;
 }
 
-?>
+
+// if filename contains ajax, then don't print html header
+if (!(strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false)) { ?>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -264,3 +267,6 @@ if ( isset($include_mysql) && $include_mysql ) {
 		<div id="page-content-container" class='container<?php if(!isset($no_well_container)) echo " well' style='background-color:white;"; ?>'>
 		  
 <!-- BEGIN BODY CONTENT -->
+<?php
+}
+?>
