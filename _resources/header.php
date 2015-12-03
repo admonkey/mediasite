@@ -45,7 +45,12 @@ include_once((__DIR__) . '/credentials.php');
 // MySQL
 if ( isset($include_mysql) && $include_mysql ) {
   // connection
-  $mysql_connected = mysql_connect($database_server, $database_username, $database_password);
+  /*
+	using deprecated mysql_connect()
+	will need to upgrade to mysqli ASAP
+	until then, silence server error notice
+  */
+  $mysql_connected = @mysql_connect($database_server, $database_username, $database_password);
 
   // use database
   $mysql_selected = mysql_select_db($database_name,$mysql_connected);

@@ -24,6 +24,9 @@ Might work elsewhere, but designed and tested on:
 - Git 2.6.2
 - MySQL  Ver 14.14 Distrib 5.5.46, for debian-linux-gnu (x86_64) using readline 6.3
 
+## Issues
+- Currently using the deprecated mysql functions. Need to upgrade to mysqli ASAP
+
 ## Getting Started
 run `./_resources/_setup/install.bash`  
 follow prompts
