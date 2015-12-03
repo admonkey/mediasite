@@ -20,7 +20,7 @@ else echo "
 		<input name='user_id' type='hidden' value='$_SESSION[user_id]'></input>
 
 		<div class='form-group'>
-			<label for='message_textarea'>Message:</label>
+			<label for='message_textarea'>Message (max 140 characters):</label>
 			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_textarea' name='message_textarea'></textarea>
 			<!-- auto-expand textarea to fit content -->
 			<script>
