@@ -186,17 +186,15 @@ if ($include_mysql) {
 		  // use local navigation menu if exists
 		  if (file_exists('_resources/navigation-menu.php'))
 		    include('_resources/navigation-menu.php');
-		  /*
-		  // , else use global.
+		  // else use global.
 		  else
 		    include($path_real_relative_root . '/_resources/navigation-menu.php');
-		  */
 
 		?>
 
 	    </ul>
 	    
-	    <div class="pull-right">
+	    <div id='login_nav_div' class="pull-right">
 		<ul class="nav navbar-nav">
 		  <?php
 		    if (isset($_SESSION['username'])) { ?>
