@@ -1,8 +1,12 @@
 <?php
-	include_once('../_resources/credentials.php');
-	//$page_title = "Forms Home Page";
-	$include_jquery_ui = true;
-	require_once('../_resources/header.php');
+
+include_once('../_resources/credentials.php');
+//$page_title = "Home Page";
+$include_jquery_ui = true;
+require_once('../_resources/header.php');
+
+echo "<h1>$section_title</h1>";
+
 ?>
 
 <script>
@@ -36,11 +40,11 @@
 		
 		
     ];
-    $( "#form1-autocomplete" ).autocomplete({
+    $( "#form_autocomplete" ).autocomplete({
       source: autocomplete_data,
 	  select: function(e,u){
-		  $("#form1-autocomplete-id").val(u.item.id);
-		  $("#form1-autocomplete").val(u.item.value);
+		  $("#form_autocomplete_id").val(u.item.id);
+		  $("#form_autocomplete").val(u.item.value);
 		  
 		  // automatically submit the form when item clicked
 		  //$("#form1").submit();
@@ -48,34 +52,34 @@
     });
   });
 </script>
-<h1>Forms</h1>
-<div id="form1-div" class='well'>
+
+<div id="form_div" class='well'>
 	
 	<form id="form1" role="form">
 		
 		<!-- auto complete text -->
-		<input id="form1-autocomplete-id" name="form1-autocomplete-id" type="hidden" value="<?php echo $_GET['form1-autocomplete-id']; ?>"></input>
+		<input id="form_autocomplete_id" name="form_autocomplete_id" type="hidden" value="<?php echo $_GET['form_autocomplete_id']; ?>"></input>
 		<div class="form-group">
-			<label for="form1-autocomplete">Autocomplete:</label>
-			<input id="form1-autocomplete" name="form1-autocomplete" type="text" class="form-control" value="<?php echo $_GET['form1-autocomplete']; ?>"></input>
+			<label for="form_autocomplete">Auto Complete:</label>
+			<input id="form_autocomplete" name="form_autocomplete" type="text" class="form-control" value="<?php echo $_GET['form_autocomplete']; ?>"></input>
 		</div>
 		
 		
 		<!-- date picker -->
 		<div class="form-group">
-			<label for="form1-date">Datepicker:</label>
-			<input id="form1-date" name="form1-date" type="date" value="<?php echo $_GET["form1-date"]; ?>" class="form-control"/>
+			<label for="form_date">Date Picker:</label>
+			<input id="form_date" name="form_date" type="date" value="<?php echo $_GET["form_date"]; ?>" class="form-control"/>
 		</div>
 		
 		
 		<!-- dropdown select list -->
 		<div class="form-group">
-			<label for="form1-select">Selectlist:</label>
-			<select id="form1-select" name="form1-select" class="form-control">
+			<label for="form_select">Select List:</label>
+			<select id="form_select" name="form_select" class="form-control">
 				<?php
 					// repopulate active option with last submitted, or default blank
-					if(!empty($_GET["form1-select"]))
-						echo "<option value='" . $_GET["form1-select"] . "' selected>" . $_GET["form1-select"] . "</option><option></option>";
+					if(!empty($_GET["form_select"]))
+						echo "<option value='" . $_GET["form_select"] . "' selected>" . $_GET["form_select"] . "</option><option></option>";
 					else
 						echo "<option selected></option>";
 				?>
@@ -100,7 +104,21 @@
 				<option value="FifthValue">Fifth Option</option>
 			</select>
 		</div>
-		
+
+		<div class='form-group'>
+			<label for='form_textarea'>Text Area (max 140 characters):</label>
+			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='form_textarea' name='form_textarea'></textarea>
+			<!-- auto-expand textarea to fit content -->
+			<script>
+				$('textarea').keyup(function(e) {
+					while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth'))) {
+						$(this).height($(this).height()+1);
+					};
+				});
+			</script>
+		</div>
+
+</div>
 		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
