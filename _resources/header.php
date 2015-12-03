@@ -5,9 +5,10 @@ if (isset($require_ssl) && $require_ssl) {
 }
 
 session_start();
-if (isset($_GET["logout"]))
+if (isset($_GET["logout"])){
   session_destroy();
-session_start();
+  session_start();
+}
 
 // FIX: bug when part of relative path duplicated in alias
 $debug = false;
