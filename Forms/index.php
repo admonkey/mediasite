@@ -4,7 +4,7 @@ include_once('../_resources/credentials.php');
 //$page_title = "Home Page";
 $include_jquery_ui = true;
 //$require_ssl = true;
-require_once('../_resources/header.php');
+require_once("../_resources/header.php");
 
 echo "<h1>$section_title</h1>";
 
@@ -54,25 +54,31 @@ echo "<h1>$section_title</h1>";
   });
 </script>
 
-<div id="form_div" class='well'>
+<div id='form_div' class='well'>
 	
-	<form id="form1" role="form">
-		
+	<form id='form1' role='form'>
+
+
 		<!-- date picker -->
-		<div class="form-group">
-			<label for="form_date">Date Picker:</label>
-			<input id="form_date" name="form_date" type="date" value="<?php echo $_GET["form_date"]; ?>" class="form-control"/>
+		<div class='form-group'>
+			<label for='form_date'>Date Picker:</label>
+			<input id='form_date' name='form_date' type='date' class='form-control'
+				<?php
+					if(isset($_GET["form_date"]))
+						echo "value='$_GET[form_date]'";
+				?>
+			></input>
 		</div>
 
 
 		<!-- dropdown select list -->
-		<div class="form-group">
-			<label for="form_select">Select List:</label>
-			<select id="form_select" name="form_select" class="form-control">
+		<div class='form-group'>
+			<label for='form_select'>Select List:</label>
+			<select id='form_select' name='form_select' class='form-control'>
 				<?php
 					// repopulate active option with last submitted, or default blank
 					if(!empty($_GET["form_select"]))
-						echo "<option value='" . $_GET["form_select"] . "' selected>" . $_GET["form_select"] . "</option><option></option>";
+						echo "<option value='$_GET[form_select]' selected>$_GET[form_select]</option><option></option>";
 					else
 						echo "<option selected></option>";
 				?>
@@ -90,33 +96,42 @@ echo "<h1>$section_title</h1>";
 				?>
 				
 				<!-- hard coded select list -->
-				<option value="FirstValue">First Option</option>
-				<option value="SecondValue">Second Option</option>
-				<option value="ThirdValue">Third Option</option>
-				<option value="FourthValue">Fourth Option</option>
-				<option value="FifthValue">Fifth Option</option>
+				<option value='FirstValue'>First Option</option>
+				<option value='SecondValue'>Second Option</option>
+				<option value='ThirdValue'>Third Option</option>
+				<option value='FourthValue'>Fourth Option</option>
+				<option value='FifthValue'>Fifth Option</option>
 			</select>
 		</div>
 
 
 		<!-- auto-complete text box -->
-		<input id="form_autocomplete_id" name="form_autocomplete_id" type="hidden" value="<?php echo $_GET['form_autocomplete_id']; ?>"></input>
-		<div class="form-group">
-			<label for="form_autocomplete">Auto-Complete Text Box:</label>
-			<input id="form_autocomplete" name="form_autocomplete" type="text" class="form-control" value="<?php echo $_GET['form_autocomplete']; ?>"></input>
+		<div class='form-group'>
+			<label for='form_autocomplete'>Auto-Complete Text Box:</label>
+			<input id='form_autocomplete_id' name='form_autocomplete_id' type='hidden'
+				<?php
+					if(isset($_GET["form_autocomplete_id"]))
+						echo "value='$_GET[form_autocomplete_id]'";
+				?>
+			></input>
+			<input id='form_autocomplete' name='form_autocomplete' type='text' class='form-control' 
+				<?php
+					if(isset($_GET["form_autocomplete"]))
+						echo "value='$_GET[form_autocomplete]'";
+				?>
+			></input>
 		</div>
-		
-		
+
+
 		<!-- auto-expanding textarea -->
 		<div class='form-group'>
 			<label for='form_textarea'>Auto-Expanding Text Area (max 140 characters):</label>
 			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='form_textarea' name='form_textarea'></textarea>
 		</div>
 
-</div>
-		
-		<button type="submit" class="btn btn-primary">Submit</button>
+
+		<button type='submit' class='btn btn-primary'>Submit</button>
 	</form>
 </div>
 
-<?php require_once('../_resources/footer.php');?>
+<?php require_once("../_resources/footer.php");?>
