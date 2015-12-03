@@ -12,10 +12,7 @@ if (isset($_GET["default"])){
 }
 if (!isset($_SESSION["username"]))
 	echo "<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>";
-
-?>
-
-
+else echo "
 <div id='message_div' class='well'>
 	
 	<form id='message_form' role='form' method='post'>
@@ -30,5 +27,7 @@ if (!isset($_SESSION["username"]))
 	</form>
 
 </div>
+";
+?>
 
 <?php require_once('../_resources/footer.php');?>
