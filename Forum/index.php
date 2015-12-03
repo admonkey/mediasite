@@ -41,14 +41,14 @@ if( isset($mysql_connection) && $mysql_connection ){
 		echo "
 		<div class='well'><div class='row'>
 
-			<div class='col-md-6'>
+			<div class='col-md-9'>
 				<p>$row[message_text]</p>
-			</div><!-- /.col -->
+			</div><!-- /.col-md-9 -->
 			
-			<div class='col-md-6'><div class='message_metadata'>
-				<p><label class='label label-info'>$row[message_creation_time]</label></p>
+			<div class='col-md-3'><div class='message_metadata'>
 				<p><label class='label label-primary'>message_author_user_id $row[message_author_user_id]</label></p>
-			</div><!-- /.message_metadata --></div><!-- /.col -->
+				<p><label class='label label-info'>$row[message_creation_time]</label></p>
+			</div><!-- /.message_metadata --></div><!-- /.col-md-3 -->
 			
 		</div><!-- /.row --></div><!-- /.well -->\n
 		";
