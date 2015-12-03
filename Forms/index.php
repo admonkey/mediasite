@@ -3,6 +3,7 @@
 include_once('../_resources/credentials.php');
 //$page_title = "Home Page";
 $include_jquery_ui = true;
+//$require_ssl = true;
 require_once('../_resources/header.php');
 
 echo "<h1>$section_title</h1>";

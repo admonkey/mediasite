@@ -1,6 +1,6 @@
 <?php
 
-if ($require_ssl) {
+if (isset($require_ssl) && $require_ssl) {
 	if(!isset($_SERVER['HTTPS'])) header('location: https://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING']); 
 }
 
