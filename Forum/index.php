@@ -21,7 +21,15 @@ else echo "
 
 		<div class='form-group'>
 			<label for='message_textarea'>Message:</label>
-			<textarea class='form-control' rows='5' id='message_textarea' name='message_textarea'></textarea>
+			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_textarea' name='message_textarea'></textarea>
+			<!-- auto-expand textarea to fit content -->
+			<script>
+				$('textarea').keyup(function(e) {
+					while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth'))) {
+						$(this).height($(this).height()+1);
+					};
+				});
+			</script>
 		</div>
 
 		<button type='submit' class='btn btn-primary'>Submit</button>
