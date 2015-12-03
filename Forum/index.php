@@ -15,7 +15,9 @@ if (!isset($_SESSION["username"]))
 else echo "
 <div id='message_div' class='well'>
 	
-	<form id='message_form' role='form' method='post'>
+	<form id='message_form' method='post' role='form'>
+
+		<input name='user_id' type='hidden' value='$_SESSION[user_id]'></input>
 
 		<div class='form-group'>
 			<label for='message_textarea'>Message:</label>
