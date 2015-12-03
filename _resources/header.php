@@ -128,6 +128,23 @@ if ($include_mysql) {
     }
   ?>
 
+  <?php
+    if ( $include_fancybox ) {
+      echo "
+	<!-- Add fancyBox -->
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/fancybox/fancybox.css' type='text/css' media='screen' />
+	<script type='text/javascript' src='$path_web_relative_root/_resources/fancybox/fancybox.pack.js'></script>
+	<!-- Optionally add helpers - button, thumbnail and/or media -->
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/fancybox/fancybox-buttons.css' type='text/css' media='screen' />
+	<script type='text/javascript' src='$path_web_relative_root/_resources/fancybox/fancybox-buttons.js'></script>
+	<script type='text/javascript' src='$path_web_relative_root/_resources/fancybox/fancybox-media.js'></script>
+
+	<link rel='stylesheet' href='$path_web_relative_root/_resources/fancybox/fancybox-thumbs.css' type='text/css' media='screen' />
+	<script type='text/javascript' src='$path_web_relative_root/_resources/fancybox/fancybox-thumbs.js'></script>
+      ";
+    }
+  ?>
+
 </head>
 <body>
 
