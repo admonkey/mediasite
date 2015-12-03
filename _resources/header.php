@@ -123,6 +123,11 @@ if ( isset($include_mysql) && $include_mysql ) {
 	<!-- TABLESORTER -->
 	<script src='$path_web_relative_root/_resources/tablesorter/tablesorter.2.0.5b.min.js'></script>
 	<link rel='stylesheet' href='$path_web_relative_root/_resources/tablesorter/tablesorter.css'>
+	<script>
+	  $(function() {
+		  $('table').addClass('table table-hover table-striped table-bordered table-condensed tablesorter').tablesorter();
+	  });
+	</script>
       ";
     }
   ?>

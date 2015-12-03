@@ -1,58 +1,51 @@
 <?php
 
-include_once('../_resources/credentials.php');
+include_once("../_resources/credentials.php");
 //$page_title = "Home Page";
 $include_tablesorter = true;
 $include_mysql = true;
-require_once('../_resources/header.php');
+require_once("../_resources/header.php");
+
+echo "<h1>Sortable $section_title</h1>";
 
 ?>
 
-<div class="table-responsive">
-
-  <h1>Sortable Table</h1>
+<div class='table-responsive'>
 
   <?php // choose which table to load
   
-    switch ($_GET['table']) {
+	$table_type = ( !empty($_GET["table"]) ? $_GET["table"] : "static" );
+   switch ($table_type) {
     
-      case "static":
-	include_once('table.static.html');
-	break;
+   case "static":
+		include_once("table.static.inc.html");
+		break;
 	
-      case "mysql":
-	include_once('table.mysql.php');
-	break;
+	case "mysql":
+		include_once("table.mysql.inc.php");
+		break;
 	
-      default:
-	include_once('table.static.html');
+	default:
+		include_once("table.static.inc.html");
 	
-    }
+	}
 	
   ?>
 
 </div>
 
+<!-- hyperlink whole row -->
 <script>
-
-  // add tablesorter
-  $(document).ready(function() {
-	  $("table").addClass("table table-hover table-striped table-bordered table-condensed tablesorter").tablesorter();
-  }); 
-
-  // hyperlink whole row
-  $('tr').click( function() {
-      window.location = "?query" + $(this).find('a').attr('href');
+  $("tr").click( function() {
+      window.location = "?query" + $(this).find("a").attr("href");
   }).hover( function() {
-      $(this).toggleClass('hover');
+      $(this).toggleClass("hover");
   });
-  
 </script>
-
 <style>
   tr.hover {
     cursor: pointer;
   }
 </style>
 
-<?php require_once('../_resources/footer.php');?>
+<?php require_once("../_resources/footer.php");?>
