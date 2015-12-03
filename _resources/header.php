@@ -43,7 +43,7 @@ include_once((__DIR__) . '/credentials.php');
 
 
 // MySQL
-if ($include_mysql) {
+if ( isset($include_mysql) && $include_mysql ) {
   // connection
   $mysql_connected = mysql_connect($database_server, $database_username, $database_password);
 
@@ -96,7 +96,7 @@ if ($include_mysql) {
   ";?>
 
   <?php
-    if ( $include_jquery_ui ) {
+    if ( isset($include_jquery_ui) && $include_jquery_ui ) {
       echo "
 	<!-- JQUERY-UI -->
 	<script src='$path_web_relative_root/_resources/jquery-ui/jquery-ui.1.11.4.min.js'></script>
@@ -118,7 +118,7 @@ if ($include_mysql) {
   ?>
 
   <?php
-    if ( $include_tablesorter ) {
+    if ( isset($include_tablesorter) && $include_tablesorter ) {
       echo "
 	<!-- TABLESORTER -->
 	<script src='$path_web_relative_root/_resources/tablesorter/tablesorter.2.0.5b.min.js'></script>
@@ -128,7 +128,7 @@ if ($include_mysql) {
   ?>
 
   <?php
-    if ( $include_chartist ) {
+    if ( isset($include_chartist) && $include_chartist ) {
       echo "
 	<!-- CHARTIST -->
 	<script src='$path_web_relative_root/_resources/chartist/chartist.0.9.4.min.js'></script>
@@ -139,7 +139,7 @@ if ($include_mysql) {
   ?>
 
   <?php
-    if ( $include_fancybox ) {
+    if ( isset($include_fancybox) && $include_fancybox ) {
       echo "
 	<!-- Add fancyBox -->
 	<link rel='stylesheet' href='$path_web_relative_root/_resources/fancybox/fancybox.css' type='text/css' media='screen' />
