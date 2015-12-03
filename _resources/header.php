@@ -103,6 +103,15 @@ if ($include_mysql) {
 	<!-- official content delivery network -->
 	<!-- <script src='//code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script> -->
 	<!-- <link rel='stylesheet' href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css'> -->
+
+	<!-- auto-expand textarea to fit content -->
+	<script>
+		$(function(){ $('textarea').keyup(function(e) {
+			while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth'))) {
+				$(this).height($(this).height()+1);
+			};
+		})});
+	</script>
       ";
     }
   ?>

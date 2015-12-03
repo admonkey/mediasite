@@ -57,21 +57,13 @@ echo "<h1>$section_title</h1>";
 	
 	<form id="form1" role="form">
 		
-		<!-- auto complete text -->
-		<input id="form_autocomplete_id" name="form_autocomplete_id" type="hidden" value="<?php echo $_GET['form_autocomplete_id']; ?>"></input>
-		<div class="form-group">
-			<label for="form_autocomplete">Auto Complete:</label>
-			<input id="form_autocomplete" name="form_autocomplete" type="text" class="form-control" value="<?php echo $_GET['form_autocomplete']; ?>"></input>
-		</div>
-		
-		
 		<!-- date picker -->
 		<div class="form-group">
 			<label for="form_date">Date Picker:</label>
 			<input id="form_date" name="form_date" type="date" value="<?php echo $_GET["form_date"]; ?>" class="form-control"/>
 		</div>
-		
-		
+
+
 		<!-- dropdown select list -->
 		<div class="form-group">
 			<label for="form_select">Select List:</label>
@@ -105,17 +97,19 @@ echo "<h1>$section_title</h1>";
 			</select>
 		</div>
 
+
+		<!-- auto-complete text box -->
+		<input id="form_autocomplete_id" name="form_autocomplete_id" type="hidden" value="<?php echo $_GET['form_autocomplete_id']; ?>"></input>
+		<div class="form-group">
+			<label for="form_autocomplete">Auto-Complete Text Box:</label>
+			<input id="form_autocomplete" name="form_autocomplete" type="text" class="form-control" value="<?php echo $_GET['form_autocomplete']; ?>"></input>
+		</div>
+		
+		
+		<!-- auto-expanding textarea -->
 		<div class='form-group'>
-			<label for='form_textarea'>Text Area (max 140 characters):</label>
+			<label for='form_textarea'>Auto-Expanding Text Area (max 140 characters):</label>
 			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='form_textarea' name='form_textarea'></textarea>
-			<!-- auto-expand textarea to fit content -->
-			<script>
-				$('textarea').keyup(function(e) {
-					while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth'))) {
-						$(this).height($(this).height()+1);
-					};
-				});
-			</script>
 		</div>
 
 </div>
