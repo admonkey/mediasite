@@ -34,7 +34,7 @@ require_once('../_resources/header.php');
 
 if( !empty($mysql_connection) ){
 
-	$message_text = mysql_real_escape_string($message_text);
+	$message_text = mysql_real_escape_string(htmlentities($message_text));
     
     $sql="
 		CALL Forum_proc_Insert_Message(
