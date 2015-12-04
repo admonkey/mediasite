@@ -3,7 +3,7 @@ html {
 }
 body {
 	background-color: black;
-	background: url(../img/bg.jpg) no-repeat center center fixed;
+	background: url(../images/bg.jpg) no-repeat center center fixed;
 	background-size: cover;
 	/* BOOTSTRAP FIX: PADDING FOR STATIC-FIXED TOP NAV */
 	padding-top: 65px;
