@@ -20,58 +20,19 @@ if (isset($_GET["default"])){
 
 
 <!-- thread of messages -->
-<div id='thread_div' class='well'>
+<div id='thread_div' class='well'></div><!-- /#thread_div.well -->
+<script>
+$(function(){
+  $.ajax({url: "Forum.messages.ajax.php?thread_id=1", success: function(result){
+    $("#thread_div").html(result);
+  },cache: false});
+});
+</script>
+
+
+
+<!-- post message text area -->
 <?php
-
-if( isset($mysql_connection) && $mysql_connection ){
-    
-    $sql="
-		SELECT	message_id,
-					message_creation_time,
-					message_text,
-					message_author_user_id
-		FROM		Forum_Messages
-    ";
-    $result = mysql_query($sql) or die(mysql_error());
-
-    echo "<h3>" . mysql_num_rows($result) . " Messages</h3>";
-
-    // data
-    while ($row = mysql_fetch_assoc($result)){
-		echo "
-		<div class='well'><div class='row'>
-
-			<div class='col-md-9'>
-				<p>$row[message_text]</p>
-			</div><!-- /.col-md-9 -->
-			
-			<div class='col-md-3'><div class='message_metadata'>
-				<p><label class='label label-primary'>message_author_user_id $row[message_author_user_id]</label></p>
-				<p><label class='label label-info'>$row[message_creation_time]</label></p>
-			</div><!-- /.message_metadata --></div><!-- /.col-md-3 -->
-			
-		</div><!-- /.row --></div><!-- /.well -->\n
-		";
-	 }
-
-} else {
-
-    // help connecting to database
-    echo "ERROR: not connected to MySQL";
-    include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
-
-}
-
-?>
-<style>
-.message_metadata p {
-	float: right;
-}
-</style>
-</div><!-- /#thread_div.well -->
-
-<?php
-// post message text area
 if (!isset($_SESSION["username"]))
 	echo "<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>";
 else echo "
