@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS Forum_proc_Insert_Message;
 DROP TABLE IF EXISTS Forum_Messages;
 DROP TABLE IF EXISTS Forum_Threads;
 
@@ -37,3 +38,22 @@ INSERT INTO Forum_Messages (message_text, message_thread_id, message_author_user
 ('This is a totally new thread!', 2, 2),
 ('Wow, this is so cool!', 2, 4),
 ('I love reading messages!', 2, 6);
+
+
+-- insert message, and return it
+DELIMITER $$
+CREATE PROCEDURE Forum_proc_Insert_Message(
+   IN p_message_text VARCHAR(140),
+   IN p_message_thread_id INT,
+	IN p_message_author_user_id INT
+)
+BEGIN
+	INSERT INTO Forum_Messages
+		(message_text,		message_thread_id,	message_author_user_id)
+	VALUES
+		(p_message_text,	p_message_thread_id,	p_message_author_user_id);
+
+	SELECT * FROM Forum_Messages
+	WHERE message_id = LAST_INSERT_ID();
+END $$
+DELIMITER ;
