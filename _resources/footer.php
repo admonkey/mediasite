@@ -1,3 +1,6 @@
+<?php // if filename contains ajax, then don't print html header
+if (!(strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false)) { ?>
+
 <!-- BEGIN FOOTER INCLUDE -->
 
 		</div><!-- /#page-content-container -->
@@ -12,7 +15,7 @@
 </html>
 
 <?php
-
+}
 /*
   suppressed error message if no connection open
   probably not the best way to handle the situation
