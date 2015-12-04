@@ -10,7 +10,7 @@ echo "<h1>$section_title</h1>";
 
 // default login
 if (isset($_GET["default"])){
-	$_SESSION["user_id"] = 0;
+	$_SESSION["user_id"] = -1;
 	$_SESSION["username"] = "Default";
 }
 
@@ -75,6 +75,7 @@ if( !empty($mysql_connection) ){
 	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
 	    $("#thread_div").hide().html(result).prepend("<h2>" + thread_name + "</h2>").show("highlight", {color: '#99FFFF'});
 	    row.addClass("bg-primary").siblings().removeClass("bg-primary");
+	    $("#message_thread_id").val(thread_id);
 	  },cache: false});
       }).hover( function() {
 	  $(this).toggleClass("hover");
@@ -88,7 +89,7 @@ if( !empty($mysql_connection) ){
     <?php
 
 } else {
-    
+
     // help connecting to database
     echo "ERROR: not connected to MySQL";
     include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
@@ -112,13 +113,15 @@ if (!isset($_SESSION["username"]))
 else echo "
 <div id='message_div' class='well'>
 	
-	<form id='message_form' method='post' role='form'>
+	<form id='message_form' action='Forum.messages.insert.ajax.php' method='post' role='form'>
 
 		<input name='user_id' type='hidden' value='$_SESSION[user_id]'></input>
 
+		<input id='message_thread_id' name='message_thread_id' type='hidden'></input>
+
 		<div class='form-group'>
 			<label for='message_textarea'>Message (max 140 characters):</label>
-			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_textarea' name='message_textarea'></textarea>
+			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_text' name='message_text'></textarea>
 		</div>
 
 		<button type='submit' class='btn btn-primary'>Submit</button>
