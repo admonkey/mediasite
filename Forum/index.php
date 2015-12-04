@@ -58,8 +58,7 @@ if( !empty($mysql_connection) ){
 	  var thread_id = row.find("message_data").attr("thread_id");
 	  var thread_name = row.find("message_data").attr("thread_name");
 	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
-	    $("#thread_div").html(result);
-	    $("#thread_div").prepend("<h2>" + thread_name + "</h2>");
+	    $("#thread_div").hide().html(result).prepend("<h2>" + thread_name + "</h2>").show("highlight");
 	  },cache: false});
       }).hover( function() {
 	  $(this).toggleClass("hover");
