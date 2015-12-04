@@ -44,7 +44,7 @@ if( !empty($mysql_connection) ){
     ";
     // // data
     while ($row = mysql_fetch_assoc($result))
-	    echo "<tr><td><a href='?thread_id=$row[thread_id]'></a>".implode($row,'</td><td>')."</td></tr>\n";
+	    echo "<tr><td><message_data thread_id='$row[thread_id]' thread_name='$row[thread_name]'></message_data>".implode($row,'</td><td>')."</td></tr>\n";
     echo "
 		    </tbody>
 	    </table>
@@ -55,8 +55,11 @@ if( !empty($mysql_connection) ){
     <script>
       $("tr").click( function() {
 	  var row = $(this);
-	  $.ajax({url: "Forum.messages.ajax.php" + row.find("a").attr("href"), success: function(result){
+	  var thread_id = row.find("message_data").attr("thread_id");
+	  var thread_name = row.find("message_data").attr("thread_name");
+	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
 	    $("#thread_div").html(result);
+	    $("#thread_div").prepend("<h2>" + thread_name + "</h2>");
 	  },cache: false});
       }).hover( function() {
 	  $(this).toggleClass("hover");
