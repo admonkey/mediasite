@@ -2,6 +2,7 @@
 
 include_once('../_resources/credentials.php');
 $include_jquery_ui = true;
+$include_tablesorter = true;
 $include_mysql = true;
 require_once('../_resources/header.php');
 
@@ -16,18 +17,73 @@ if (isset($_GET["default"])){
 ?>
 
 <!-- list of threads -->
+<?php
 
+if( !empty($mysql_connection) ){
+    
+    $sql="
+	    SELECT *
+	    FROM Forum_Threads;
+    ";
+    $result = mysql_query($sql) or die(mysql_error());
+    $numfields = mysql_num_fields($result);
+
+    // table
+    echo "
+	    <table border=1>
+		    <thead>
+			    <tr>
+    ";
+    // // header
+    for ($i=0; $i < $numfields; $i++)
+	    echo '<th>'.mysql_field_name($result, $i).'</th>';
+    echo "
+			    </tr>
+		    </thead>
+		    <tbody>
+    ";
+    // // data
+    while ($row = mysql_fetch_assoc($result))
+	    echo "<tr><td><a href='?thread_id=$row[thread_id]'></a>".implode($row,'</td><td>')."</td></tr>\n";
+    echo "
+		    </tbody>
+	    </table>
+    ";
+
+    ?>
+    <!-- hyperlink whole row -->
+    <script>
+      $("tr").click( function() {
+	  var row = $(this);
+	  $.ajax({url: "Forum.messages.ajax.php" + row.find("a").attr("href"), success: function(result){
+	    $("#thread_div").html(result);
+	  },cache: false});
+      }).hover( function() {
+	  $(this).toggleClass("hover");
+      });
+    </script>
+    <style>
+      tr.hover {
+	cursor: pointer;
+      }
+    </style>
+    <?php
+
+} else {
+    
+    // help connecting to database
+    echo "ERROR: not connected to MySQL";
+    include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
+
+}
+
+?>
 
 
 <!-- thread of messages -->
-<div id='thread_div' class='well'></div><!-- /#thread_div.well -->
-<script>
-$(function(){
-  $.ajax({url: "Forum.messages.ajax.php?thread_id=1", success: function(result){
-    $("#thread_div").html(result);
-  },cache: false});
-});
-</script>
+<div id='thread_div' class='well'>
+  <p>Click a thread to show messages.</p>
+</div><!-- /#thread_div.well -->
 
 
 
