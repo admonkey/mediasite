@@ -43,8 +43,6 @@ if( !empty($mysql_connection) ){
     ";
     $result = mysql_query($sql) or die(mysql_error());
 
-    echo "<h3>" . mysql_num_rows($result) . " Messages</h3>";
-
     // data
     while ($row = mysql_fetch_assoc($result)){
 		echo "

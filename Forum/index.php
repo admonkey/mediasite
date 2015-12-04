@@ -108,19 +108,19 @@ if( !empty($mysql_connection) ){
 
 <!-- post message text area -->
 <?php
-if (!isset($_SESSION["username"]))
-	echo "<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>";
-else echo "
-<div id='message_div' class='well'>
-	
-	<form id='message_form' action='Forum.messages.insert.ajax.php' method='post' role='form'>
+if (!isset($_SESSION["username"])) { ?>
 
-		<input name='user_id' type='hidden' value='$_SESSION[user_id]'></input>
+	<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>
+
+<?php } else { ?>
+<div id='message_div' class='well'>
+
+	<form id='message_form' method='post' role='form' onsubmit='return message_submit()'>
 
 		<input id='message_thread_id' name='message_thread_id' type='hidden'></input>
 
 		<div class='form-group'>
-			<label for='message_textarea'>Message (max 140 characters):</label>
+			<label for='message_text'>Message (max 140 characters):</label>
 			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_text' name='message_text'></textarea>
 		</div>
 
@@ -128,8 +128,18 @@ else echo "
 
 	</form>
 
+	<script>
+		function message_submit() {
+			var serialized_data = $("#message_form").serialize();
+			$.post('Forum.messages.insert.ajax.php', serialized_data, function(result) {
+				$("<div style='display:none'></div>").html(result).appendTo("#thread_div").show("slide");
+				$("#message_text").val("");
+			});
+			return false;
+		}
+	</script>
+
 </div>
-";
-?>
+<?php } ?>
 
 <?php require_once('../_resources/footer.php');?>
