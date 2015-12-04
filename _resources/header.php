@@ -4,9 +4,14 @@ if (isset($require_ssl) && $require_ssl) {
 	if(!isset($_SERVER['HTTPS'])) header('location: https://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING']); 
 }
 
+/*
+removed for backwards compatibility with php <=5.4.0
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+*/
+if (!isset($_SESSION)) { session_start(); }
+
 if (isset($_GET["logout"])){
   session_destroy();
   session_start();
