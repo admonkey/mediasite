@@ -58,7 +58,7 @@ if( !empty($mysql_connection) ){
 	    echo "<tr>
 			<td><message_data thread_id='$row[thread_id]' thread_name='$row[thread_name]'></message_data>$row[thread_name]</td>
 			<td>$row[message_creation_time]</td>
-			<td>$row[message_author_user_id]</td>
+			<td>message_author_user_id $row[message_author_user_id]</td>
 	    </tr>\n";
     echo "
 		    </tbody>
@@ -82,9 +82,6 @@ if( !empty($mysql_connection) ){
     </script>
     <style>
       tr.hover {
-	cursor: pointer;
-      }
-      tr.active {
 	cursor: pointer;
       }
     </style>
