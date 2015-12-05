@@ -7,6 +7,12 @@ if ( ! (isset($_GET["thread_id"]) && is_numeric($_GET["thread_id"])) ) {
   $thread_id = $_GET["thread_id"];
 }
 
+session_start();
+if (empty($_SESSION["user_id"])){
+  echo "<p class='bg-danger text-danger'>ERROR: Not Logged In</p>";
+  die();
+}
+
 include_once('../_resources/credentials.php');
 $include_mysql = true;
 require_once('../_resources/header.php');
