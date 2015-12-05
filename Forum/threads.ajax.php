@@ -43,7 +43,7 @@ if( !empty($mysql_connection) ){
 		<thead>
 			<tr>
 				    <th>Thread</th>
-				    <th>Message Count</th>
+				    <th>Posts</th>
 				    <th>Last Updated</th>
 				    <th>Updated By</th>
 			</tr>
