@@ -15,20 +15,24 @@ require_once('../_resources/header.php');
 if( !empty($mysql_connection) ){
     
     $sql="
-		SELECT t.thread_id, t.thread_name,
-			mm.max_message_id, m.message_creation_time,
-			m.message_author_user_id
-		FROM Forum_Threads t
-		JOIN Forum_Messages m
-			ON t.thread_id = m.message_thread_id
-		JOIN (
-			SELECT message_thread_id, MAX(message_id) AS max_message_id
-			FROM Forum_Messages
-			GROUP BY message_thread_id
-		) mm
-			ON mm.max_message_id = m.message_id
-		GROUP BY t.thread_id
-		ORDER BY mm.max_message_id DESC;
+	SELECT t.thread_id, t.thread_name,
+		mm.count_message_id,
+		mm.max_message_id,
+		m.message_creation_time,
+		m.message_author_user_id
+	FROM Forum_Threads t
+	JOIN Forum_Messages m
+		ON t.thread_id = m.message_thread_id
+	JOIN (
+	    SELECT message_thread_id,
+		MAX(message_id) AS max_message_id,
+		COUNT(message_id) AS count_message_id
+	    FROM Forum_Messages
+	    GROUP BY message_thread_id
+	) mm
+		ON mm.max_message_id = m.message_id
+	GROUP BY t.thread_id
+	ORDER BY mm.max_message_id DESC;
     ";
     $result = mysql_query($sql) or die(mysql_error());
     $numfields = mysql_num_fields($result);
@@ -39,6 +43,7 @@ if( !empty($mysql_connection) ){
 		<thead>
 			<tr>
 				    <th>Thread</th>
+				    <th>Message Count</th>
 				    <th>Last Updated</th>
 				    <th>Updated By</th>
 			</tr>
@@ -51,6 +56,7 @@ if( !empty($mysql_connection) ){
 	echo "
 			<tr>
 				<td><message_data thread_id='$row[thread_id]' thread_name='$row[thread_name]'></message_data>$row[thread_name]</td>
+				<th>$row[count_message_id]</th>
 				<td>$row[message_creation_time]</td>
 				<td>message_author_user_id $row[message_author_user_id]</td>
 			</tr>\n";
