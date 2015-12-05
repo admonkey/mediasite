@@ -74,7 +74,8 @@ if( !empty($mysql_connection) ){
 	  var thread_name = row.find("message_data").attr("thread_name");
 	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
 	    $("#thread_div").hide("blind",function(){
-	      $("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind")
+	      $("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind");
+	      $("#message_div").show();
 	    });
 	    row.addClass("bg-primary").siblings().removeClass("bg-primary");
 	    $("#message_thread_id").val(thread_id);
@@ -114,34 +115,6 @@ if (!isset($_SESSION["username"])) { ?>
 
 	<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>
 
-<?php } else { ?>
-<div id='message_div' class='well'>
-
-	<form id='message_form' method='post' role='form' onsubmit='return message_submit()'>
-
-		<input id='message_thread_id' name='message_thread_id' type='hidden'></input>
-
-		<div class='form-group'>
-			<label for='message_text'>Message (max 140 characters):</label>
-			<textarea class='form-control' style='width:100%' maxlength='140' rows='3' id='message_text' name='message_text'></textarea>
-		</div>
-
-		<button type='submit' class='btn btn-primary'>Submit</button>
-
-	</form>
-
-	<script>
-		function message_submit() {
-			var serialized_data = $("#message_form").serialize();
-			$.post('Forum.messages.insert.ajax.php', serialized_data, function(result) {
-				$("<div style='display:none'></div>").html(result).appendTo("#thread_div").show("slide");
-				$("#message_text").val("");
-			});
-			return false;
-		}
-	</script>
-
-</div>
-<?php } ?>
+<?php } else { include("Forum.message.input.inc.html"); } ?>
 
 <?php require_once('../_resources/footer.php');?>
