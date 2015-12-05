@@ -73,7 +73,9 @@ if( !empty($mysql_connection) ){
 	  var thread_id = row.find("message_data").attr("thread_id");
 	  var thread_name = row.find("message_data").attr("thread_name");
 	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
-	    $("#thread_div").hide().html(result).prepend("<h2>" + thread_name + "</h2>").show("highlight", {color: '#99FFFF'});
+	    $("#thread_div").hide("blind",function(){
+	      $("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind")
+	    });
 	    row.addClass("bg-primary").siblings().removeClass("bg-primary");
 	    $("#message_thread_id").val(thread_id);
 	  },cache: false});
