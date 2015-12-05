@@ -16,7 +16,7 @@
 	<script>
 		function message_submit() {
 			var serialized_data = $("#message_form").serialize();
-			$.post('Forum.message.insert.ajax.php', serialized_data, function(result) {
+			$.post('message.insert.ajax.php', serialized_data, function(result) {
 				$("<div style='display:none'></div>").html(result).appendTo("#thread_div").show("slide");
 				$("#message_text").val("");
 			});

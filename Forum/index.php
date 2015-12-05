@@ -72,7 +72,7 @@ if( !empty($mysql_connection) ){
 	  var row = $(this);
 	  var thread_id = row.find("message_data").attr("thread_id");
 	  var thread_name = row.find("message_data").attr("thread_name");
-	  $.ajax({url: "Forum.messages.ajax.php?thread_id=" + thread_id, success: function(result){
+	  $.ajax({url: "messages.ajax.php?thread_id=" + thread_id, success: function(result){
 	    $("#thread_div").hide("blind",function(){
 	      $("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind");
 	      $("#message_div").show();
@@ -115,6 +115,6 @@ if (!isset($_SESSION["username"])) { ?>
 
 	<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>
 
-<?php } else { include("Forum.message.input.inc.html"); } ?>
+<?php } else { include("message.input.inc.html"); } ?>
 
 <?php require_once('../_resources/footer.php');?>
