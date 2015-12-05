@@ -7,11 +7,17 @@ if (empty($_POST["message_text"])){
   $message_text = $_POST["message_text"];
 }
 
-if ( ! (isset($_POST["message_thread_id"]) && is_numeric($_POST["message_thread_id"])) ) {
+if ( ! (isset($_POST["message_thread_id"]) && is_numeric($_POST["message_thread_id"])) && empty($_POST["thread_name"]) ) {
   echo "<p class='bg-danger text-danger'>ERROR: Invalid Thread</p>";
   die();
 } else {
-  $message_thread_id = $_POST["message_thread_id"];
+  if (empty($_POST["thread_name"])){
+    $thread_name = "NULL";
+    $message_thread_id = $_POST["message_thread_id"];
+  } else {
+    $thread_name = $_POST["thread_name"];
+    $message_thread_id = "NULL";
+  }
 }
 
 session_start();
@@ -38,7 +44,7 @@ if( !empty($mysql_connection) ){
     
     $sql="
 		CALL Forum_proc_Insert_Message(
-			'$message_text', $message_thread_id, $message_author_user_id
+			'$message_text', $message_thread_id, $message_author_user_id, '$thread_name'
 		)
     ";
     $result = mysql_query($sql) or die(mysql_error());

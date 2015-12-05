@@ -45,9 +45,20 @@ DELIMITER $$
 CREATE PROCEDURE Forum_proc_Insert_Message(
    IN p_message_text VARCHAR(140),
    IN p_message_thread_id INT,
-	IN p_message_author_user_id INT
+   IN p_message_author_user_id INT,
+   IN p_thread_name VARCHAR(100)
 )
 BEGIN
+
+	IF p_message_thread_id IS NULL THEN
+
+	  INSERT INTO Forum_Threads (thread_name, thread_createdby_user_id)
+	  VALUES (p_thread_name, p_message_author_user_id);
+	  
+	  SET p_message_thread_id = LAST_INSERT_ID();
+	
+	END IF;
+	
 	INSERT INTO Forum_Messages
 		(message_text,		message_thread_id,	message_author_user_id)
 	VALUES
@@ -55,5 +66,6 @@ BEGIN
 
 	SELECT * FROM Forum_Messages
 	WHERE message_id = LAST_INSERT_ID();
+
 END $$
 DELIMITER ;

@@ -6,7 +6,13 @@ $include_tablesorter = true;
 $include_mysql = true;
 require_once('../_resources/header.php');
 
-echo "<h1>$section_title</h1>";
+echo "
+
+<h1>$section_title</h1>
+
+<p><a href='thread.create.php' class='btn btn-success'>Create New Thread</a></p>
+
+";
 
 // default login
 if (isset($_GET["default"])){
