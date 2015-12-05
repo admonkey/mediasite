@@ -25,74 +25,16 @@ if (!isset($_SESSION["username"])) { ?>
 
 <?php } else { ?>
 
-<div class='row'>
-	<div class='col-xs-6'><p id='show_list_of_threads'><a href='javascript:void(0)' onclick='$("#list_of_threads_div").toggle("blind")' class='btn btn-primary'>Show/Hide Threads</a></p></div>
+<div id='page_controls' class='row'>
+	<div class='col-xs-6'><p id='show_list_of_threads'><a href='javascript:void(0)' onclick='fetch_threads()' class='btn btn-primary'>Show/Hide Threads</a></p></div>
 	<div class='col-xs-6'><p><a href='javascript:void(0)' onclick='create_thread()' class='btn btn-success'>Create New Thread</a></p></div>
-</div><!-- /.row -->
+</div><!-- /#page_controls.row -->
 
-<?php
-// list of threads
-if( !empty($mysql_connection) ){
-    
-    $sql="
-		SELECT t.thread_id, t.thread_name,
-			mm.max_message_id, m.message_creation_time,
-			m.message_author_user_id
-		FROM Forum_Threads t
-		JOIN Forum_Messages m
-			ON t.thread_id = m.message_thread_id
-		JOIN (
-			SELECT message_thread_id, MAX(message_id) AS max_message_id
-			FROM Forum_Messages
-			GROUP BY message_thread_id
-		) mm
-			ON mm.max_message_id = m.message_id
-		GROUP BY t.thread_id
-		ORDER BY mm.max_message_id DESC;
-    ";
-    $result = mysql_query($sql) or die(mysql_error());
-    $numfields = mysql_num_fields($result);
 
-    // open table
-    echo "
-	<div id='list_of_threads_div' class='table-responsive'>
-	    <table border=1>
-		    <thead>
-			    <tr>
-					<th>Thread</th>
-					<th>Last Updated</th>
-					<th>Updated By</th>
-			    </tr>
-		    </thead>
-		    <tbody>
-    ";
+<div id='list_of_threads_div' class='table-responsive' style='display:none'>
+</div><!-- /#list_of_threads_div.table-responsive -->
 
-    // data
-    while ($row = mysql_fetch_assoc($result))
-	    echo "
-		<tr>
-			<td><message_data thread_id='$row[thread_id]' thread_name='$row[thread_name]'></message_data>$row[thread_name]</td>
-			<td>$row[message_creation_time]</td>
-			<td>message_author_user_id $row[message_author_user_id]</td>
-	    </tr>\n";
-    
-	// close table
-	echo "
-		    </tbody>
-	    </table>
-	</div><!-- /.table-responsive -->
-    ";
 
-} else {
-
-    // help connecting to database
-    echo "ERROR: not connected to MySQL";
-    include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
-
-}
-?>
-
-<!-- thread of messages -->
 <div id='thread_div' class='well'>
   <p>Click a thread to show messages.</p>
 </div><!-- /#thread_div.well -->
@@ -148,25 +90,39 @@ if( !empty($mysql_connection) ){
 			$("#thread_name").prop("disabled",true);
 			$("#thread_name").val("");
 		}
-
-		// hyperlink whole row
-		$("tr").click( function() {
-			disable_create_thread();
-			var row = $(this);
-			var thread_id = row.find("message_data").attr("thread_id");
-			var thread_name = row.find("message_data").attr("thread_name");
-			$.ajax({url: "messages.ajax.php?thread_id=" + thread_id, success: function(result){
-				$("#thread_div").hide("blind",function(){
-					$("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind");
-					$("#message_div").show();
+		
+		function fetch_threads(){
+			if ($("#list_of_threads_div").is(":hidden")) {
+				$.ajax({url: "threads.ajax.php", 
+					success: function(result){
+						$("#list_of_threads_div").html(result).show("blind");
+						apply_tablesorter();
+					}
 				});
-				row.addClass("bg-primary").siblings().removeClass("bg-primary");
-				$("#message_thread_id").val(thread_id);
-			},cache: false});
-		}).hover( function() {
-			$(this).toggleClass("hover");
-		});
+			} else {
+				$("#list_of_threads_div").hide("blind");
+			}
+		}
 
+		function hyperlink_row(){
+			$("tr").click( function() {
+				disable_create_thread();
+				var row = $(this);
+				var thread_id = row.find("message_data").attr("thread_id");
+				var thread_name = row.find("message_data").attr("thread_name");
+				$.ajax({url: "messages.ajax.php?thread_id=" + thread_id, success: function(result){
+					$("#thread_div").hide("blind",function(){
+						$("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind");
+						$("#message_div").show();
+					});
+					row.addClass("bg-primary").siblings().removeClass("bg-primary");
+					$("#message_thread_id").val(thread_id);
+				},cache: false});
+			}).hover( function() {
+				$(this).toggleClass("hover");
+			});
+		}
+		
 	</script>
 	
 	<style>
