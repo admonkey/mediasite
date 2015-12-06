@@ -28,6 +28,7 @@ if( !empty($mysql_connection) ){
 		MAX(message_id) AS max_message_id,
 		COUNT(message_id) AS count_message_id
 	    FROM Forum_Messages
+	    WHERE message_deleted = 0
 	    GROUP BY message_thread_id
 	) mm
 		ON mm.max_message_id = m.message_id
