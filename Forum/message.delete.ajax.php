@@ -1,11 +1,11 @@
 <div>
 <?php
 
-if (empty($_GET["message_id"])){
-  echo "<p class='bg-danger text-danger'>ERROR: No Message ID</p>";
-  die();
-} else {
+if ( !empty($_GET["message_id"]) && is_numeric($_GET["message_id"]) ){
   $message_id = $_GET["message_id"];
+} else {
+  echo "<p class='bg-danger text-danger'>ERROR: Invalid Message ID</p>";
+  die();
 }
 
 session_start();

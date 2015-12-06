@@ -131,6 +131,15 @@ if (!isset($_SESSION["username"])) { ?>
 			});
 		}
 		
+		function delete_message(message_id, element){
+			$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
+				var new_div = $("<div style='display:none'></div>");
+				element.parents(".message_well").hide("slide", function(){
+					new_div.html(result).appendTo("#thread_messages_div").show("slide");
+				});
+			},cache: false});
+		}
+		
 		$(fetch_threads());
 		
 	</script>
@@ -139,7 +148,7 @@ if (!isset($_SESSION["username"])) { ?>
 		tr.hover {
 			cursor: pointer;
 		}
-		.message_metadata p {
+		.message_metadata {
 			float: right;
 		}
 	</style>
