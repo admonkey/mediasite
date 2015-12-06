@@ -81,8 +81,7 @@ if (!isset($_SESSION["username"])) { ?>
 		
 		function create_thread() {
 			$("#list_of_threads_div").hide("blind");
-			$("#thread_div").hide("blind");
-			$("#thread_messages_div").html("");
+			$("#thread_div").hide("blind", function(){$("#thread_messages_div").html("")});
 			$("#message_div").show("blind");
 			$("#thread_name").prop("disabled",false);
 			$("#thread_name_div").show("blind");
@@ -109,11 +108,11 @@ if (!isset($_SESSION["username"])) { ?>
 		
 		function fetch_messages(thread_row,thread_id,thread_name,page_number){
 			$.ajax({url: "messages.ajax.php?thread_id=" + thread_id + "&page_number=" + page_number, success: function(result){
+				fetch_threads();
 				$("#thread_div").hide("blind",function(){
 					$("#thread_name_h2").text(thread_name);
 					$("#thread_messages_div").html(result);
-					$("#message_div").show();
-					$("#thread_div").show("blind");
+					$("#thread_div").show("blind", function(){$("#message_div").show("blind")});
 				});
 				thread_row.addClass("bg-primary").siblings().removeClass("bg-primary");
 				$("#message_thread_id").val(thread_id);
