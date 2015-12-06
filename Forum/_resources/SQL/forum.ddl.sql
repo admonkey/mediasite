@@ -109,6 +109,13 @@ BEGIN
 		message_deleted_time = CURRENT_TIMESTAMP,
 		message_deletedby = p_user_id
 	WHERE	message_id = p_message_id;
+	
+	IF deleted = 0 THEN
+	  -- show restored message
+	  SELECT * FROM Forum_Messages
+	  WHERE message_id = p_message_id;
+	  
+	END IF;
 
 END $$
 
