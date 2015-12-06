@@ -66,7 +66,10 @@ if (!isset($_SESSION["username"])) { ?>
 		function message_submit() {
 			var serialized_data = $("#message_form").serialize();
 			$.post('message.insert.ajax.php', serialized_data, function(result) {
-				$("#thread_div").prepend("<h2>" + $("#thread_name").val() + "</h2>").show("blind");
+				if ( $("#thread_name").val() !== "" ) {
+					$("#thread_name_h2").text($("#thread_name").val());
+				}
+				$("#thread_div").show("blind");
 				var new_div = $("<div style='display:none'></div>");
 				new_div.html(result).appendTo("#thread_messages_div").show("slide");
 				$("#message_text").val("");
@@ -79,7 +82,7 @@ if (!isset($_SESSION["username"])) { ?>
 		function create_thread() {
 			$("#list_of_threads_div").hide("blind");
 			$("#thread_div").hide("blind");
-			$("thread_messages_div").html("");
+			$("#thread_messages_div").html("");
 			$("#message_div").show("blind");
 			$("#thread_name").prop("disabled",false);
 			$("#thread_name_div").show("blind");
