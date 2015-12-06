@@ -65,7 +65,7 @@ if (!isset($_SESSION["username"])) { ?>
 
 		function message_submit() {
 			var serialized_data = $("#message_form").serialize();
-			$.post('message.insert.ajax.php', serialized_data, function(result) {
+			$.post('message.create.ajax.php', serialized_data, function(result) {
 				if ( $("#thread_name").val() !== "" ) {
 					$("#thread_name_h2").text($("#thread_name").val());
 				}

@@ -99,12 +99,13 @@ END $$
 -- delete message
 CREATE PROCEDURE Forum_proc_Delete_Message(
    IN p_user_id INT,
-   IN p_message_id INT
+   IN p_message_id INT,
+   IN deleted BIT(1)
 )
 BEGIN
 
 	UPDATE	Forum_Messages
-	SET	message_deleted = 1,
+	SET	message_deleted = deleted,
 		message_deleted_time = CURRENT_TIMESTAMP,
 		message_deletedby = p_user_id
 	WHERE	message_id = p_message_id;
