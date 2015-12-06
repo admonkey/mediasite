@@ -36,7 +36,8 @@ if (!isset($_SESSION["username"])) { ?>
 
 
 <div id='thread_div' class='well'>
-  <p>Click a thread to show messages.</p>
+  <h2 id='thread_name_h2'>Click a thread to show messages.</h2>
+  <div id='thread_messages_div'></div>
 </div><!-- /#thread_div.well -->
 
 <!-- post message text area -->
@@ -67,7 +68,7 @@ if (!isset($_SESSION["username"])) { ?>
 			$.post('message.insert.ajax.php', serialized_data, function(result) {
 				$("#thread_div").prepend("<h2>" + $("#thread_name").val() + "</h2>").show("blind");
 				var new_div = $("<div style='display:none'></div>");
-				new_div.html(result).appendTo("#thread_div").show("slide");
+				new_div.html(result).appendTo("#thread_messages_div").show("slide");
 				$("#message_text").val("");
 				$("#message_thread_id").val(new_div.find("message_data").attr("thread_id"));
 				disable_create_thread();
@@ -77,31 +78,43 @@ if (!isset($_SESSION["username"])) { ?>
 		
 		function create_thread() {
 			$("#list_of_threads_div").hide("blind");
-			$("#thread_div").hide("blind").html("");
+			$("#thread_div").hide("blind");
+			$("thread_messages_div").html("");
 			$("#message_div").show("blind");
 			$("#thread_name").prop("disabled",false);
 			$("#thread_name_div").show("blind");
 		}
 		
 		function disable_create_thread() {
-			//$("#thread_div").hide("blind");
-			//$("#message_div").show("blind");
 			$("#thread_name_div").hide("blind");
-			$("#thread_name").prop("disabled",true);
-			$("#thread_name").val("");
+			$("#thread_name").val("").prop("disabled",true);
 		}
 		
 		function fetch_threads(){
 			if ($("#list_of_threads_div").is(":hidden")) {
 				$.ajax({url: "threads.ajax.php", 
 					success: function(result){
-						$("#list_of_threads_div").html(result).show("blind");
+						$("#list_of_threads_div").html(result);
 						apply_tablesorter();
+						$("#list_of_threads_div").show("blind");
 					}
 				});
 			} else {
 				$("#list_of_threads_div").hide("blind");
 			}
+		}
+		
+		function fetch_messages(thread_row,thread_id,thread_name,page_number){
+			$.ajax({url: "messages.ajax.php?thread_id=" + thread_id + "&page_number=" + page_number, success: function(result){
+				$("#thread_div").hide("blind",function(){
+					$("#thread_name_h2").text(thread_name);
+					$("#thread_messages_div").html(result);
+					$("#message_div").show();
+					$("#thread_div").show("blind");
+				});
+				thread_row.addClass("bg-primary").siblings().removeClass("bg-primary");
+				$("#message_thread_id").val(thread_id);
+			},cache: false});
 		}
 
 		function hyperlink_row(){
@@ -110,18 +123,13 @@ if (!isset($_SESSION["username"])) { ?>
 				var row = $(this);
 				var thread_id = row.find("message_data").attr("thread_id");
 				var thread_name = row.find("message_data").attr("thread_name");
-				$.ajax({url: "messages.ajax.php?thread_id=" + thread_id, success: function(result){
-					$("#thread_div").hide("blind",function(){
-						$("#thread_div").html(result).prepend("<h2>" + thread_name + "</h2>").show("blind");
-						$("#message_div").show();
-					});
-					row.addClass("bg-primary").siblings().removeClass("bg-primary");
-					$("#message_thread_id").val(thread_id);
-				},cache: false});
+				fetch_messages(row,thread_id,thread_name,1);
 			}).hover( function() {
 				$(this).toggleClass("hover");
 			});
 		}
+		
+		$(fetch_threads());
 		
 	</script>
 	
