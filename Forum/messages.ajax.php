@@ -25,14 +25,7 @@ require_once('../_resources/header.php');
 
 if( !empty($mysql_connection) ){
     
-    $sql="
-		SELECT	message_id,
-					message_creation_time,
-					message_text,
-					message_author_user_id
-		FROM		Forum_Messages
-		WHERE		message_thread_id = $thread_id
-    ";
+    $sql="CALL Forum_proc_Fetch_Messages($thread_id);";
     $result = mysql_query($sql) or die(mysql_error());
 
     echo "<h3>" . mysql_num_rows($result) . " Messages</h3>";
