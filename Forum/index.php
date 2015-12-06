@@ -139,6 +139,9 @@ if (!isset($_SESSION["username"])) { ?>
 		tr.hover {
 			cursor: pointer;
 		}
+		.message_metadata p {
+			float: right;
+		}
 	</style>
 
 </div>

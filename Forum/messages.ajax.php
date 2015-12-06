@@ -1,3 +1,4 @@
+<div>
 <?php
 
 if ( ! (isset($_GET["thread_id"]) && is_numeric($_GET["thread_id"])) ) {
@@ -18,8 +19,6 @@ $include_mysql = true;
 require_once('../_resources/header.php');
 
 ?>
-
-<div>
 
 <?php
 
@@ -65,6 +64,5 @@ if( !empty($mysql_connection) ){
 }
 </style>
 
-</div>
-
 <?php require_once('../_resources/footer.php');?>
+</div>

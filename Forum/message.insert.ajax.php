@@ -1,3 +1,4 @@
+<div>
 <?php
 
 if (empty($_POST["message_text"])){
@@ -33,8 +34,6 @@ $include_mysql = true;
 require_once('../_resources/header.php');
 
 ?>
-
-<div>
 
 <?php
 
@@ -78,12 +77,5 @@ if( !empty($mysql_connection) ){
 
 ?>
 
-<style>
-.message_metadata p {
-	float: right;
-}
-</style>
-
-</div>
-
 <?php require_once('../_resources/footer.php');?>
+</div>
