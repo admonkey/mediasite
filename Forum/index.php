@@ -118,7 +118,7 @@ if (isset($_GET["default"])){
     } else {
       var message_editor = $("#message_editor").clone();
       message_editor.find("[name=message_id]").val(element.parents(".message_metadata").find("message_data").attr("message_id"));
-      message_editor.find("textarea").val(message_body_well.find(".message_text").prop('innerHTML'));
+      message_editor.find("textarea").val(message_body_well.find(".message_text").prop("innerHTML").replace(/<br>/g, ""));
 		message_editor_well.html(message_editor.show());
       message_body_well.hide("slide", function(){message_editor_well.show("slide")});
     }
