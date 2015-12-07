@@ -63,6 +63,7 @@ if (!isset($_SESSION["user_id"])) { ?>
 
 </div>
 
+<!-- message editor template for cloning -->
 <div id='message_editor' style='display:none'>
   <form method='post' role='form' onsubmit='return false'>
     <input name='message_id' type='hidden'></input>
@@ -73,7 +74,7 @@ if (!isset($_SESSION["user_id"])) { ?>
     <a href='javascript:void(0)' onclick='update_message_submit($(this))' class='btn btn-primary'>Submit</a>
     <a href='javascript:void(0)' onclick='show_editor($(this), true)' class='btn btn-danger'>Cancel</a>
   </form>
-</div>
+</div><!-- /#message_editor -->
 
 <script>
 
