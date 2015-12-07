@@ -1,11 +1,14 @@
 <?php
 while ($row = mysql_fetch_assoc($result)){
+
+		$message_text = str_replace("\n","<br/>",$row["message_text"]);
+
       echo "
       <div class='message_wrapper'>
       <div class='message_body_well well'><div class='row'>
 
 	      <div class='col-md-9'>
-		      <p class='message_text'>$row[message_text]</p>
+		      <p class='message_text'>$message_text</p>
 	      </div><!-- /.col-md-9 -->
 	      
 	      <div class='col-md-3'><div class='message_metadata'>
