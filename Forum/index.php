@@ -63,6 +63,18 @@ if (!isset($_SESSION["user_id"])) { ?>
 
 </div>
 
+<div id='message_editor' style='display:none'>
+  <form method='post' role='form' onsubmit='return false'>
+    <input name='message_id' type='hidden'></input>
+    <div class='form-group'>
+      <label for='message_text'>Message (max 140 characters):</label>
+      <textarea class='form-control' style='width:100%' maxlength='140' rows='3' name='message_text' required></textarea>
+    </div>
+    <a class='btn btn-primary'>Submit</a>
+    <a href='javascript:void(0)' onclick='show_editor($(this), true)' class='btn btn-danger'>Cancel</a>
+  </form>
+</div>
+
 <script>
 
 	function message_submit() {
