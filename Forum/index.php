@@ -78,6 +78,58 @@ if (!isset($_SESSION["user_id"])) { ?>
 
 <script>
 
+	function fetch_threads(){
+		if ($("#list_of_threads_div").is(":hidden")) {
+			$.ajax({url: "threads.ajax.php", 
+				success: function(result){
+					$("#list_of_threads_div").html(result);
+					apply_tablesorter();
+					$("#list_of_threads_div").show("blind");
+				}
+			});
+		} else {
+			$("#list_of_threads_div").hide("blind");
+		}
+	}
+
+	function hyperlink_row(){
+		$("tr").click( function() {
+			disable_create_thread();
+			var row = $(this);
+			var thread_id = row.find("message_data").attr("thread_id");
+			var thread_name = row.find("message_data").attr("thread_name");
+			fetch_messages(row,thread_id,thread_name,1);
+		}).hover( function() {
+			$(this).toggleClass("hover");
+		});
+	}
+
+	function create_thread() {
+		$("#list_of_threads_div").hide("blind");
+		$("#thread_div").hide("blind", function(){$("#thread_messages_div").html("")});
+		$("#message_div").show("blind");
+		$("#thread_name").prop("disabled",false);
+		$("#thread_name_div").show("blind");
+	}
+	
+	function disable_create_thread() {
+		$("#thread_name_div").hide("blind");
+		$("#thread_name").val("").prop("disabled",true);
+	}
+
+	function fetch_messages(thread_row,thread_id,thread_name,page_number){
+		$.ajax({url: "messages.ajax.php?thread_id=" + thread_id + "&page_number=" + page_number, success: function(result){
+			fetch_threads();
+			$("#thread_div").hide("blind",function(){
+				$("#thread_name_h2").text(thread_name);
+				$("#thread_messages_div").html(result);
+				$("#thread_div").show("blind", function(){$("#message_div").show("blind")});
+			});
+			thread_row.addClass("bg-primary").siblings().removeClass("bg-primary");
+			$("#message_thread_id").val(thread_id);
+		},cache: false});
+	}
+
 	function message_submit() {
 		var serialized_data = $("#message_form").serialize();
 		$.post('message.create.ajax.php', serialized_data, function(result) {
@@ -93,59 +145,37 @@ if (!isset($_SESSION["user_id"])) { ?>
 		});
 		return false;
 	}
-	
-	function create_thread() {
-		$("#list_of_threads_div").hide("blind");
-		$("#thread_div").hide("blind", function(){$("#thread_messages_div").html("")});
-		$("#message_div").show("blind");
-		$("#thread_name").prop("disabled",false);
-		$("#thread_name_div").show("blind");
-	}
-	
-	function disable_create_thread() {
-		$("#thread_name_div").hide("blind");
-		$("#thread_name").val("").prop("disabled",true);
-	}
-	
-	function fetch_threads(){
-		if ($("#list_of_threads_div").is(":hidden")) {
-			$.ajax({url: "threads.ajax.php", 
-				success: function(result){
-					$("#list_of_threads_div").html(result);
-					apply_tablesorter();
-					$("#list_of_threads_div").show("blind");
-				}
+
+  function show_editor(element, cancel){
+    var editor_window = element.parents(".message_wrapper").find(".message_editor");
+    var message_well = element.parents(".message_wrapper").find(".message_well");
+    if (cancel) {
+      editor_window.hide("slide", function(){message_well.show("slide")});
+    } else {
+      
+      var editor = $("#message_editor").clone();
+      editor.find("[name=message_id]").val(element.parents(".message_metadata").find("message_data").attr("message_id"));
+      editor.find("textarea").val(element.parents(".message_well").find(".message_text").text());
+      editor.show().appendTo(editor_window);
+      element.parents(".message_well").hide("slide", function(){editor_window.show("slide")});
+    }
+  }
+
+	function update_message_submit(element) {
+		var serialized_data = element.parents("form").serialize();
+		var message_wrapper = element.parents(".message_wrapper");
+		var message_well = message_wrapper.find(".message_well");
+		var editor_window = message_wrapper.find(".message_editor");
+		$.post('message.update.ajax.php', serialized_data, function(result) {
+			message_wrapper.hide("slide", function(){
+				editor_window.html("").hide();
+				message_well.html(result).show();
+				message_wrapper.show("slide");
 			});
-		} else {
-			$("#list_of_threads_div").hide("blind");
-		}
-	}
-	
-	function fetch_messages(thread_row,thread_id,thread_name,page_number){
-		$.ajax({url: "messages.ajax.php?thread_id=" + thread_id + "&page_number=" + page_number, success: function(result){
-			fetch_threads();
-			$("#thread_div").hide("blind",function(){
-				$("#thread_name_h2").text(thread_name);
-				$("#thread_messages_div").html(result);
-				$("#thread_div").show("blind", function(){$("#message_div").show("blind")});
-			});
-			thread_row.addClass("bg-primary").siblings().removeClass("bg-primary");
-			$("#message_thread_id").val(thread_id);
-		},cache: false});
+		});
+		return false;
 	}
 
-	function hyperlink_row(){
-		$("tr").click( function() {
-			disable_create_thread();
-			var row = $(this);
-			var thread_id = row.find("message_data").attr("thread_id");
-			var thread_name = row.find("message_data").attr("thread_name");
-			fetch_messages(row,thread_id,thread_name,1);
-		}).hover( function() {
-			$(this).toggleClass("hover");
-		});
-	}
-	
 	function delete_message(message_id, element, undo){
 		var message_wrapper = element.parents(".message_wrapper");
 		var message_well = message_wrapper.find(".message_well");
@@ -168,22 +198,7 @@ if (!isset($_SESSION["user_id"])) { ?>
 			},cache: false});
 		}
 	}
-	
-	function update_message_submit(element) {
-		var serialized_data = element.parents("form").serialize();
-		var message_wrapper = element.parents(".message_wrapper");
-		var message_well = message_wrapper.find(".message_well");
-		var editor_window = message_wrapper.find(".message_editor");
-		$.post('message.update.ajax.php', serialized_data, function(result) {
-			message_wrapper.hide("slide", function(){
-				editor_window.html("").hide();
-				message_well.html(result).show();
-				message_wrapper.show("slide");
-			});
-		});
-		return false;
-	}
-	
+
 	$(fetch_threads());
 	
 </script>

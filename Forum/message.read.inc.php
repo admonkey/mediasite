@@ -31,19 +31,3 @@ while ($row = mysql_fetch_assoc($result)){
 }
 ?>
 
-<script>
-  function show_editor(element, cancel){
-    var editor_window = element.parents(".message_wrapper").find(".message_editor");
-    var message_well = element.parents(".message_wrapper").find(".message_well");
-    if (cancel) {
-      editor_window.hide("slide", function(){message_well.show("slide")});
-    } else {
-      
-      var editor = $("#message_editor").clone();
-      editor.find("[name=message_id]").val(element.parents(".message_metadata").find("message_data").attr("message_id"));
-      editor.find("textarea").val(element.parents(".message_well").find(".message_text").text());
-      editor.show().appendTo(editor_window);
-      element.parents(".message_well").hide("slide", function(){editor_window.show("slide")});
-    }
-  }
-</script>
