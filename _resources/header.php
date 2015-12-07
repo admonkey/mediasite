@@ -145,11 +145,19 @@ if (!(strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false)) { ?>
 
 	<!-- auto-expand textarea to fit content -->
 	<script>
-		$(function(){ $('textarea').keyup(function(e) {
+		function auto_expand_textarea( ta ){ ta.keyup(function(e) {
 			while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css('borderTopWidth')) + parseFloat($(this).css('borderBottomWidth'))) {
 				$(this).height($(this).height()+1);
 			};
-		})});
+		})}
+
+		$(function(){
+			$('textarea').each(function(){
+				var ta = $(this);
+				auto_expand_textarea( ta );
+			});
+		});
+		
 	</script>
       ";
     }
