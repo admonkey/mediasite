@@ -1,7 +1,20 @@
 <?php
 while ($row = mysql_fetch_assoc($result)){
 
+		// newlines
 		$message_text = str_replace("\n","<br/>",$row["message_text"]);
+		// bold
+		$message_text = str_replace("&lt;b&gt;","<b>",$message_text);
+		$message_text = str_replace("&lt;/b&gt;","</b>",$message_text);
+		// italics
+		$message_text = str_replace("&lt;i&gt;","<i>",$message_text);
+		$message_text = str_replace("&lt;/i&gt;","</i>",$message_text);
+		// underline
+		$message_text = str_replace("&lt;u&gt;","<u>",$message_text);
+		$message_text = str_replace("&lt;/u&gt;","</u>",$message_text);
+		// strikethrough
+		$message_text = str_replace("&lt;s&gt;","<s>",$message_text);
+		$message_text = str_replace("&lt;/s&gt;","</s>",$message_text);
 
       echo "
       <div class='message_wrapper'>
