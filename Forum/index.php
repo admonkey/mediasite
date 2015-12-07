@@ -70,7 +70,7 @@ if (!isset($_SESSION["user_id"])) { ?>
       <label for='message_text'>Message (max 140 characters):</label>
       <textarea class='form-control' style='width:100%' maxlength='140' rows='3' name='message_text' required></textarea>
     </div>
-    <a class='btn btn-primary'>Submit</a>
+    <a href='javascript:void(0)' onclick='update_message_submit($(this))' class='btn btn-primary'>Submit</a>
     <a href='javascript:void(0)' onclick='show_editor($(this), true)' class='btn btn-danger'>Cancel</a>
   </form>
 </div>
@@ -166,6 +166,21 @@ if (!isset($_SESSION["user_id"])) { ?>
 				});
 			},cache: false});
 		}
+	}
+	
+	function update_message_submit(element) {
+		var serialized_data = element.parents("form").serialize();
+		var message_wrapper = element.parents(".message_wrapper");
+		var message_well = message_wrapper.find(".message_well");
+		var editor_window = message_wrapper.find(".message_editor");
+		$.post('message.update.ajax.php', serialized_data, function(result) {
+			message_wrapper.hide("slide", function(){
+				editor_window.html("").hide();
+				message_well.html(result).show();
+				message_wrapper.show("slide");
+			});
+		});
+		return false;
 	}
 	
 	$(fetch_threads());

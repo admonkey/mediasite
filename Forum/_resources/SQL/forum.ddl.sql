@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS Forum_proc_Update_Message;
 DROP PROCEDURE IF EXISTS Forum_proc_Delete_Message;
 DROP PROCEDURE IF EXISTS Forum_proc_Insert_Message;
 DROP PROCEDURE IF EXISTS Forum_proc_Fetch_Messages;
@@ -109,6 +110,25 @@ BEGIN
 		message_deleted_time = CURRENT_TIMESTAMP,
 		message_deletedby = p_user_id
 	WHERE	message_id = p_message_id;
+
+END $$
+
+-- update message
+CREATE PROCEDURE Forum_proc_Update_Message(
+   IN p_user_id INT,
+   IN p_message_id INT,
+   IN p_message_text VARCHAR(140)
+)
+BEGIN
+
+	UPDATE	Forum_Messages
+	SET	message_text = p_message_text,
+		message_edited_time = CURRENT_TIMESTAMP,
+		message_editedby = p_user_id
+	WHERE	message_id = p_message_id;
+
+	SELECT * FROM Forum_Messages
+	WHERE message_id = p_message_id;
 
 END $$
 
