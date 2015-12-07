@@ -147,30 +147,28 @@ if (!isset($_SESSION["user_id"])) { ?>
 	}
 
   function show_editor(element, cancel){
-    var editor_window = element.parents(".message_wrapper").find(".message_editor");
-    var message_well = element.parents(".message_wrapper").find(".message_well");
+    var message_editor_well = element.parents(".message_wrapper").find(".message_editor_well");
+    var message_body_well = element.parents(".message_wrapper").find(".message_body_well");
     if (cancel) {
-      editor_window.hide("slide", function(){message_well.show("slide")});
+      message_editor_well.hide("slide", function(){
+			message_editor_well.html("");
+			message_body_well.show("slide");
+		});
     } else {
-      
-      var editor = $("#message_editor").clone();
-      editor.find("[name=message_id]").val(element.parents(".message_metadata").find("message_data").attr("message_id"));
-      editor.find("textarea").val(element.parents(".message_well").find(".message_text").text());
-      editor.show().appendTo(editor_window);
-      element.parents(".message_well").hide("slide", function(){editor_window.show("slide")});
+      var message_editor = $("#message_editor").clone();
+      message_editor.find("[name=message_id]").val(element.parents(".message_metadata").find("message_data").attr("message_id"));
+      message_editor.find("textarea").val(message_body_well.find(".message_text").text());
+		message_editor_well.html(message_editor.show());
+      message_body_well.hide("slide", function(){message_editor_well.show("slide")});
     }
   }
 
 	function update_message_submit(element) {
 		var serialized_data = element.parents("form").serialize();
-		var message_wrapper = element.parents(".message_wrapper");
-		var message_well = message_wrapper.find(".message_well");
-		var editor_window = message_wrapper.find(".message_editor");
+		var message_wapper = element.parents(".message_wrapper");
 		$.post('message.update.ajax.php', serialized_data, function(result) {
-			message_wrapper.hide("slide", function(){
-				editor_window.html("").hide();
-				message_well.html(result).show();
-				message_wrapper.show("slide");
+			message_wapper.hide("slide", function(){
+				message_wapper.html(result).show("slide");
 			});
 		});
 		return false;
@@ -178,21 +176,21 @@ if (!isset($_SESSION["user_id"])) { ?>
 
 	function delete_message(message_id, element, undo){
 		var message_wrapper = element.parents(".message_wrapper");
-		var message_well = message_wrapper.find(".message_well");
-		var editor_window = message_wrapper.find(".message_editor");
+		var message_body_well = message_wrapper.find(".message_body_well");
+		var message_editor_well = message_wrapper.find(".message_editor_well");
 		if (undo) {
 			$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
 				message_wrapper.hide("slide", function(){
-					editor_window.html("").hide();
-					message_well.show();
+					message_editor_well.html("").hide();
+					message_body_well.show();
 					message_wrapper.show("slide");
 				});
 			},cache: false});
 		} else {
 			$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
 				message_wrapper.hide("slide", function(){
-					message_well.hide();
-					editor_window.html(result).show();
+					message_body_well.hide();
+					message_editor_well.html(result).show();
 					message_wrapper.show("slide");
 				});
 			},cache: false});

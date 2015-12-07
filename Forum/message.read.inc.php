@@ -2,7 +2,7 @@
 while ($row = mysql_fetch_assoc($result)){
       echo "
       <div class='message_wrapper'>
-      <div class='well message_well'><div class='row'>
+      <div class='message_body_well well'><div class='row'>
 
 	      <div class='col-md-9'>
 		      <p class='message_text'>$row[message_text]</p>
@@ -22,9 +22,9 @@ while ($row = mysql_fetch_assoc($result)){
 	      echo "
 	      </div><!-- /.message_metadata --></div><!-- /.col-md-3 -->
 	      
-      </div><!-- /.row --></div><!-- /.message_well -->
+      </div><!-- /.row --></div><!-- /.message_body_well -->
       
-      <div class='message_editor well' style='display:none; background-color:#f2dede;'></div>
+      <div class='message_editor_well well' style='display:none; background-color:#f2dede;'></div>
       
       </div><!-- /.message_wrapper -->\n
       ";
