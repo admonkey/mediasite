@@ -13,12 +13,11 @@ while ($row = mysql_fetch_assoc($result)){
 		      <p><label class='label label-primary'>message_author_user_id $row[message_author_user_id]</label></p>
 		      <p><label class='label label-info'>$row[message_creation_time]</label></p>";
 		      
-		      // delete button
+		      // delete & edit button
 		      if ($row["message_author_user_id"] == $_SESSION["user_id"]) echo "
-		      <p><a href='javascript:void(0)' onclick='delete_message($row[message_id], $(this))'><label class='label label-danger'>Delete</label></a></p>";
+		      <p><a href='javascript:void(0)' onclick='delete_message($row[message_id], $(this))'><label class='label label-danger'>Delete</label></a></p>
 		      
-		      // edit button
-		      echo "<p><a href='javascript:void(0)' onclick='show_editor($(this), false)'><label class='label label-warning'>Edit</label></a></p>";
+		      <p><a href='javascript:void(0)' onclick='show_editor($(this), false)'><label class='label label-warning'>Edit</label></a></p>";
 		      
 	      echo "
 	      </div><!-- /.message_metadata --></div><!-- /.col-md-3 -->
