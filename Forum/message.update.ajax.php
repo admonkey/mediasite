@@ -29,6 +29,8 @@ require_once('../_resources/header.php');
 
 if( !empty($mysql_connection) ){
 
+	$message_text = prepare_sql_input($message_text);
+
     $sql="CALL Forum_proc_Update_Message($user_id, $message_id, '$message_text')";
     $result = mysql_query($sql) or die(mysql_error());
 

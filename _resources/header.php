@@ -49,6 +49,29 @@ if ($debug) echo '$path_web_relative_root = ' . $path_web_relative_root . '<br/>
 include_once((__DIR__) . '/credentials.php');
 
 
+// custom functions
+function prepare_sql_input($text){
+
+	$text = htmlentities($text);
+
+ 	// bold
+	$text = str_replace("&lt;b&gt;","<b>",$text);
+	$text = str_replace("&lt;/b&gt;","</b>",$text);
+	// italics
+	$text = str_replace("&lt;i&gt;","<i>",$text);
+	$text = str_replace("&lt;/i&gt;","</i>",$text);
+	// underline
+	$text = str_replace("&lt;u&gt;","<u>",$text);
+	$text = str_replace("&lt;/u&gt;","</u>",$text);
+	// strikethrough
+	$text = str_replace("&lt;s&gt;","<s>",$text);
+	$text = str_replace("&lt;/s&gt;","</s>",$text);
+
+	return mysql_real_escape_string($text);
+
+}
+
+
 // MySQL
 if ( !empty($include_mysql) ) {
   // connection
