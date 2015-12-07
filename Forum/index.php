@@ -145,13 +145,27 @@ if (!isset($_SESSION["user_id"])) { ?>
 		});
 	}
 	
-	function delete_message(message_id, element){
-		$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
-			var new_div = $("<div style='display:none'></div>");
-			element.parents(".message_well").hide("slide", function(){
-				new_div.html(result).appendTo("#thread_messages_div").show("slide");
-			});
-		},cache: false});
+	function delete_message(message_id, element, undo){
+		var message_wrapper = element.parents(".message_wrapper");
+		var message_well = message_wrapper.find(".message_well");
+		var editor_window = message_wrapper.find(".message_editor");
+		if (undo) {
+			$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
+				message_wrapper.hide("slide", function(){
+					editor_window.html("").hide();
+					message_well.show();
+					message_wrapper.show("slide");
+				});
+			},cache: false});
+		} else {
+			$.ajax({url: "message.delete.ajax.php?message_id=" + message_id, success: function(result){
+				message_wrapper.hide("slide", function(){
+					message_well.hide();
+					editor_window.html(result).show();
+					message_wrapper.show("slide");
+				});
+			},cache: false});
+		}
 	}
 	
 	$(fetch_threads());

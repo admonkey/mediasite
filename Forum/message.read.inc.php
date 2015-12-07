@@ -25,7 +25,7 @@ while ($row = mysql_fetch_assoc($result)){
 	      
       </div><!-- /.row --></div><!-- /.message_well -->
       
-      <div class='message_editor well' style='display:none'></div>
+      <div class='message_editor well' style='display:none; background-color:#f2dede;'></div>
       
       </div><!-- /.message_wrapper -->\n
       ";

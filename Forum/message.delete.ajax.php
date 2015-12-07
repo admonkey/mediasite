@@ -32,13 +32,11 @@ if( !empty($mysql_connection) ){
     $sql="CALL Forum_proc_Delete_Message($user_id, $message_id, $deleted)";
     $result = mysql_query($sql) or die(mysql_error());
 
-    if ($deleted == 0)
-      include("message.read.inc.php");
-    else
+    if ($deleted == 1)
       echo "
-      <div class='well message_well' style='background-color:#f2dede'>
+      <div>
 	<p class='text-danger'>Message Deleted</p>
-	<p><a href='javascript:void(0)' onclick='delete_message($message_id + \"&restore\", $(this))'><label class='label label-warning'>Undo</label></a></p>
+	<p><a href='javascript:void(0)' onclick='delete_message($message_id + \"&restore\", $(this), true)'><label class='label label-warning'>Undo</label></a></p>
       </div>";
 
 } else {
