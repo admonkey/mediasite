@@ -7,6 +7,7 @@ body {
 	background-size: cover;
 	/* BOOTSTRAP FIX: PADDING FOR STATIC-FIXED TOP NAV */
 	padding-top: 65px;
+	font-family: monospace;
 }
 /* Enhance Logo */
 .navbar-brand {
