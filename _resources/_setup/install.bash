@@ -224,7 +224,7 @@ fi
 # ENABLE NEW VIRTUAL HOST
 if $createVhost ; then
 	sudo mv VirtualHostConfigurationFile $vhostConf
-	sudo a2ensite $siteName && sudo service apache2 restart
+	sudo a2enmod rewrite && sudo a2ensite $siteName && sudo service apache2 restart
 fi
 echo "deny from all" > .git/.htaccess
 
