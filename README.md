@@ -19,7 +19,10 @@ Might work elsewhere, but designed and tested on:
 - Ubuntu 14.04  
   - GNU bash, version 4.3.11(1)  
 - Apache 2.4.7  
-  - .htaccess files use both `require all denied` and `deny from all` for backwards compatibility with 2.2
+  - host directory must AllowOverride using .htaccess
+    - Apache mod rewrite required to block certain folders (`sudo a2enmod rewrite`)
+    - files use both `require all denied` and `deny from all` for backwards compatibility with Apache 2.2
+    - these dependencies are automatically configured when using the `/_resources/_setup/install.bash` script
 - PHP 5.5.9  
 - OpenSSL 1.0.1f  
 - Git 2.6.2
