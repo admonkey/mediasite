@@ -90,7 +90,7 @@ if ( !empty($include_mysql) ) {
 }
 
 
-// if filename contains ajax, then don't print html header
+// if filename contains ajax or bounce, then don't print html header
 if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpos(basename($_SERVER["SCRIPT_NAME"]),'.bounce.') !== false)) ) { ?>
 
 

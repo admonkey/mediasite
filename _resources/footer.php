@@ -1,5 +1,7 @@
-<?php // if filename contains ajax, then don't print html header
-if (!(strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false)) { ?>
+<?php
+
+// if filename contains ajax or bounce, then don't print html footer
+if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpos(basename($_SERVER["SCRIPT_NAME"]),'.bounce.') !== false)) ) { ?>
 
 <!-- BEGIN FOOTER INCLUDE -->
 
@@ -15,7 +17,9 @@ if (!(strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false)) { ?>
 </html>
 
 <?php
-}
+} // end if not ajax/bounce
+
+
 /*
   suppressed error message if no connection open
   probably not the best way to handle the situation
