@@ -1,0 +1,14 @@
+<FilesMatch "credentials">
+	# Apache 2.4
+	require all denied
+
+	# Apache 2.2
+	Order Deny,Allow
+	Deny from all
+</FilesMatch>
+
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule \SQL/ - [F]
+RewriteRule \SSL/ - [F]
+RewriteRule \_setup/ - [F]
