@@ -17,9 +17,9 @@ if (empty($_SESSION["user_id"])){
 }
 */
 
-include_once('../_resources/credentials.php');
+include_once('_resources/credentials.php');
 $include_mysql = true;
-require_once('../_resources/header.php');
+require_once('_resources/header.php');
 
 ?>
 
@@ -44,5 +44,5 @@ if( !empty($mysql_connection) ){
 
 ?>
 
-<?php require_once('../_resources/footer.php');?>
+<?php require_once('_resources/footer.php');?>
 </div>

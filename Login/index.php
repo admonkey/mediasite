@@ -1,9 +1,9 @@
 <?php
 
-include_once('../_resources/credentials.php');
+include_once('_resources/credentials.php');
 //$require_ssl = true;
 // $page_title = "Home Page";
-require_once('../_resources/header.php');
+require_once('_resources/header.php');
 
 echo "
 
@@ -26,6 +26,6 @@ echo "
 ";
 
 // footer
-require_once('../_resources/footer.php');
+require_once('_resources/footer.php');
 
 ?>

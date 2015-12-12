@@ -1,10 +1,10 @@
 <?php
 
-include_once("../_resources/credentials.php");
+include_once("_resources/credentials.php");
 //$page_title = "Home Page";
 $include_tablesorter = true;
 $include_mysql = true;
-require_once("../_resources/header.php");
+require_once("_resources/header.php");
 
 echo "<h1>Sortable $section_title</h1>";
 
@@ -48,4 +48,4 @@ echo "<h1>Sortable $section_title</h1>";
   }
 </style>
 
-<?php require_once("../_resources/footer.php");?>
+<?php require_once("_resources/footer.php");?>

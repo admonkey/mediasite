@@ -19,9 +19,9 @@ if (empty($_SESSION["user_id"])){
 if (isset($_GET["restore"])) $deleted = 0;
 else $deleted = 1;
 
-include_once('../_resources/credentials.php');
+include_once('_resources/credentials.php');
 $include_mysql = true;
-require_once('../_resources/header.php');
+require_once('_resources/header.php');
 
 ?>
 
@@ -49,5 +49,5 @@ if( !empty($mysql_connection) ){
 
 ?>
 
-<?php require_once('../_resources/footer.php');?>
+<?php require_once('_resources/footer.php');?>
 </div>
