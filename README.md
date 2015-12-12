@@ -30,7 +30,7 @@ Might work elsewhere, but designed and tested on:
 
 ## Issues
 - Currently using the deprecated mysql functions. Need to upgrade to mysqli ASAP
-- [Server alias path can't have a folder with the same name as one in server root path to files.](#bug_alias)
+- Server alias path can't have a folder with the same name as one in server root path to files. [details](#bug_alias)
 
 ## Notes
 - In the `/_resources/header.php` file, you should notice definitions for `$path_real_relative_root`  
