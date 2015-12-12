@@ -1,48 +1,19 @@
 <?php
 
+$page_title = "Session Login via PHP LDAP Authentication";
+$require_ssl = true;
+
 $ldap_server = "ldap.example.com";
 $ldap_dc_domain = "example";
 $ldap_dc_tld = "com";
 
-$page_title = "PHP LDAP Authentication";
-$require_ssl = true;
-
-require_once('../_resources/header.php');
+require_once('../../_resources/header.php');
 
 echo "
 
   <h1>$page_title</h1>
   
-  <div id='install_php5-ldap' class='well'>
-
-    <h3>install php5-ldap</h3>
-
-    <ol>
-
-      <li>
-	<p><kbd>sudo apt-get install php5-ldap</kbd></p>
-      </li>
-
-      <li>
-	<p><kbd>sudo service apache2 restart</kbd></p>
-      </li>
-
-      <li>
-	<p>Set these variables in the header of the login page:</p>
-	<p><pre>".'
-	
-	$ldap_server = "ldap.example.com";
-	$ldap_dc_domain = "example";
-	$ldap_dc_tld = "com";
-	'."</pre></p>
-      </li>
-      
-      
-
-      
-    </ol>
-
-  </div><!-- /#install_php5-ldap.well -->
+  <p><a href='php5-ldap.php' class='btn btn-danger'>Read First</a></p>
 
   <div id='login' class='well'>
   
@@ -76,21 +47,17 @@ if(isset($_POST['ldap_login_username']) && isset($_POST['ldap_login_password']))
         {
             if($info['count'] > 1)
                 break;
-            echo "<p>You are accessing <strong> ". $info[$i]["sn"][0] .", " . $info[$i]["givenname"][0] ."</strong><br /> (" . $info[$i]["samaccountname"][0] .")</p>\n";
-            echo '<pre>';
-            var_dump($info);
-            echo '</pre>';
-            $userDn = $info[$i]["distinguishedname"][0]; 
+            $_SESSION["username"] = $info[$i]["samaccountname"][0];
+            header("Location: $_SERVER[SCRIPT_NAME]");
         }
         @ldap_close($ldap);
     } else {
-        $msg = "Invalid email address / password";
+        $msg = "Invalid email address / password. <a href='" . $_SERVER["SCRIPT_NAME"] . "'>Try Again</a>";
         echo $msg;
     }
 
 }else{
 ?>
-	<h3>Print All LDAP Attributes for Username</h3>
     <form id="ldap_login_form" role="form" method="POST">
       <div class="form-group">
         <label for="ldap_login_username">Username:</label>
@@ -107,6 +74,6 @@ if(isset($_POST['ldap_login_username']) && isset($_POST['ldap_login_password']))
 echo "</div><!-- /#login.well -->";
 
 // footer
-require_once('../_resources/footer.php');
+require_once('../../_resources/footer.php');
 
 ?>

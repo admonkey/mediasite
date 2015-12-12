@@ -185,11 +185,10 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 	    <div id='login_nav_div' class="pull-right">
 		<ul class="nav navbar-nav">
 		  <?php
-		    if (isset($_SESSION['username'])) { ?>
-		      <li id="logout"><a href="?logout">logout <?php echo $_SESSION['username']; ?></a></li>
-		    <?php } else { ?>
-		      <li id="login"><a href="<?php echo "$path_web_relative_root/LDAP/login.php"; ?>">login</a></li>
-		    <?php }
+		    if (isset($_SESSION["username"]))
+		      echo "<li id='logout'><a href='?logout'>Logout $_SESSION[username]</a></li>";
+		    else
+		      echo "<li id='login'><a href='$path_web_relative_root/Login/'>Login</a></li>";
 		  ?>
 	      
 		</ul>
