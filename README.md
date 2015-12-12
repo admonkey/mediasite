@@ -30,6 +30,7 @@ Might work elsewhere, but designed and tested on:
 
 ## Issues
 - Currently using the deprecated mysql functions. Need to upgrade to mysqli ASAP
+- [Server alias path can't have a folder with the same name as one in server root path to files.](#bug_alias)
 
 ## Notes
 - In the `/_resources/header.php` file, you should notice definitions for `$path_real_relative_root`  
@@ -42,7 +43,7 @@ Might work elsewhere, but designed and tested on:
       but you will have to change the references to the files in the code manually.
   - As a sub-node of the root of a web server host. (www.example.com/path/to/folder/WebSite)
   - As an alias to a folder on a web server host. (www.example.com/~username/path/to/folder/WebSite)
-    - There is a bug with the way this is currently setup. No two folders can have the same name between  
+    - <a name="bug_alias"></a>There is a bug with the way this is currently setup. No two folders can have the same name between  
       the alias path from host root to site root, and the server root to WebSite root.  
       For example, the following configuration breaks because `web` is the name of a folder in both paths:  
       - Host document root files are located at `/var/www/folder3/html` visible at (www.example.com)
