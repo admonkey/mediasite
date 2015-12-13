@@ -186,7 +186,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 
 	    </ul>
 	    
-	    <div id='login_nav_div' class="pull-right">
+	    <div id='login_nav_div' class="pull-right-md pull-left-xs">
 		<ul class="nav navbar-nav navigation-menu">
 		  <?php
 		    if (isset($_SESSION["username"]))

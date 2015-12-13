@@ -43,6 +43,13 @@ nav.navbar{
   color: #fff;
 }
 
+@media (min-width:768px) {
+  #login_nav_div {
+    float: right;
+  }
+}
+
+
 /* override table-striped with helper classes */
 .table-striped > tbody > tr:nth-of-type(odd).bg-primary {
   color: #fff;
