@@ -86,8 +86,10 @@ if ( !empty($include_mysql) ) {
 }
 
 
-// if filename contains ajax or bounce, then don't print html header
-if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpos(basename($_SERVER["SCRIPT_NAME"]),'.bounce.') !== false)) ) { ?>
+// if filename contains ".ajax." or ".bounce.", 
+//   or $exclude_html = true; 
+// then don't print html header
+if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpos(basename($_SERVER["SCRIPT_NAME"]),'.bounce.') !== false) || ( !empty($exclude_html) )) ) { ?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -234,5 +236,5 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 		  
 <!-- BEGIN BODY CONTENT -->
 <?php
-}
+} // END if exclude html
 ?>
