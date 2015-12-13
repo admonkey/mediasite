@@ -18,7 +18,7 @@ echo "
       </li>
 
       <li>
-	<p><a href='LDAP/' class='btn btn-primary'>LDAP (Lightweight Directory Access Protocol)</a></p>
+	<p><a href='LDAP/' class='btn btn-primary'>LDAP</a></p>
       </li>
 
     </ul>

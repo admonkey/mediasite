@@ -14,11 +14,13 @@ echo "
     <ul>
 
       <li>
-	<p><a href='php5-ldap.php' class='btn btn-primary'>Lock individual pages with group content differentials using PHP</a></p>
+	<p>Lock individual pages with group content differentials.</p>
+	<p><a href='php5-ldap.php' class='btn btn-primary'>PHP</a></p>
       </li>
 
       <li>
-	<p><a href='apache.php' class='btn btn-primary'>Lock entire folder with Apache</a></p>
+	<p>Lock entire folder using the Apache server.</p>
+	<p><a href='apache.php' class='btn btn-primary'>.htaccess</a></p>
       </li>
 
     </ul>
