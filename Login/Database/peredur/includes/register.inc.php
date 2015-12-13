@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once 'db_connect.php';
-include_once 'psl-config.php';
+include_once (__DIR__).'/db_connect.php';
+include_once (__DIR__).'/psl-config.php';
 
 $error_msg = "";
 
