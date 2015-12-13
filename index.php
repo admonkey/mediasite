@@ -40,7 +40,7 @@ if (login_check($mysqli) == true) {
             echo '<p class="error">Error Logging In!</p>';
         }
         ?> 
-        <form action="includes/process_login.php" method="post" name="login_form"> 			
+        <form action="process_login.php" method="post" name="login_form"> 			
             Email: <input type="text" name="email" />
             Password: <input type="password" 
                              name="password" 
@@ -50,7 +50,7 @@ if (login_check($mysqli) == true) {
                    onclick="formhash(this.form, this.form.password);" /> 
         </form>
         <p>If you don't have a login, please <a href="register.php">register</a></p>
-        <p>If you are done, please <a href="includes/logout.php">log out</a>.</p>
+        <p>If you are done, please <a href="logout.php">log out</a>.</p>
         <p>You are currently logged <?php echo $logged ?>.</p>
     </body>
 </html>
