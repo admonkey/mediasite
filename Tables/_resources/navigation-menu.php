@@ -1,2 +1,7 @@
-<li><a href="?table=static">Static HTML</a></li>
-<li><a href="?table=mysql">MySQL</a></li> 
+<?php echo "
+
+<li><a href='$path_rendered_relative/?table=static'>Static HTML</a></li>
+<li><a href='$path_rendered_relative/?table=mysql'>MySQL</a></li> 
+
+";
+?>

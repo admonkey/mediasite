@@ -1,10 +1,14 @@
-<?php echo "
+<?php
 
-  <li><a href='$path_web_relative_root/SubTree/'>SubTree</a></li>
-  <li><a href='$path_web_relative_root/Forum/'>Forum</a></li>
-  <li><a href='$path_web_relative_root/Forms/'>Forms</a></li>
-  <li><a href='$path_web_relative_root/Tables/'>Tables</a></li>
-  <li><a href='$path_web_relative_root/FancyBox/'>FancyBox</a></li>
-  <li><a href='$path_web_relative_root/Embed/'>Embed</a></li>
+echo "
 
-";?>
+  <li><a href='$path_rendered_relative/SubTree/'>SubTree</a></li>
+  <li><a href='$path_rendered_relative/Forum/'>Forum</a></li>
+  <li><a href='$path_rendered_relative/Forms/'>Forms</a></li>
+  <li><a href='$path_rendered_relative/Tables/'>Tables</a></li>
+  <li><a href='$path_rendered_relative/FancyBox/'>FancyBox</a></li>
+  <li><a href='$path_rendered_relative/Embed/'>Embed</a></li>
+
+";
+
+?>

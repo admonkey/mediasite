@@ -1,5 +1,9 @@
-<?php echo "
+<?php
 
-  <li><a href='$path_web_relative_root/Forum/rules.php'>Rules</a></li>
+echo "
 
-";?>
+  <li><a href='$path_rendered_relative/rules.php'>Rules</a></li>
+
+";
+
+?>

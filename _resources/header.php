@@ -20,13 +20,9 @@ if (isset($_GET["logout"])){
 // FIX: bug when part of relative path duplicated in alias
 $debug = false;
 
-// get relative path definitions
-$path_real_relative_root = (__DIR__);
-if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
-
-// move up from included header
-$path_real_relative_root = str_replace('/_resources', '', $path_real_relative_root);
-if ($debug) echo '$path_real_relative_root = ' . $path_real_relative_root . '<br/>';
+// get relative path definition from included header
+$path_real_root = dirname(__DIR__);
+if ($debug) echo '$path_real_root = ' . $path_real_root . '<br/>';
 
 // get differences in case of Alias
 if ($debug) echo '$_SERVER[SCRIPT_NAME] = ' . $_SERVER['SCRIPT_NAME'] . '<br/>';
@@ -38,12 +34,12 @@ $array_differences = array_diff($first_array, $second_array);
 // if alias
 if ($debug) echo "count differences = " . count($array_differences) . '<br/>';
 if( count($array_differences) > 0 )
-  $path_web_relative_root = "/" . implode('/',$array_differences);
+  $path_web_root = "/" . implode('/',$array_differences);
 // else if nodes down from server root
 else
-  $path_web_relative_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_relative_root);
+  $path_web_root = str_replace($_SERVER['DOCUMENT_ROOT'], '', $path_real_root);
 if ($debug) echo '$_SERVER[DOCUMENT_ROOT] = ' . $_SERVER['DOCUMENT_ROOT'] . '<br/>';
-if ($debug) echo '$path_web_relative_root = ' . $path_web_relative_root . '<br/>';
+if ($debug) echo '$path_web_root = ' . $path_web_root . '<br/>';
 
 // variable definitions
 include_once((__DIR__) . '/credentials.php');
@@ -115,16 +111,16 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
   <?php echo "
   
     <!-- favicon -->
-    <link rel='icon' href='$path_web_relative_root/_resources/images/favicon.ico'></link>
+    <link rel='icon' href='$path_web_root/_resources/images/favicon.ico'></link>
   
     <!-- JQUERY -->
-    <script src='$path_web_relative_root/_resources/jquery/jquery.1.11.2.min.js'></script>
+    <script src='$path_web_root/_resources/jquery/jquery.1.11.2.min.js'></script>
 
     <!-- BOOTSTRAP -->
-    <script src='$path_web_relative_root/_resources/bootstrap/bootstrap.3.3.4.min.js'></script>
-    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/bootstrap.3.3.4.min.css'></link>
-    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/bootstrap.custom.css'></link>
-    <link rel='stylesheet' href='$path_web_relative_root/_resources/bootstrap/sidenav.css'></link>
+    <script src='$path_web_root/_resources/bootstrap/bootstrap.3.3.4.min.js'></script>
+    <link rel='stylesheet' href='$path_web_root/_resources/bootstrap/bootstrap.3.3.4.min.css'></link>
+    <link rel='stylesheet' href='$path_web_root/_resources/bootstrap/bootstrap.custom.css'></link>
+    <link rel='stylesheet' href='$path_web_root/_resources/bootstrap/sidenav.css'></link>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
@@ -152,11 +148,11 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 
 	  <!-- Side Nav Toggle -->
           <a id="sidenav-toggle" href="javascript:void(0);" onclick="$('#wrapper').toggleClass('toggled')">
-	    <img src="<?php echo $path_web_relative_root;?>/_resources/images/favicon.ico"></img>
+	    <img src="<?php echo $path_web_root;?>/_resources/images/favicon.ico"></img>
           </a>
 
           <?php // #site_title_brand
-	    echo "<a id='site_title_brand' class='navbar-brand' href='$path_web_relative_root/'>$site_title</a>"; 
+	    echo "<a id='site_title_brand' class='navbar-brand' href='$path_web_root/'>$site_title</a>"; 
           ?>
 
           <?php // #section_title_brand
@@ -171,12 +167,19 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 
 		<?php
 
-		  // use local navigation menu if exists
-		  if (file_exists('_resources/navigation-menu.php'))
-		    include('_resources/navigation-menu.php');
-		  // else use global.
-		  else
-		    include($path_real_relative_root . '/_resources/navigation-menu.php');
+		// recurse bottom-up the chain until first node with navigation menu
+		$path_relative_section = str_replace($path_web_root, '', dirname($_SERVER["SCRIPT_NAME"]));
+		// TODO: create rendered relative path for menu links that can be copied from html source
+		// will need "../" substitutions for parent node menus
+
+		do {
+		  if(file_exists("$path_real_root$path_relative_section/_resources/navigation-menu.php")){
+		    $path_rendered_relative = $path_web_root . $path_relative_section;
+		    include("$path_real_root$path_relative_section/_resources/navigation-menu.php");
+		    break;
+		  }
+		  $path_relative_section = dirname($path_relative_section);
+		} while (true);
 
 		?>
 
@@ -188,7 +191,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 		    if (isset($_SESSION["username"]))
 		      echo "<li id='logout'><a href='?logout'>Logout $_SESSION[username]</a></li>";
 		    else
-		      echo "<li id='login'><a href='$path_web_relative_root/Login/'>Login</a></li>";
+		      echo "<li id='login'><a href='$path_web_root/Login/'>Login</a></li>";
 		  ?>
 	      
 		</ul>
@@ -208,10 +211,10 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
             <ul class="sidebar-nav navigation-menu">
                 <!-- removed redundant sidebar brand
 		  <li class="sidebar-brand">
-		      <a href="<?php echo $path_web_relative_root;?>/"><?php echo $site_title; ?></a>
+		      <a href="<?php echo $path_web_root;?>/"><?php echo $site_title; ?></a>
 		  </li>
                 -->
-                <?php include($path_real_relative_root . '/_resources/navigation-menu.php'); ?>
+                <?php include($path_real_root . '/_resources/navigation-menu.php'); ?>
             </ul>
             <script>
 	      $('.navigation-menu').find('a').each(function(){
