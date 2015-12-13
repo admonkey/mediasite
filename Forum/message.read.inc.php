@@ -19,7 +19,7 @@ while ($row = mysql_fetch_assoc($result)){
 		      
 		      // delete & edit button
 				if (isset($_SESSION["user_id"])){
-				   if ($row["message_author_user_id"] == $_SESSION["user_id"]) echo "
+				   if ( ($row["message_author_user_id"] == $_SESSION["user_id"]) || (!empty($_SESSION["admin"])) ) echo "
 				   <p><a href='javascript:void(0)' onclick='delete_message($row[message_id], $(this))'><label class='label label-danger'>Delete</label></a></p>
 				   
 				   <p><a href='javascript:void(0)' onclick='show_editor($(this), false)'><label class='label label-warning'>Edit</label></a></p>";

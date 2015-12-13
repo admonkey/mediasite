@@ -17,6 +17,13 @@ echo "<h1>$section_title</h1>";
 if (isset($_GET["default"])){
 	$_SESSION["user_id"] = -1;
 	$_SESSION["username"] = "Default";
+	header("Location: $_SERVER[SCRIPT_NAME]");
+}
+elseif (isset($_GET["admin"])) {
+	$_SESSION["user_id"] = -2;
+	$_SESSION["username"] = "Admin";
+	$_SESSION["admin"] = 1;
+	header("Location: $_SERVER[SCRIPT_NAME]");
 }
 ?>
 
@@ -177,6 +184,7 @@ if (isset($_GET["default"])){
 if (!isset($_SESSION["user_id"])) { ?>
 
 	<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>
+	<p><a href='?admin' class='btn btn-danger'>Login as 'Admin'</a></p>
 
 <?php } else { ?>
 
