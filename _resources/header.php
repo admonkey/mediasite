@@ -179,6 +179,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 		    break;
 		  }
 		  $path_relative_section = dirname($path_relative_section);
+		  if($path_relative_section == "/") $path_relative_section = "";
 		} while (true);
 
 		?>
@@ -186,7 +187,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 	    </ul>
 	    
 	    <div id='login_nav_div' class="pull-right">
-		<ul class="nav navbar-nav">
+		<ul class="nav navbar-nav navigation-menu">
 		  <?php
 		    if (isset($_SESSION["username"]))
 		      echo "<li id='logout'><a href='?logout'>Logout $_SESSION[username]</a></li>";
@@ -218,7 +219,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
             </ul>
             <script>
 	      $('.navigation-menu').find('a').each(function(){
-		    if ($(this).attr("href") == "<?php echo $_SERVER['SCRIPT_NAME'];?>")
+		    if ( $(this).attr("href") == "<?php echo $_SERVER['SCRIPT_NAME'];?>" || $(this).attr("href") == "<?php echo dirname($_SERVER['SCRIPT_NAME'])."/";?>" )
 		      $(this).parent().addClass("active");
 	      });
 	    </script>
