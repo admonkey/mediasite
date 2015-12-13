@@ -17,7 +17,7 @@ Routine to send an email to the user when the account is locked.  Could be the s
 
 Add the ability to deal with user roles.  Will require at least two additional database tables for Roles and UserRoles.  The role should be passed around with the SESSION data and checked where necessary to restrict access to pages as required(Moderate difficulty)
 
-When roles are working, we should be able to add config items to specify who can register new members.  If the application is configured to make registration an admin function, for example, the registration page should become a registration request page and on completion of the page the user should be informed by email that the request is awaiting moderation.  The user's details would be added to the members table, but with an awaiting moderation flag.  There would then have to be a way for the administrator to clear that flag, and a way for the application to check the flag before allowing anyone to log in.
+When roles are working, we should be able to add config items to specify who can register new Users.  If the application is configured to make registration an admin function, for example, the registration page should become a registration request page and on completion of the page the user should be informed by email that the request is awaiting moderation.  The user's details would be added to the Users table, but with an awaiting moderation flag.  There would then have to be a way for the administrator to clear that flag, and a way for the application to check the flag before allowing anyone to log in.
 (Probably fairly easy once the roles have been done)
 
 Installation routine.  It would be really cool if there was an install routine similar to the WordPress' one.

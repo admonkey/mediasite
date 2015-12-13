@@ -2,7 +2,7 @@
 
 /*
 // kick out users unless they are logged in
-session_start();
+sec_session_start();
 if (empty($_SESSION["user_id"])){
   echo "<p class='bg-danger text-danger'>ERROR: Not Logged In</p>";
   die();

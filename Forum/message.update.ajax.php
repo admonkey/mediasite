@@ -15,7 +15,7 @@ if (empty($_POST["message_text"])){
   $message_text = $_POST["message_text"];
 }
 
-session_start();
+sec_session_start();
 if (empty($_SESSION["user_id"])){
   echo "<p class='bg-danger text-danger'>ERROR: Not Logged In</p>";
   die();

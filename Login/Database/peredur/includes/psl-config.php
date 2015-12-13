@@ -25,20 +25,26 @@
  * also go here...
  */
 
+include_once('_resources/credentials.php');
+$require_ssl = true;
+$exclude_html = true;
+require_once('_resources/header.php');
+ 
+ 
 /**
  * These are the database login details
  */
-define("HOST", "localhost"); 			// The host you want to connect to. 
-define("USER", "sec_user"); 			// The database username. 
-define("PASSWORD", "4Fa98xkHVd2XmnfK"); 	// The database password. 
-define("DATABASE", "secure_login");             // The database name.
+define("HOST", "$database_server"); 			// The host you want to connect to. 
+define("USER", "$database_username"); 			// The database username. 
+define("PASSWORD", "$database_password"); 	// The database password. 
+define("DATABASE", "$database_name");             // The database name.
 
 /**
  * Who can register and what the default role will be
  * Values for who can register under a standard setup can be:
  *      any  == anybody can register (default)
- *      admin == members must be registered by an administrator
- *      root  == only the root user can register members
+ *      admin == Users must be registered by an administrator
+ *      root  == only the root user can register Users
  * 
  * Values for default role can be any valid role, but it's hard to see why
  * the default 'member' value should be changed under the standard setup.
@@ -54,5 +60,5 @@ define("DEFAULT_ROLE", "member");
  * 
  * If you are using an HTTPS connection, change this to TRUE
  */
-define("SECURE", FALSE);    // For development purposes only!!!!
+define("SECURE", TRUE);    // For development purposes only!!!!
 
