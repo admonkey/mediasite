@@ -26,13 +26,16 @@ if (isset($_POST['email'], $_POST['p'])) {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['p']; // The hashed password.
     
+    $http_referer_array = explode("?", $_SERVER["HTTP_REFERER"],2);
+    $http_referer_plain = $http_referer_array[0];
+    
     if (login($email, $password, $mysqli) == true) {
         // Login success 
-        header("Location: protected_page.php");
+        header("Location: $http_referer_plain");
         exit();
     } else {
         // Login failed 
-        header('Location: index.php?error=1');
+        header("Location: $http_referer_plain?error=1");
         exit();
     }
 } else {
