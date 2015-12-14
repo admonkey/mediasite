@@ -17,9 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once (__DIR__).'/includes/db_connect.php';
+include_once (__DIR__).'/_resources/peredur.inc.php';
 
-$error_msg = "";
+$registration_error = false;
+function callback_message($error,$message){
+  global $registration_error;
+  $registration_error = $error;
+  $class = ($error ? "danger" : "success");
+  echo "<p><label class='label label-$class'>$message</label></p>";
+}
 
 if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name'], $_POST['last_name'])) {
     // Sanitize and validate the data passed in
@@ -30,14 +36,14 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Not a valid email
-        $error_msg .= '<p class="error">The email address you entered is not valid</p>';
+        callback_message(true,"The email address you entered is not valid.");
     }
     
     $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
     if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
-        $error_msg .= '<p class="error">Invalid password configuration.</p>';
+        callback_message(true,"Invalid password configuration.");
     }
 
     // Username validity and password validity have been checked client side.
@@ -45,7 +51,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
     // breaking these rules.
     //
     
-    $prep_stmt = "SELECT user_id FROM Users WHERE email = ? LIMIT 1";
+    $prep_stmt = "SELECT user_id FROM Users WHERE email = ?";
     $stmt = $mysqli->prepare($prep_stmt);
     
     if ($stmt) {
@@ -55,10 +61,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
         
         if ($stmt->num_rows == 1) {
             // A user with this email address already exists
-            $error_msg .= '<p class="error">A user with this email address already exists.</p>';
+            callback_message(true,"A user with this email address already exists.");
         }
     } else {
-        $error_msg .= '<p class="error">Database error</p>';
+        callback_message(true,"Database error checking unique email.");
     }
     
     // TODO: 
@@ -66,7 +72,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
     // rights to do registration, by checking what type of user is attempting to
     // perform the operation.
 
-    if (empty($error_msg)) {
+    if (empty($registration_error)) {
         // Create a random salt
         $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
 
@@ -78,12 +84,13 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
             $insert_stmt->bind_param('ssssss', $first_name, $last_name, $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
-		die($mysqli->error());
-                //header('Location: error.php?err=Registration failure: INSERT');
-                //exit();
-            }
+		callback_message(true,"Database error on registration insert.");
+            } else callback_message(false,"Registration Success! Now try logging in for the first time.");
         }
-        header("Location: $_SERVER[HTTP_REFERER]?registration_success");
-        exit();
+
     }
 }
+
+require_once((__DIR__)."/_resources/footer.php");
+
+?>

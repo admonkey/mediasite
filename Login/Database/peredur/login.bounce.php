@@ -17,8 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once (__DIR__).'/includes/db_connect.php';
-include_once (__DIR__).'/includes/functions.php';
+include_once (__DIR__).'/_resources/peredur.inc.php';
 
 sec_session_start(); // Our custom secure way of starting a PHP session.
 
@@ -26,7 +25,7 @@ if (isset($_POST['email'], $_POST['p'])) {
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['p']; // The hashed password.
     
-    $http_referer_array = explode("?", $_SERVER["HTTP_REFERER"],2);
+    $http_referer_array = explode("?", $_SERVER["HTTP_REFERER"]);
     $http_referer_plain = $http_referer_array[0];
     
     if (login($email, $password, $mysqli) == true) {
@@ -40,6 +39,9 @@ if (isset($_POST['email'], $_POST['p'])) {
     }
 } else {
     // The correct POST variables were not sent to this page. 
-    header('Location: error.php?err=Could not process login');
-    exit();
+    die("ERROR: Could not process login.");
 }
+
+require_once((__DIR__)."/_resources/footer.php");
+
+?>

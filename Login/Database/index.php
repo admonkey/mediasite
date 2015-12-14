@@ -5,9 +5,6 @@ include_once("_resources/credentials.php");
 $include_jquery_ui = true;
 require_once("_resources/header.php");
 
-if (isset($_GET["registration_success"]))
-  echo "<p><label class='label label-success'>Registration Success! Now try logging in for the first time.</label></p>";
-
 echo "<h1>Authenticate Users from a $section_title Table</h1>";
 
 /* ajax original peredur index
@@ -27,13 +24,11 @@ echo "<h1>Authenticate Users from a $section_title Table</h1>";
 ?>
 
 <?php
-include_once (__DIR__).'/peredur/includes/db_connect.php';
-include_once (__DIR__).'/peredur/includes/functions.php';
+include_once (__DIR__).'/peredur/_resources/peredur.inc.php';
 ?>
 
-<script type="text/JavaScript" src="peredur/js/sha512.js"></script>
-<script type="text/JavaScript" src="peredur/js/forms.js"></script>
-
+<script type="text/JavaScript" src="peredur/_resources/js/sha512.js"></script>
+<script type="text/JavaScript" src="peredur/_resources/js/forms.js"></script>
 
 
 <?php
@@ -55,7 +50,7 @@ if (login_check($mysqli) == true) {
     ?>
 
       <div class='well'>
-	<form action='peredur/process_login.php' method='post' name='login_form' role='form'>
+	<form action='peredur/login.bounce.php' method='post' name='login_form' role='form'>
 	  <div class='form-group'>
 	    <label for='email'>Email:</label>
 	    <input id='email' name='email' type='email' class='form-control' required></input>
@@ -64,7 +59,7 @@ if (login_check($mysqli) == true) {
 	    <label for='password'>Password:</label>
 	    <input id='password' name='password' type='password' class='form-control' required></input>
 	  </div>
-	  <button type='submit' class='btn btn-primary' onclick='formhash(this.form, this.form.password);'>Submit</button>
+	  <button type='submit' class='btn btn-primary' onclick='formhash(this.form);'>Submit</button>
 	</form>
       </div><!-- /.well -->
       
@@ -76,31 +71,29 @@ if (login_check($mysqli) == true) {
   <?php echo "$login_help";?>
 </div><!-- /.well -->
 
-<div id='registration_div' class='well' style='display:none'>
-  <?php
-    if (!empty($error_msg)) {
-	echo $error_msg;
-    }
-  ?>
+<div id='registration_callback_messages' class='well' style='display:none'>
+</div><!-- /#registration_callback_messages.well -->
 
-  <div class='well'>
-  <h3>Constraints</h3>
-  <ul>
-      <li>Usernames may contain only digits, upper and lower case letters and underscores</li>
-      <li>Emails must have a valid email format</li>
-      <li>Passwords must be at least 6 characters long</li>
-      <li>Passwords must contain
-	  <ul>
-	      <li>At least one upper case letter (A..Z)</li>
-	      <li>At least one lower case letter (a..z)</li>
-	      <li>At least one number (0..9)</li>
-	  </ul>
-      </li>
-      <li>Your password and confirmation must match exactly</li>
-  </ul>
-  </div>
+<div id='registration_div' class='well' style='display:none'>
+
+  <div id='registration_constraints' class='well'>
+    <h3>Constraints</h3>
+    <ul>
+	<li>Usernames may contain only digits, upper and lower case letters and underscores.</li>
+	<li>Emails must have a valid email format.</li>
+	<li>Passwords must be at least 6 characters long.</li>
+	<li>Passwords must contain:
+	    <ul>
+		<li>At least one upper case letter (A..Z)</li>
+		<li>At least one lower case letter (a..z)</li>
+		<li>At least one number (0..9)</li>
+	    </ul>
+	</li>
+	<li>Your password and confirmation must match exactly.</li>
+    </ul>
+  </div><!-- /#registration_constraints.well -->
   
-  <form action='peredur/register.bounce.php' method='post' name='registration_form' role='form'>
+  <form id='registration_form' onsubmit='return false' role='form'>
     <div class='form-group'>
       <label for='first_name'>First Name:</label>
       <input id='first_name' name='first_name' type='text' class='form-control' required></input>
@@ -125,18 +118,11 @@ if (login_check($mysqli) == true) {
       <label for='confirmpwd'>Confirm Password:</label>
       <input id='confirmpwd' name='confirmpwd' type='password' class='form-control' required></input>
     </div>
-    <button type='submit' class='btn btn-primary' 
-      onclick='return regformhash(
-	this.form,
-	this.form.username,
-	this.form.email,
-	this.form.password,
-	this.form.confirmpwd
-      );'>Register
-    </button>
+    <button onclick='submit_registration(this.form)' type='submit' class='btn btn-primary'>Submit</button>
   </form>
   
 </div><!-- /.well -->
 
 
 <?php require_once("_resources/footer.php");?>
+

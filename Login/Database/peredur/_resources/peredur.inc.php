@@ -1,48 +1,43 @@
 <?php
 
-/*
- * Copyright (C) 2013 peredur.net
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+require_once((__DIR__)."/header.php");
+
+/**
+ * These are the database login details
  */
+define("HOST", "$database_server"); 			// The host you want to connect to. 
+define("USER", "$database_username"); 			// The database username. 
+define("PASSWORD", "$database_password"); 	// The database password. 
+define("DATABASE", "$database_name");             // The database name.
 
-include_once (__DIR__).'/psl-config.php';
-/*
-function sec_session_start() {
-    $session_name = 'sec_session_id';   // Set a custom session name 
-    $secure = SECURE;
+/**
+ * Who can register and what the default role will be
+ * Values for who can register under a standard setup can be:
+ *      any  == anybody can register (default)
+ *      admin == Users must be registered by an administrator
+ *      root  == only the root user can register Users
+ * 
+ * Values for default role can be any valid role, but it's hard to see why
+ * the default 'member' value should be changed under the standard setup.
+ * However, additional roles can be added and so there's nothing stopping
+ * anyone from defining a different default.
+ */
+define("CAN_REGISTER", "any");
+define("DEFAULT_ROLE", "member");
 
-    // This stops JavaScript being able to access the session id.
-    $httponly = true;
+/**
+ * Is this a secure connection?  The default is FALSE, but the use of an
+ * HTTPS connection for logging in is recommended.
+ * 
+ * If you are using an HTTPS connection, change this to TRUE
+ */
+define("SECURE", (empty($require_ssl) ? FALSE : $require_ssl));
 
-    // Forces sessions to only use cookies.
-    if (ini_set('session.use_only_cookies', 1) === FALSE) {
-        header("Location: error.php?err=Could not initiate a safe session (ini_set)");
-        exit();
-    }
-
-    // Gets current cookies params.
-    $cookieParams = session_get_cookie_params();
-    session_set_cookie_params($cookieParams["lifetime"], $cookieParams["path"], $cookieParams["domain"], $secure, $httponly);
-
-    // Sets the session name to the one set above.
-    session_name($session_name);
-
-    session_start();            // Start the PHP session 
-    session_regenerate_id();    // regenerated the session, delete the old one. 
+$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
+if ($mysqli->connect_error) {
+    die($mysqli->error());
 }
-*/
+
 
 function login($email, $password, $mysqli) {
     // Using prepared statements means that SQL injection is not possible. 
@@ -90,9 +85,9 @@ function login($email, $password, $mysqli) {
                     // Password is not correct 
                     // We record this attempt in the database 
                     $now = time();
-                    if (!$mysqli->query("INSERT INTO Users_Login_Attempts(user_id, time) 
+                    if (!$mysqli->query("INSERT INTO User_Login_Attempts(user_id, time) 
                                     VALUES ('$user_id', '$now')")) {
-                        header("Location: error.php?err=Database error: Users_Login_Attempts");
+                        header("Location: error.php?err=Database error: User_Login_Attempts");
                         exit();
                     }
 
@@ -118,7 +113,7 @@ function checkbrute($user_id, $mysqli) {
     $valid_attempts = $now - (2 * 60 * 60);
 
     if ($stmt = $mysqli->prepare("SELECT time 
-                                  FROM Users_Login_Attempts 
+                                  FROM User_Login_Attempts 
                                   WHERE user_id = ? AND time > '$valid_attempts'")) {
         $stmt->bind_param('i', $user_id);
 
@@ -215,3 +210,6 @@ function esc_url($url) {
         return $url;
     }
 }
+
+
+?>
