@@ -50,6 +50,8 @@ include_once (__DIR__).'/includes/functions.php';
             <li>Your password and confirmation must match exactly</li>
         </ul>
         <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
+            first_name: <input type='text' name='first_name' id='first_name' /><br>
+            last_name: <input type='text' name='last_name' id='last_name' /><br>
             Username: <input type='text' name='username' id='username' /><br>
             Email: <input type="text" name="email" id="email" /><br>
             Password: <input type="password"

@@ -22,9 +22,11 @@ include_once (__DIR__).'/psl-config.php';
 
 $error_msg = "";
 
-if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name'], $_POST['last_name'])) {
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
+    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -44,7 +46,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     // breaking these rules.
     //
     
-    $prep_stmt = "SELECT id FROM Users WHERE email = ? LIMIT 1";
+    $prep_stmt = "SELECT user_id FROM Users WHERE email = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
     
     if ($stmt) {
@@ -73,11 +75,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         $password = hash('sha512', $password . $random_salt);
 
         // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO Users (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO Users (first_name, last_name, username, email, password, salt) VALUES (?, ?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('ssssss', $first_name, $last_name, $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
-                header('Location: error.php?err=Registration failure: INSERT');
+		echo $insert_stmt->error();
+                //header('Location: error.php?err=Registration failure: INSERT');
                 exit();
             }
         }
