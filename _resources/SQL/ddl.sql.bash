@@ -14,7 +14,7 @@ sql_files=( \
 cd $( dirname "${BASH_SOURCE[0]}" )
 cd ../..
 
-for sql in "${ddl_files[@]}"
+for sql in "${sql_files[@]}"
 do
   mysql --host=localhost --user=username --password=p@55W0rd --database=example_database < $sql
 done
