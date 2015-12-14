@@ -12,22 +12,6 @@ echo "<h1>$section_title</h1>";
 
 <p class='lead'>Make sure you have read <a href='rules.php'>the rules</a>.</p>
 
-<?php
-// default login
-if (isset($_GET["default"])){
-	$_SESSION["user_id"] = -1;
-	$_SESSION["username"] = "Default";
-	header("Location: $_SERVER[SCRIPT_NAME]");
-}
-elseif (isset($_GET["admin"])) {
-	$_SESSION["user_id"] = -2;
-	$_SESSION["username"] = "Admin";
-	$_SESSION["admin"] = 1;
-	header("Location: $_SERVER[SCRIPT_NAME]");
-}
-?>
-
-
 <div id='page_controls' class='row'>
 	<div class='col-xs-6'><p id='show_list_of_threads'><a href='javascript:void(0)' onclick='fetch_threads()' class='btn btn-primary'>Show/Hide Threads</a></p></div>
 	<div class='col-xs-6'><p><a href='javascript:void(0)' onclick='create_thread()' class='btn btn-success'>Create New Thread</a></p></div>
@@ -183,8 +167,7 @@ elseif (isset($_GET["admin"])) {
 <?php
 if (!isset($_SESSION["user_id"])) { ?>
 
-	<p><a href='?default' class='btn btn-primary'>Login as 'Default'</a></p>
-	<p><a href='?admin' class='btn btn-danger'>Login as 'Admin'</a></p>
+	<p><a href='javascript:void(0)' class='btn btn-danger'>Not Logged In</a></p>
 
 <?php } else { ?>
 
