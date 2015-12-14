@@ -17,8 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once (__DIR__).'/db_connect.php';
-include_once (__DIR__).'/psl-config.php';
+include_once (__DIR__).'/includes/db_connect.php';
 
 $error_msg = "";
 
@@ -79,12 +78,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
             $insert_stmt->bind_param('ssssss', $first_name, $last_name, $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
-		echo $insert_stmt->error();
+		die($mysqli->error());
                 //header('Location: error.php?err=Registration failure: INSERT');
-                exit();
+                //exit();
             }
         }
-        header('Location: ./register_success.php');
+        header("Location: $_SERVER[HTTP_REFERER]?registration_success");
         exit();
     }
 }
