@@ -48,7 +48,7 @@ if (login_check($mysqli) == true) {
 } else {
     $login_help .= "
       <p>You are currently logged <label class='label label-danger'>out</label></p>
-      <p>If you are done, please <a href='?logout' class='btn btn-danger'>log out</a></p>
+      <p>If you don't have a login, please <a href='peredur/register.php' class='btn btn-primary'>register</a></p>
     ";
     ?>
 
