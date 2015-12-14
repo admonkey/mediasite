@@ -33,10 +33,6 @@ include_once (__DIR__).'/peredur/_resources/peredur.inc.php';
 
 <?php
 $login_help = "";
-if (isset($_GET['error'])) {
-    $login_help .= "<p><label class='label label-danger'>Error Logging In!</label></p>";
-}
-
 if (login_check($mysqli) == true) {
     $login_help .= "
       <p><label class='label label-success'>You are currently logged in as '$_SESSION[username]'.</label></p>
@@ -50,6 +46,11 @@ if (login_check($mysqli) == true) {
     ?>
 
       <div class='well'>
+      <?php
+	if (isset($_GET['error'])) {
+	    echo "<p><label class='label label-danger'>Error Logging In!</label></p>";
+	}
+      ?>
 	<form action='peredur/login.bounce.php' method='post' name='login_form' role='form'>
 	  <div class='form-group'>
 	    <label for='email'>Email:</label>
