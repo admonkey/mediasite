@@ -21,6 +21,10 @@ if ( ! (isset($_POST["message_thread_id"]) && is_numeric($_POST["message_thread_
   }
 }
 
+include_once('_resources/credentials.php');
+$include_mysql = true;
+require_once('_resources/header.php');
+
 sec_session_start();
 if (empty($_SESSION["user_id"])){
   echo "<p class='bg-danger text-danger'>ERROR: Not Logged In</p>";
@@ -28,10 +32,6 @@ if (empty($_SESSION["user_id"])){
 } else {
   $message_author_user_id = $_SESSION["user_id"];
 }
-
-include_once('_resources/credentials.php');
-$include_mysql = true;
-require_once('_resources/header.php');
 
 ?>
 

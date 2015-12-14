@@ -8,6 +8,10 @@ if ( !empty($_GET["message_id"]) && is_numeric($_GET["message_id"]) ){
   die();
 }
 
+include_once('_resources/credentials.php');
+$include_mysql = true;
+require_once('_resources/header.php');
+
 sec_session_start();
 if (empty($_SESSION["user_id"])){
   echo "<p class='bg-danger text-danger'>ERROR: Not Logged In</p>";
@@ -18,10 +22,6 @@ if (empty($_SESSION["user_id"])){
 
 if (isset($_GET["restore"])) $deleted = 0;
 else $deleted = 1;
-
-include_once('_resources/credentials.php');
-$include_mysql = true;
-require_once('_resources/header.php');
 
 ?>
 
