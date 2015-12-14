@@ -72,8 +72,14 @@ function submit_registration(form){
     var serialized_data = $(form).serialize();
     $.post('peredur/register.ajax.php', serialized_data, function(result) {
       $("#registration_div").hide("blind",function(){
-	$("#registration_callback_messages").html(result);
-	$("#registration_callback_messages").show("blind");
+	$("#registration_callback_messages").hide("blind",function(){
+	  $("#registration_callback_messages").html(result);
+	  $("#registration_callback_messages").show("blind",function(){
+	    if( $("#registration_callback_messages").find("label").hasClass("label-danger") ){
+	      $("#registration_div").show("blind");
+	    }
+	  });
+	});
       });
     });
   }
