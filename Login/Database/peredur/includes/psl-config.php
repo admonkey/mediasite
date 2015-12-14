@@ -60,5 +60,5 @@ define("DEFAULT_ROLE", "member");
  * 
  * If you are using an HTTPS connection, change this to TRUE
  */
-define("SECURE", TRUE);    // For development purposes only!!!!
+define("SECURE", (empty($require_ssl) ? FALSE : $require_ssl));    // For development purposes only!!!!
 

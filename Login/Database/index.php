@@ -42,12 +42,12 @@ if (isset($_GET['error'])) {
 
 if (login_check($mysqli) == true) {
     $login_help .= "
-      <p>You are currently logged <label class='label label-success'>in</label></p>
+      <p><label class='label label-success'>You are currently logged in as '$_SESSION[username]'.</label></p>
       <p>If you are done, please <a href='?logout' class='btn btn-danger'>log out</a></p>
     ";
 } else {
     $login_help .= "
-      <p>You are currently logged <label class='label label-danger'>out</label></p>
+      <p><label class='label label-danger'>You are currently logged out.</label></p>
       <p>If you don't have a login, please <a href='peredur/register.php' class='btn btn-primary'>register</a></p>
     ";
     ?>

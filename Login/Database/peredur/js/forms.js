@@ -25,11 +25,13 @@ function formhash(form, password) {
     p.type = "hidden";
     p.value = hex_sha512(password.value);
 
-    // Make sure the plaintext password doesn't get sent. 
-    password.value = "";
+    // Make sure the plaintext password doesn't get sent.
+    if (password.value !== "") {
+      password.value = p.value;
+    }
 
     // Finally submit the form. 
-    form.submit();
+    //form.submit();
 }
 
 function regformhash(form, uid, email, password, conf) {
