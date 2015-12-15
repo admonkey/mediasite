@@ -12,6 +12,22 @@ $page_header = ( !empty($page_title) ? $page_title : $section_title );
 
 echo "<h1>$page_header</h1>";
 
+if ( !empty($array_profile) ) {
+
+  echo "
+  <div class='well'>
+    
+  </div>
+  ";
+
+  echo "<div class='well'>"; var_dump($array_profile); echo "</div>";
+
+} else {
+
+  echo "list of profiles";
+
+}
+
 ?>
 
 <?php require_once('_resources/footer.inc.php');?>
