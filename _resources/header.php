@@ -41,7 +41,7 @@ include_once((__DIR__) . '/credentials.php');
 
 
 // custom functions
-function prepare_sql_input($text){
+function mysqlo_prepare_input($text){
 
 	$text = htmlentities($text);
 
