@@ -1,8 +1,8 @@
 <?php
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 $page_title = "Rules";
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "<h1>$page_title</h1>";
 
@@ -26,4 +26,4 @@ echo "<h1>$page_title</h1>";
 
 <?php echo "<a href='./' class='btn btn-default'>Go to the Forum</a>"; ?>
 
-<?php require_once('_resources/footer.php');?>
+<?php require_once('_resources/footer.inc.php');?>

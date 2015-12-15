@@ -37,7 +37,7 @@ sec_session_start();
 
 
 // variable definitions
-include_once((__DIR__) . '/credentials.php');
+include_once((__DIR__) . '/credentials.inc.php');
 
 
 // custom functions

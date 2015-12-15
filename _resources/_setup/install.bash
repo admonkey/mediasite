@@ -150,8 +150,8 @@ fi
 
 # TRUMP DEFAULT WITH SITENAME IN CREDENTIALS FILE
 if $set_php_site_title ; then
-  echo "Creating web site PHP variables '_resources/credentials.php'"
-  echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/_resources/credentials_local.php
+  echo "Creating web site PHP variables '_resources/credentials.inc.php'"
+  echo "<?php \$site_title = '$siteName'; ?>" >> $vhostDirectory/_resources/credentials_local.inc.php
 fi
 
 

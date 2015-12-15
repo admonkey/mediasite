@@ -7,7 +7,7 @@ $ldap_server = "ldap.example.com";
 $ldap_dc_domain = "example";
 $ldap_dc_tld = "com";
 
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "
 
@@ -74,6 +74,6 @@ if(isset($_POST['ldap_login_username']) && isset($_POST['ldap_login_password']))
 echo "</div><!-- /#login.well -->";
 
 // footer
-require_once('_resources/footer.php');
+require_once('_resources/footer.inc.php');
 
 ?>

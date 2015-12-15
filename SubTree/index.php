@@ -1,8 +1,8 @@
 <?php
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 //$page_title = "Home Page";
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "<h1>$section_title Tips</h1>";
 
@@ -82,4 +82,4 @@ echo "<h1>$section_title Tips</h1>";
 
 <a href="https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec" class="btn btn-default" target="_blank">Read More About Subtrees @porteneuve</a>
 
-<?php require_once('_resources/footer.php');?>
+<?php require_once('_resources/footer.inc.php');?>

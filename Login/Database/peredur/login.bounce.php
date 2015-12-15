@@ -42,6 +42,6 @@ if (isset($_POST['email'], $_POST['p'])) {
     die("ERROR: Could not process login.");
 }
 
-require_once((__DIR__)."/_resources/footer.php");
+require_once((__DIR__)."/_resources/footer.inc.php");
 
 ?>

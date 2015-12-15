@@ -1,9 +1,9 @@
 <?php
 
-include_once("_resources/credentials.php");
+include_once("_resources/credentials.inc.php");
 //$page_title = "Home Page";
 $include_jquery_ui = true;
-require_once("_resources/header.php");
+require_once("_resources/header.inc.php");
 
 echo "<h1>Authenticate Users from a $section_title Table</h1>";
 
@@ -111,5 +111,5 @@ if (login_check($mysqli) == true) {
 </div><!-- /.well -->
 
 
-<?php require_once("_resources/footer.php");?>
+<?php require_once("_resources/footer.inc.php");?>
 

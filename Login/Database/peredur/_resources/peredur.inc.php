@@ -1,6 +1,6 @@
 <?php
 
-require_once((__DIR__)."/header.php");
+require_once((__DIR__)."/header.inc.php");
 
 /**
  * These are the database login details

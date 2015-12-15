@@ -33,7 +33,7 @@ Might work elsewhere, but designed and tested on:
 - Server alias path can't have a folder with the same name as one in server root path to files. [details](#bug_alias)
 
 ## Notes
-- In the `/_resources/header.php` file, you should notice definitions for `$path_real_root`  
+- In the `/_resources/header.inc.php` file, you should notice definitions for `$path_real_root`  
   and `$path_web_relative_root`. These variables allow the template to run flexibly in different  
   configurations without breaking links to reference files.
   - At the root of a web server host. (www.example.com)

@@ -2,7 +2,7 @@
 
 $page_title = "Apache LDAP Basic Authentication";
 
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "
 
@@ -36,6 +36,6 @@ echo "
 ";
 
 // footer
-require_once('_resources/footer.php');
+require_once('_resources/footer.inc.php');
 
 ?>

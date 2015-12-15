@@ -1,8 +1,8 @@
 <?php
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 //$page_title = "Home Page";
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "<h1>Responsive $section_title</h1>"; ?>
 
@@ -23,4 +23,4 @@ echo "<h1>Responsive $section_title</h1>"; ?>
 </div>
 </div><!-- /.well -->
 
-<?php require_once('_resources/footer.php');?>
+<?php require_once('_resources/footer.inc.php');?>

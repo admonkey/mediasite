@@ -17,9 +17,9 @@ if (empty($_SESSION["user_id"])){
 }
 */
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 $include_mysqlo = true;
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 ?>
 
@@ -44,5 +44,5 @@ if( !empty($mysqlo_connected) ){
 
 ?>
 
-<?php require_once('_resources/footer.php');?>
+<?php require_once('_resources/footer.inc.php');?>
 </div>

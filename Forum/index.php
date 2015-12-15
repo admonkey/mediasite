@@ -1,10 +1,10 @@
 <?php
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 $include_jquery_ui = true;
 $include_tablesorter = true;
 $include_mysqlo = true;
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "<h1>$section_title</h1>";
 
@@ -209,4 +209,4 @@ if (!isset($_SESSION["user_id"])) { ?>
 
 <?php } // END if (!isset($_SESSION["user_id"])) ?>
 
-<?php require_once('_resources/footer.php');?>
+<?php require_once('_resources/footer.inc.php');?>

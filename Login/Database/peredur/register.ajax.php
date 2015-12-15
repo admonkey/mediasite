@@ -91,6 +91,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['first_name']
     }
 }
 
-require_once((__DIR__)."/_resources/footer.php");
+require_once((__DIR__)."/_resources/footer.inc.php");
 
 ?>

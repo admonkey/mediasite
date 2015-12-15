@@ -1,11 +1,11 @@
 <?php
 
-include_once('_resources/credentials.php');
+include_once('_resources/credentials.inc.php');
 $require_ssl = true;
 $ldap_server = "ldap.example.com";
 // $page_title = "Home Page";
 // $section_title = "Root Section";
-require_once('_resources/header.php');
+require_once('_resources/header.inc.php');
 
 echo "
 
@@ -28,6 +28,6 @@ echo "
 ";
 
 // footer
-require_once('_resources/footer.php');
+require_once('_resources/footer.inc.php');
 
 ?>
