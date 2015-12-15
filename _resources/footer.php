@@ -98,13 +98,7 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 <?php
 } // END if exclude html
 
-
-/*
-  suppressed error message if no connection open
-  probably not the best way to handle the situation
-  http://stackoverflow.com/questions/3075116/php-how-to-determine-if-a-database-connection-is-open
-*/
-
-@mysql_close(); 
+if (!empty($mysqli_connected)) $mysqli_connection->close();
+if (!empty($mysqlo_connected)) mysql_close();
 
 ?>

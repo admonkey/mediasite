@@ -119,11 +119,14 @@ function sec_session_start() {
 
 // MySQL
 if ( !empty($include_mysqli) ) {
-  $mysqli_connected = new mysqli($database_server, $database_username, $database_password, $database_name);
-  if ($mysqli_connected->connect_error) {
-      die($mysqli_connected->error());
-  }
+
+  $mysqli_connection = new mysqli($database_server, $database_username, $database_password, $database_name);
+  if ($mysqli_connection->connect_error) {
+      die($mysqli_connection->error());
+  } else $mysqli_connected = true;
+
 } elseif ( !empty($include_mysqlo) ) {
+
   // connection
   /*
 	using deprecated mysql_connect()
@@ -137,6 +140,7 @@ if ( !empty($include_mysqli) ) {
   
   if ($mysqlo_connection && $mysqlo_selected)
     $mysqlo_connected = true;
+
 }
 
 
