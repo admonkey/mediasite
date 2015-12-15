@@ -37,7 +37,7 @@ if (empty($_SESSION["user_id"])){
 
 <?php
 
-if( !empty($mysql_connection) ){
+if( !empty($mysqlo_connection) ){
 
 	$message_text = prepare_sql_input($message_text);
 

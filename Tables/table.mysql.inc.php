@@ -1,6 +1,6 @@
 <?php
 
-if( isset($mysql_connection) && $mysql_connection ){
+if( isset($mysqlo_connection) && $mysqlo_connection ){
     
     $sql="
 	    SELECT *

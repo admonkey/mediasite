@@ -25,7 +25,7 @@ require_once('_resources/header.php');
 
 <?php
 
-if( !empty($mysql_connection) ){
+if( !empty($mysqlo_connection) ){
     
     $sql="CALL Forum_proc_Fetch_Messages($thread_id);";
     $result = mysql_query($sql) or die(mysql_error());

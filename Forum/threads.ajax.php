@@ -15,7 +15,7 @@ require_once('_resources/header.php');
 
 
 // list of threads
-if( !empty($mysql_connection) ){
+if( !empty($mysqlo_connection) ){
     
     $sql="
 	SELECT t.thread_id, t.thread_name,

@@ -27,7 +27,7 @@ if (empty($_SESSION["user_id"])){
   $user_id = $_SESSION["user_id"];
 }
 
-if( !empty($mysql_connection) ){
+if( !empty($mysqlo_connection) ){
 
 	$message_text = prepare_sql_input($message_text);
 

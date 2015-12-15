@@ -118,20 +118,25 @@ function sec_session_start() {
 
 
 // MySQL
-if ( !empty($include_mysqlo) ) {
+if ( !empty($include_mysqli) ) {
+  $mysqli_connected = new mysqli($database_server, $database_username, $database_password, $database_name);
+  if ($mysqli_connected->connect_error) {
+      die($mysqli_connected->error());
+  }
+} elseif ( !empty($include_mysqlo) ) {
   // connection
   /*
 	using deprecated mysql_connect()
 	will need to upgrade to mysqli ASAP
 	until then, silence server error notice
   */
-  $mysql_connected = @mysql_connect($database_server, $database_username, $database_password);
+  $mysqlo_connected = @mysql_connect($database_server, $database_username, $database_password);
 
   // use database
-  $mysql_selected = mysql_select_db($database_name,$mysql_connected);
+  $mysqlo_selected = mysql_select_db($database_name,$mysqlo_connected);
   
-  if ($mysql_connected && $mysql_selected)
-    $mysql_connection = true;
+  if ($mysqlo_connected && $mysqlo_selected)
+    $mysqlo_connection = true;
 }
 
 
