@@ -91,7 +91,7 @@ function login($email, $password, $mysqli) {
 		    while($row = $result_groups->fetch_array(MYSQLI_NUM)){
 		      $array_groups["$row[0]"] = true;
 		    }
-		    if(!empty($array_groups)) $_SESSION["groups"] = $array_groups;
+		    if(!empty($array_groups)) $_SESSION["user_groups"] = $array_groups;
 
                     // Login successful. 
                     return true;
