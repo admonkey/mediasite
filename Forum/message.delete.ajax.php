@@ -9,7 +9,7 @@ if ( !empty($_GET["message_id"]) && is_numeric($_GET["message_id"]) ){
 }
 
 include_once('_resources/credentials.php');
-$include_mysql = true;
+$include_mysqlo = true;
 require_once('_resources/header.php');
 
 sec_session_start();
@@ -43,7 +43,7 @@ if( !empty($mysql_connection) ){
 
     // help connecting to database
     echo "<p class='bg-danger text-danger'>ERROR: Not Connected to Database</p>";
-    include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
+    include("$path_real_root/_resources/SQL/database.help.inc.html");
 
 }
 

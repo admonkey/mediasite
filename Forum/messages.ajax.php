@@ -18,7 +18,7 @@ if (empty($_SESSION["user_id"])){
 */
 
 include_once('_resources/credentials.php');
-$include_mysql = true;
+$include_mysqlo = true;
 require_once('_resources/header.php');
 
 ?>
@@ -38,7 +38,7 @@ if( !empty($mysql_connection) ){
 
     // help connecting to database
     echo "ERROR: not connected to MySQL";
-    include("$path_real_relative_root/_resources/SQL/database.help.inc.html");
+    include("$path_real_root/_resources/SQL/database.help.inc.html");
 
 }
 
