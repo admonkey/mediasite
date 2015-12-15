@@ -8,6 +8,7 @@ echo "
   <li><a href='$path_web_root/Tables/'>Tables</a></li>
   <li><a href='$path_web_root/FancyBox/'>FancyBox</a></li>
   <li><a href='$path_web_root/Embed/'>Embed</a></li>
+  <li><a href='$path_web_root/Profile/'>Profile</a></li>
 
 ";
 
