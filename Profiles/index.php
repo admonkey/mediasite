@@ -1,16 +1,16 @@
 <?php
 
-// validate user_id greater than zero
+// if individual profile, then validate user_id greater than zero
 if ( !empty($_GET["user_id"]) && is_numeric($_GET["user_id"]) && $_GET["user_id"] > 0 ) {
   $user_id = $_GET["user_id"];
   require_once("profile.inc.php");
 }
 
-//$page_title = "Home Page";
-
 require_once('_resources/header.inc.php');
 
-echo "<h1>$section_title</h1>";
+$page_header = ( !empty($page_title) ? $page_title : $section_title );
+
+echo "<h1>$page_header</h1>";
 
 ?>
 
