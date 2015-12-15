@@ -3,7 +3,7 @@
 include_once('_resources/credentials.php');
 $include_jquery_ui = true;
 $include_tablesorter = true;
-$include_mysql = true;
+$include_mysqlo = true;
 require_once('_resources/header.php');
 
 echo "<h1>$section_title</h1>";

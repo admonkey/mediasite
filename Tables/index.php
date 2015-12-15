@@ -3,7 +3,7 @@
 include_once("_resources/credentials.php");
 //$page_title = "Home Page";
 $include_tablesorter = true;
-$include_mysql = true;
+$include_mysqlo = true;
 require_once("_resources/header.php");
 
 echo "<h1>Sortable $section_title</h1>";
