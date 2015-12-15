@@ -1,8 +1,9 @@
 <?php
 
+// validate user_id greater than zero
 if ( !empty($_GET["user_id"]) && is_numeric($_GET["user_id"]) && $_GET["user_id"] > 0 ) {
   $user_id = $_GET["user_id"];
-  include_once("profile.inc.php");
+  require_once("profile.inc.php");
 }
 
 //$page_title = "Home Page";

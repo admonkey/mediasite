@@ -6,7 +6,7 @@ $parent_section_credentials_file = dirname(dirname(__DIR__))."/_resources/creden
 require_once($parent_section_credentials_file);
 
 
-$section_title = "Profile";
+$section_title = "Profiles";
 
 
 // *** Must be last line in credentials file! ***
