@@ -27,7 +27,7 @@ else $deleted = 1;
 
 <?php
 
-if( !empty($mysqlo_connection) ){
+if( !empty($mysqlo_connected) ){
 
     $sql="CALL Forum_proc_Delete_Message($user_id, $message_id, $deleted)";
     $result = mysql_query($sql) or die(mysql_error());

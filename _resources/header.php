@@ -130,13 +130,13 @@ if ( !empty($include_mysqli) ) {
 	will need to upgrade to mysqli ASAP
 	until then, silence server error notice
   */
-  $mysqlo_connected = @mysql_connect($database_server, $database_username, $database_password);
+  $mysqlo_connection = @mysql_connect($database_server, $database_username, $database_password);
 
   // use database
-  $mysqlo_selected = mysql_select_db($database_name,$mysqlo_connected);
+  $mysqlo_selected = mysql_select_db($database_name,$mysqlo_connection);
   
-  if ($mysqlo_connected && $mysqlo_selected)
-    $mysqlo_connection = true;
+  if ($mysqlo_connection && $mysqlo_selected)
+    $mysqlo_connected = true;
 }
 
 
