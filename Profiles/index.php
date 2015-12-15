@@ -16,11 +16,18 @@ if ( !empty($array_profile) ) {
 
   echo "
   <div class='well'>
-    
+
+    <label for='first_name'>First Name:</label>
+    <p id='first_name'>$array_profile[first_name]</p>
+
+    <label for='last_name'>Last Name:</label>
+    <p id='last_name'>$array_profile[last_name]</p>
+
+    <label for='email'>Email:</label>
+    <p id='email'>$array_profile[email]</p>
+
   </div>
   ";
-
-  echo "<div class='well'>"; var_dump($array_profile); echo "</div>";
 
 } else {
 
