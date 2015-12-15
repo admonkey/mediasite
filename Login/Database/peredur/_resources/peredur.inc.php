@@ -78,6 +78,20 @@ function login($email, $password, $mysqli) {
 
                     $_SESSION['username'] = $username;
                     $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
+                    
+                    // get user groups
+                    $query_groups = "
+		      SELECT group_name
+		      FROM `User_Groups` g
+		      INNER JOIN `User_Groups-link` l
+			ON g.group_id = l.group_id
+		      WHERE l.user_id = $user_id";
+		    $result_groups = $mysqli->query($query_groups);
+		    $array_groups = array();
+		    while($row = $result_groups->fetch_array(MYSQLI_NUM)){
+		      $array_groups["$row[0]"] = true;
+		    }
+		    if(!empty($array_groups)) $_SESSION["groups"] = $array_groups;
 
                     // Login successful. 
                     return true;

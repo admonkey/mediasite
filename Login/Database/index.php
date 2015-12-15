@@ -7,20 +7,6 @@ require_once("_resources/header.php");
 
 echo "<h1>Authenticate Users from a $section_title Table</h1>";
 
-/* ajax original peredur index
-<div id='peredur_wrapper' class='well'>
-  <div id='peredur_div'></div><!-- /#peredur_div -->
-</div><!-- /#peredur_wrapper.well -->
-<script>
-    $.ajax({
-      url: "peredur/index.php", 
-      success: function(result){
-	    $("#peredur_div").html(result);
-      },
-      cache: false
-    });
-</script>
-*/
 ?>
 
 <?php
