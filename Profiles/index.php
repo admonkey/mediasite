@@ -6,7 +6,8 @@ $include_mysqli = true;
 if ( !empty($_GET["user_id"]) && is_numeric($_GET["user_id"]) && $_GET["user_id"] > 0 ) {
   $user_id = $_GET["user_id"];
   require_once("profile.inc.php");
-} else {
+}
+if (empty($array_profile)) {
   $user_id = false;
   $include_tablesorter = true;
 }
