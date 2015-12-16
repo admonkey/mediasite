@@ -1,19 +1,24 @@
 <?php
 
+$include_mysqli = true;
+
 // if individual profile, then validate user_id greater than zero
 if ( !empty($_GET["user_id"]) && is_numeric($_GET["user_id"]) && $_GET["user_id"] > 0 ) {
   $user_id = $_GET["user_id"];
   require_once("profile.inc.php");
-} else $user_id = false;
+} else {
+  $user_id = false;
+  $include_tablesorter = true;
+}
 
-$include_jquery_ui = true;
 require_once('_resources/header.inc.php');
 
 $page_header = ( !empty($page_title) ? $page_title : $section_title );
 
 echo "<h1>$page_header</h1>";
 
-if ( !empty($array_profile) ) {
+// print body of individual profile
+if ( !empty($user_id) && !empty($array_profile) ) {
 
   if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] === $user_id) { 
 
@@ -53,9 +58,11 @@ if ( !empty($array_profile) ) {
   </div>
   ";
 
-} else {
+}
+else // print list of profiles
+{
 
-  echo "list of profiles";
+  require_once("profiles.inc.php");
 
 }
 
