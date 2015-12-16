@@ -25,12 +25,15 @@ fake_data_files=( \
 
 # move to working directory
 cd $( dirname "${BASH_SOURCE[0]}" )
-cd ../..
 
 # trump credentials if external file exists
 if [ -f credentials_local.bash ]; then
   source credentials_local.bash
 fi
+
+# move to site root directory
+cd ../..
+
 
 if $include_fake_data; then
   for sql in "${fake_data_files[@]}"
