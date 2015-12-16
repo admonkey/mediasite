@@ -4,7 +4,7 @@
 if ( !empty($_GET["user_id"]) && is_numeric($_GET["user_id"]) && $_GET["user_id"] > 0 ) {
   $user_id = $_GET["user_id"];
   require_once("profile.inc.php");
-}
+} else $user_id = false;
 
 $include_jquery_ui = true;
 require_once('_resources/header.inc.php');
@@ -17,7 +17,7 @@ if ( !empty($array_profile) ) {
 
   if ($array_profile["private"] === "1") { $class = "danger"; $privacy = "Private"; }
   else { $class = "success"; $privacy = "Public"; }
-  echo "<div id='privacy_div' class='well'><p>This profile is <a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div>";
+  echo "<div id='privacy_div_wrapper'><div id='privacy_div' class='well'><p>This profile is <a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div></div>";
 
   echo "
   <div class='well'>
@@ -49,10 +49,7 @@ if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] === $user_id) { ?>
     } else  new_privacy_value = "1";
     $.ajax({url: "privatize.ajax.php?user_id=<?php echo $_SESSION["user_id"];?>&privatize=" + new_privacy_value, 
       success: function(result){
-	$("#privacy_div").hide("blind",function(){
 	  $("#privacy_div").html(result);
-	  $("#privacy_div").show("blind");
-	});
       }
     });
   }
