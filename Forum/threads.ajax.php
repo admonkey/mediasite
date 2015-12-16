@@ -22,10 +22,13 @@ if( !empty($mysqlo_connected) ){
 		mm.count_message_id,
 		mm.max_message_id,
 		m.message_creation_time,
-		m.message_author_user_id
+		m.message_author_user_id,
+		u.username
 	FROM Forum_Threads t
 	JOIN Forum_Messages m
 		ON t.thread_id = m.message_thread_id
+	JOIN Users u
+		ON u.user_id = m.message_author_user_id
 	JOIN (
 	    SELECT message_thread_id,
 		MAX(message_id) AS max_message_id,
@@ -62,7 +65,7 @@ if( !empty($mysqlo_connected) ){
 				<td><message_data thread_id='$row[thread_id]' thread_name='$row[thread_name]'></message_data>$row[thread_name]</td>
 				<th>$row[count_message_id]</th>
 				<td>$row[message_creation_time]</td>
-				<td>message_author_user_id $row[message_author_user_id]</td>
+				<td>$row[username]</td>
 			</tr>\n";
     
 	// close table
