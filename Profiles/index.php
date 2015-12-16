@@ -15,9 +15,28 @@ echo "<h1>$page_header</h1>";
 
 if ( !empty($array_profile) ) {
 
-  if ($array_profile["private"] === "1") { $class = "danger"; $privacy = "Private"; }
-  else { $class = "success"; $privacy = "Public"; }
-  echo "<div id='privacy_div_wrapper' style='float:right'><div id='privacy_div' class='well'><p><a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div></div>";
+  if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] === $user_id) { 
+
+    if ($array_profile["private"] === "1") { $class = "danger"; $privacy = "Private"; }
+    else { $class = "success"; $privacy = "Public"; }
+    echo "<div id='privacy_div_wrapper' style='float:right'><div id='privacy_div' class='well'><p><a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div></div>";
+
+  ?>
+
+  <script>
+    function privatize_profile(current_privacy_value){
+      if (current_privacy_value === 1) {
+	      new_privacy_value = "0";
+      } else  new_privacy_value = "1";
+      $.ajax({url: "privatize.ajax.php?user_id=<?php echo $_SESSION["user_id"];?>&privatize=" + new_privacy_value, 
+	success: function(result){
+	    $("#privacy_div").html(result);
+	}
+      });
+    }
+  </script>
+
+  <?php }
 
   echo "
   <div class='well'>
@@ -40,21 +59,6 @@ if ( !empty($array_profile) ) {
 
 }
 
-if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] === $user_id) { ?>
-
-<script>
-  function privatize_profile(current_privacy_value){
-    if (current_privacy_value === 1) {
-	    new_privacy_value = "0";
-    } else  new_privacy_value = "1";
-    $.ajax({url: "privatize.ajax.php?user_id=<?php echo $_SESSION["user_id"];?>&privatize=" + new_privacy_value, 
-      success: function(result){
-	  $("#privacy_div").html(result);
-      }
-    });
-  }
-</script>
-
-<?php } ?>
+ ?>
 
 <?php require_once('_resources/footer.inc.php');?>
