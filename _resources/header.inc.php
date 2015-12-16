@@ -107,8 +107,10 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
 	    <div id='login_nav_div' class="pull-right-md pull-left-xs">
 		<ul class="nav navbar-nav navigation-menu">
 		  <?php
-		    if (isset($_SESSION["username"]))
-		      echo "<li id='logout'><a href='?logout'>Logout $_SESSION[username]</a></li>";
+		    if (isset($_SESSION["username"])) {
+		      echo "<li id='my_profile'><a href='$path_web_root/Profiles/?user_id=$_SESSION[user_id]'>$_SESSION[username]</a></li>";
+		      echo "<li id='logout'><a href='?logout'>Logout</a></li>";
+		    }
 		    else
 		      echo "<li id='login'><a href='$path_web_root/Login/'>Login</a></li>";
 		  ?>
