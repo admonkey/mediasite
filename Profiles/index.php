@@ -17,7 +17,7 @@ if ( !empty($array_profile) ) {
 
   if ($array_profile["private"] === "1") { $class = "danger"; $privacy = "Private"; }
   else { $class = "success"; $privacy = "Public"; }
-  echo "<div id='privacy_div_wrapper'><div id='privacy_div' class='well'><p>This profile is <a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div></div>";
+  echo "<div id='privacy_div_wrapper' style='float:right'><div id='privacy_div' class='well'><p><a href='javascript:privatize_profile($array_profile[private])' class='btn btn-$class'>$privacy</a></p></div></div>";
 
   echo "
   <div class='well'>
