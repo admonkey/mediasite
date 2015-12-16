@@ -44,7 +44,8 @@ BEGIN
 	VALUES
 		(p_message_text,	p_message_thread_id,	p_message_author_user_id);
 
-	SELECT * FROM Forum_Messages
+	SELECT m.*, u.username FROM Forum_Messages m
+	JOIN Users u ON u.user_id = m.message_author_user_id
 	WHERE message_id = LAST_INSERT_ID();
 
 END $$
