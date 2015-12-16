@@ -27,6 +27,11 @@ fake_data_files=( \
 cd $( dirname "${BASH_SOURCE[0]}" )
 cd ../..
 
+# trump credentials if external file exists
+if [ -f credentials_local.bash ]; then
+  source credentials_local.bash
+fi
+
 if $include_fake_data; then
   for sql in "${fake_data_files[@]}"
   do
