@@ -16,7 +16,7 @@ BEGIN
 	FROM Forum_Messages m
 	JOIN Users u
 	  ON u.user_id = m.message_author_user_id
-	WHERE	message_thread_id = 1
+	WHERE	message_thread_id = p_thread_id
 	  AND	message_deleted = 0;
 
 END $$
