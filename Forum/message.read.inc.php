@@ -14,7 +14,7 @@ while ($row = mysql_fetch_assoc($result)){
 	      
 	      <div class='col-md-3'><div class='message_metadata'>
 		      <message_data thread_id='$row[message_thread_id]' message_id='$row[message_id]'></message_data>
-		      <p><label class='label label-primary'>message_author_user_id $row[message_author_user_id]</label></p>
+		      <p><label class='label label-primary'><a href='$path_web_root/Profiles/?user_id=$row[message_author_user_id]'>message_author_user_id $row[message_author_user_id]</a></label></p>
 		      <p><label class='label label-info'>$row[message_creation_time]</label></p>";
 		      
 		      // delete & edit button
