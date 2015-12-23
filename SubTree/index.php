@@ -19,6 +19,7 @@ echo "<h1>$section_title Tips</h1>";
 		</li>
 		<li>
 			<p>create subtree specifying the new folder prefix</p>
+			<p><code>plugin</code> is the remote name, and <code>master</code> refers to the master branch on the subtree's repository.</p>
 			<p><kbd>git subtree add --prefix=plugins/demo plugin master</kbd></p>
 		</li>
 	</ol>
@@ -70,11 +71,11 @@ echo "<h1>$section_title Tips</h1>";
 	<ol>
 		<li>
 			<p>stop tracking changes for a file in repo</p>
-			<p><kbd>git update-index --skip-worktree [path/to/file]</kbd></p>
+			<p><kbd>git update-index --skip-worktree path/to/file</kbd></p>
 		</li>
 		<li>
 			<p>start tracking changes for a file in repo again</p>
-			<p><kbd>git update-index --no-skip-worktree [path/to/file]</kbd></p>
+			<p><kbd>git update-index --no-skip-worktree path/to/file</kbd></p>
 		</li>
 	</ol>
 
