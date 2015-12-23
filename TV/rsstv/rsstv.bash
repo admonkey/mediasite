@@ -58,7 +58,12 @@ fi
 
 # require xmllint
 if ( ! command -v xmllint > /dev/null 2>&1); then
-  echo "ERROR: xmllint required. install and try again. exiting."
+  echo "ERROR: xmllint required. install and try again. 
+  ubuntu install:
+  
+  sudo apt-get install libxml2-utils
+  
+  exiting."
   exit 1
 fi
 

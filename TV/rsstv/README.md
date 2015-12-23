@@ -8,6 +8,7 @@ bash script for:
 - GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
 - curl 7.35.0
 - xmllint: using libxml version 20901
+  - ubuntu install: `sudo apt-get install libxml2-utils`
 
 ## Optional
 - ssmtp
