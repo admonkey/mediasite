@@ -71,11 +71,11 @@ echo "<h1>$section_title Tips</h1>";
 	<ol>
 		<li>
 			<p>stop tracking changes for a file in repo</p>
-			<p><kbd>git update-index --skip-worktree [path/to/file]</kbd></p>
+			<p><kbd>git update-index --skip-worktree path/to/file</kbd></p>
 		</li>
 		<li>
 			<p>start tracking changes for a file in repo again</p>
-			<p><kbd>git update-index --no-skip-worktree [path/to/file]</kbd></p>
+			<p><kbd>git update-index --no-skip-worktree path/to/file</kbd></p>
 		</li>
 	</ol>
 
