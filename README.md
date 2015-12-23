@@ -10,6 +10,7 @@ bash script for:
 - xmllint: using libxml version 20901
 
 ## Optional
+- ssmtp
 - mailutils
 
 ## Getting Started
