@@ -19,6 +19,7 @@ echo "<h1>$section_title Tips</h1>";
 		</li>
 		<li>
 			<p>create subtree specifying the new folder prefix</p>
+			<p><code>plugin</code> is the remote name, and <code>master</code> refers to the master branch on the subtree's repository.</p>
 			<p><kbd>git subtree add --prefix=plugins/demo plugin master</kbd></p>
 		</li>
 	</ol>
