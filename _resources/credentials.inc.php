@@ -32,7 +32,7 @@
 	The credentials_local.inc.php files are useful for automatic merging patch updates.
 */
 
-$site_title = "Web Site";
+$site_title = "Media Site";
 
 // database
   // remote
