@@ -45,6 +45,10 @@ if ( ! ((strpos(basename($_SERVER["SCRIPT_NAME"]),'.ajax.') !== false) || (strpo
       <script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
     <![endif]-->
     
+    <!-- FONT AWESOME
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'></link> -->
+    <link rel='stylesheet' href='$path_web_root/_resources/font-awesome-4.5.0/css/font-awesome.min.css'></link>
+
   ";?>
 
 </head>
