@@ -9,6 +9,7 @@ This is built to take the tedium out of creating the following:
 - common php/html/css and site includes for use with MySQL  
   - jquery-ui
   - bootstrap
+  - font-awesome 4.5.0
   - tablesorter
   - chartist
   - active directory login session via php LDAP
