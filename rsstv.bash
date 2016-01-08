@@ -92,7 +92,7 @@ fi
 
   # log writer 
   function chronicle {
-    echo $(date)" "$1 > temp
+    echo $(date "+%Y-%m-%d %H:%M:%S")" "$1 > temp
     head -200 $chronicle >> temp
     mv temp $chronicle
     echo "<tr><td>$(date)</td><td>$1</td></tr>" > temp
