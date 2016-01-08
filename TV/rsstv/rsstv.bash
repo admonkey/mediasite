@@ -131,7 +131,6 @@ for feed in ${feeds[*]}; do
   for ((i=0; i < $itemsCount; i++)); do
   
     # get news item
-    # FIX need validate xmllint installed
     item=$(xmllint --xpath 'rss/channel/item['$i+1']/title/text()' $newrss)
 
     # iterate through every favorite show
@@ -206,6 +205,8 @@ for feed in ${feeds[*]}; do
 
 	  # snatched.log
 	  echo $item > temp; head -50 $snatchlog >> temp; mv temp $snatchlog
+	  # append snatched array for subsequent passes on multiple feeds
+	  snatched+=("$item")
 
 	  chronicle "snatched $item"
 
