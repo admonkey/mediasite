@@ -131,7 +131,6 @@ for feed in ${feeds[*]}; do
   for ((i=0; i < $itemsCount; i++)); do
   
     # get news item
-    # FIX need validate xmllint installed
     item=$(xmllint --xpath 'rss/channel/item['$i+1']/title/text()' $newrss)
 
     # iterate through every favorite show
