@@ -205,6 +205,8 @@ for feed in ${feeds[*]}; do
 
 	  # snatched.log
 	  echo $item > temp; head -50 $snatchlog >> temp; mv temp $snatchlog
+	  # append snatched array for subsequent passes on multiple feeds
+	  snatched+=("$item")
 
 	  chronicle "snatched $item"
 
