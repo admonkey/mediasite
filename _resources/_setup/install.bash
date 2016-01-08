@@ -178,16 +178,23 @@ if $createVhost ; then
 	  exit 1
   fi
   echo "Creating virtual host configuration file..."
-  vfile="<Directory $vhostDirectory/>\n\t"
-  vfile="$vfile Options Indexes FollowSymLinks\n\t"
-  vfile="$vfile AllowOverride All\n\t"
-  vfile="$vfile Require all granted\n"
-  vfile="$vfile</Directory>\n"
-  vfile="$vfile<VirtualHost *:80>\n\t"
-  vfile="$vfile ServerAdmin webmaster@$siteName\n\t"
-  vfile="$vfile ServerName $siteName\n\t"
-  vfile="$vfile DocumentRoot $vhostDirectory\n"
-  vfile="$vfile</VirtualHost>\n"
+  vfile="
+  
+  <Directory $vhostDirectory/>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+  
+  <VirtualHost *:80>
+    ServerAdmin webmaster@$siteName
+    ServerName $siteName
+    DocumentRoot $vhostDirectory
+    ErrorLog \${APACHE_LOG_DIR}/$siteName.error.http.log
+    CustomLog \${APACHE_LOG_DIR}/$siteName.access.http.log combined
+  </VirtualHost>
+  
+  "
   echo -e $vfile > VirtualHostConfigurationFile
 fi
 
@@ -205,16 +212,22 @@ if $createSSL ; then
 
 	# APPEND VIRTUAL HOST CONFIGURATION FILE
 	if $createVhost ; then
-	    vfile="<IfModule mod_ssl.c>\n\t"
-	    vfile="$vfile <VirtualHost *:443>\n\t\t"
-	    vfile="$vfile ServerAdmin webmaster@$siteName\n\t\t"
-	    vfile="$vfile ServerName $siteName\n\t\t"
-	    vfile="$vfile DocumentRoot $vhostDirectory\n\t\t"
-	    vfile="$vfile SSLEngine on\n\t\t"
-	    vfile="$vfile SSLCertificateFile $sslDirectory/$siteName.crt\n\t\t"
-	    vfile="$vfile SSLCertificateKeyFile $sslDirectory/$siteName.key\n\t"
-	    vfile="$vfile </VirtualHost>\n"
-	    vfile="$vfile </IfModule>\n"
+	    vfile="
+	    
+  <IfModule mod_ssl.c>
+    <VirtualHost *:443>
+      ServerAdmin webmaster@$siteName
+      ServerName $siteName
+      DocumentRoot $vhostDirectory
+      ErrorLog \${APACHE_LOG_DIR}/$siteName.error.ssl.log
+      CustomLog \${APACHE_LOG_DIR}/$siteName.access.ssl.log combined
+      SSLEngine on
+      SSLCertificateFile $sslDirectory/$siteName.crt
+      SSLCertificateKeyFile $sslDirectory/$siteName.key
+    </VirtualHost>
+  </IfModule>
+	    
+	    "
 	    echo -e $vfile >> VirtualHostConfigurationFile
 	    # ENABLE APACHE SSL MODULE
 	    sudo a2enmod ssl
