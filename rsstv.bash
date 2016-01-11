@@ -45,7 +45,6 @@ shows=( \
   "South.Park" \
   "Trailer.Park.Boys" \
   "Man.Seeking.Woman" \
-  "The.Brink" \
   "The.Jim.Gaffigan.Show" \
   "Stephen.Colbert" \
   "Gravity.Falls" \
