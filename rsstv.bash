@@ -22,16 +22,13 @@ shows=( \
   "House.Of.Cards.2013" \
   "Fargo" \
   "Louie" \
-  "Blackish" \
   "Portlandia" \
   "Workaholics" \
-  "Key.and.Peele" \
   "Modern.Family" \
   "The.Big.Bang.Theory" \
   "Its.Always.Sunny.in.Philadelphia" \
   "The.Simpsons" \
   "Better.Call.Saul" \
-  "Breaking.Bad" \
   "Family.Guy" \
   "American.Dad" \
   "Veep" \
